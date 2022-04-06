@@ -1,0 +1,33 @@
+{
+  "name": "@openlab/pdc",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "server": "cd server && node --loader=ts-node/esm --require=dotenv/config src/cli.ts",
+    "prepare": "husky install",
+    "build:server": "cd server && npx tsc"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
+    "prettier": "^2.6.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "lint-staged": {
+    "*.{js,json,css,md,ts,tsx}": [
+      "prettier --write"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}

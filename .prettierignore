@@ -1,0 +1,8 @@
+#
+# Files for prettier to ignore
+#
+
+coverage
+node_modules
+dist
+.nova
