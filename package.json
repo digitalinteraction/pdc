@@ -5,7 +5,9 @@
   "scripts": {
     "server": "cd server && node --loader=ts-node/esm --require=dotenv/config src/cli.ts",
     "prepare": "husky install",
-    "build:server": "cd server && npx tsc"
+    "build:server": "cd server && npx tsc",
+    "build:client": "cd client && npx vue-cli-service build",
+    "serve:client": "cd client && npx vue-cli-service serve"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",

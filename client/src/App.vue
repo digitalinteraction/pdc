@@ -1,0 +1,122 @@
+<template>
+  <div id="app">
+    <PdcApiError v-if="apiState === 'error'" :home-route="homeRoute" />
+    <router-view v-else-if="apiState === 'ready'" />
+    <AppLoading v-else />
+
+    <DevControl
+      :dev-plugin="$dev"
+      :force-enabled="isDev"
+      :controls="['scheduleDate']"
+    />
+    <AppDialog :dialog-plugin="$dialog" />
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+import {
+  AppLoading,
+  DevControl,
+  mapApiState,
+  Routes,
+} from '@openlab/deconf-ui-toolkit'
+import { ConferenceConfig } from '@openlab/deconf-shared'
+import { Location } from 'vue-router'
+
+import PdcApiError from './components/PdcApiError.vue'
+import AppDialog from './components/AppDialog.vue'
+
+import { StorageKey } from './lib/module'
+import { setLocale } from './i18n/module'
+
+// TODO: review for PDC
+
+interface Data {
+  timerId: null | number
+}
+
+export default Vue.extend({
+  components: {
+    AppLoading,
+    DevControl,
+    PdcApiError,
+    AppDialog,
+  },
+  data(): Data {
+    return { timerId: null }
+  },
+  computed: {
+    ...mapApiState('api', ['apiState', 'schedule', 'user']),
+    settings(): ConferenceConfig | null {
+      return this.schedule?.settings ?? null
+    },
+    homeRoute(): Location {
+      return { name: Routes.Atrium }
+    },
+    isDev(): boolean {
+      return process.env.NODE_ENV === 'development'
+    },
+  },
+  async mounted() {
+    this.fetchData()
+
+    // Setup temporal plugin
+    this.$temporal.setup()
+
+    // Listen for site-visitors and update vuex
+    this.$io?.socket.on('site-visitors', (count: number) => {
+      this.$store.commit('metrics/siteVisitors', count)
+    })
+
+    // Setup a random tick to re-pull the schedule
+    this.timerId = window.setInterval(
+      () => this.$store.dispatch('api/fetchData'),
+      this.randomTick()
+    )
+  },
+  destroyed() {
+    this.$temporal.teardown()
+    this.$io?.teardown()
+
+    if (this.timerId) {
+      clearInterval(this.timerId)
+      this.timerId = null
+    }
+  },
+  methods: {
+    /** Generate a random number between x */
+    randomTick(): number {
+      return Math.round((3 + Math.random() * 4) * 60 * 1000)
+    },
+    async fetchData() {
+      const token = localStorage.getItem(StorageKey.AuthToken)
+
+      //
+      // If there is a token stored, authenticate with it & fetch data
+      //
+      if (token) {
+        await this.$store.dispatch('api/authenticate', { token })
+
+        if (this.user) {
+          setLocale(this.user.user_lang)
+        } else {
+          localStorage.removeItem(StorageKey.AuthToken)
+        }
+      }
+
+      if (!this.user) {
+        //
+        // Fetch data
+        //
+        await this.$store.dispatch('api/fetchData')
+
+        // If ?locale=value is set, use that locale
+        if (typeof this.$route.query.locale === 'string') {
+          setLocale(this.$route.query.locale)
+        }
+      }
+    },
+  },
+})
+</script>

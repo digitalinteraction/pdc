@@ -75,6 +75,7 @@ export class CalendarRouter implements AppRouter {
       }
     )
 
+    // TODO: migrate to deconf
     router.get('calendar.createUserCalendar', '/calendar/me', async (ctx) => {
       const token = this.#jwt.getRequestAuth(ctx.request.headers)
       if (!token) throw ApiError.unauthorized()
