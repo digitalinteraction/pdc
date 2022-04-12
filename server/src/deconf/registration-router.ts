@@ -4,7 +4,7 @@ import {
   RegistrationMailer,
   RegistrationRoutes,
 } from '@openlab/deconf-api-toolkit'
-import { Registration } from '@openlab/deconf-shared/dist/registration'
+import { Registration } from '@openlab/deconf-shared'
 import { object } from 'superstruct'
 
 import { AppContext, AppRouter, BlockList } from '../lib/module.js'
