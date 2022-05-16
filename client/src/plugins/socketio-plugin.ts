@@ -16,11 +16,11 @@ export class SocketIoPlugin {
     this.sharedSocket?.emit('auth', token)
   }
 
-  constructor(serverUrl: string) {
+  constructor(serverUrl: URL) {
     // Concat the path onto the server url, e.g.
     // "/api/socket.io"
     // "/socket.io"
-    const pathname = new URL(serverUrl).pathname.replace(/\/?$/, '/socket.io')
+    const pathname = serverUrl.pathname.replace(/\/?$/, '/socket.io')
 
     // Generate the socket.io url
     // reset the pathname because socket.io uses it differently (for amespaces)

@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <p>Processing token...</p>
+    <p>Processing login...</p>
   </div>
 </template>
 

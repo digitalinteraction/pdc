@@ -1,3 +1,5 @@
+// TODO: trim these
+
 export enum StorageKey {
   AuthToken = 'authToken',
   Analytics = 'analyticsConsent',

@@ -31,6 +31,7 @@ const routes: Array<RouteConfig> = [
     name: Routes.TokenCapture,
     component: TokenCaptureView,
   },
+  // TODO: more routes
 ]
 
 function getRouteTitle(route: Route): string {

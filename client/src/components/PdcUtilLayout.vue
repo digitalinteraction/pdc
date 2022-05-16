@@ -5,7 +5,7 @@
     <template slot="backButton">
       <slot name="backButton">
         <BackButton :to="atriumRoute">
-          {{ $t('mozfest.general.backToAtrium') }}
+          {{ $t('pdc.general.backToAtrium') }}
         </BackButton>
       </slot>
     </template>

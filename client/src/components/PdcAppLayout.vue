@@ -4,9 +4,10 @@
     :user="user"
     :routes="routes"
     :nav-links="navLinks"
-    class="mozAppLayout"
+    class="pdcAppLayout"
   >
     <MainLogo slot="brandA" />
+
     <!-- <AltLogo slot="brandB" /> -->
 
     <!-- <LanguageControl slot="languageControl" /> -->
@@ -15,7 +16,7 @@
       <SquareLogo />
     </router-link>
 
-    <div slot="main" class="mozAppLayout-main">
+    <div slot="main" class="pdcAppLayout-main">
       <slot />
       <PageFooter />
     </div>
@@ -40,6 +41,7 @@ import PageFooter from '@/components/PageFooter.vue'
 // TODO: temporary
 import AtriumIcon from '@/components/SquareLogo.vue'
 
+// TODO: map actual icons
 // import ArtGalleryIcon from '@/icons/ArtGalleryIcon.vue'
 // import FringeIcon from '@/icons/FringeIcon.vue'
 // import HelpDeskIcon from '@/icons/HelpDeskIcon.vue'
@@ -91,73 +93,73 @@ export default Vue.extend({
 
       const routes: RouteIntermediate[] = [
         {
-          title: this.$t('mozfest.appLayout.atrium') as string,
+          title: this.$t('pdc.appLayout.atrium') as string,
           name: Routes.Atrium,
           icon: AtriumIcon,
           pageFlag: this.settings.atrium,
         },
         // {
-        //   title: this.$t('mozfest.appLayout.whatsOn') as string,
+        //   title: this.$t('pdc.appLayout.whatsOn') as string,
         //   name: Routes.WhatsOn,
         //   icon: WhatsOnIcon,
         //   pageFlag: this.settings.whatsOn,
         // },
         // {
-        //   title: this.$t('mozfest.appLayout.schedule') as string,
+        //   title: this.$t('pdc.appLayout.schedule') as string,
         //   name: Routes.Schedule,
         //   icon: ScheduleIcon,
         //   pageFlag: this.settings.schedule,
         // },
         // {
-        //   title: this.$t('mozfest.appLayout.arts') as string,
+        //   title: this.$t('pdc.appLayout.arts') as string,
         //   name: ExtraRoutes.Arts,
         //   icon: ArtGalleryIcon,
         //   pageFlag: this.settings.arts,
         // },
         // {
-        //   title: this.$t('mozfest.appLayout.skillShare') as string,
+        //   title: this.$t('pdc.appLayout.skillShare') as string,
         //   name: ExtraRoutes.SkillShare,
         //   icon: SkillShareIcon,
         //   pageFlag: this.settings.skillShare,
         // },
         // {
-        //   title: this.$t('mozfest.appLayout.fringe') as string,
+        //   title: this.$t('pdc.appLayout.fringe') as string,
         //   name: ExtraRoutes.Fringe,
         //   icon: FringeIcon,
         //   pageFlag: this.settings.fringe,
         // },
         // {
-        //   title: this.$t('mozfest.appLayout.house') as string,
+        //   title: this.$t('pdc.appLayout.house') as string,
         //   name: ExtraRoutes.House,
         //   icon: HouseIcon,
         //   pageFlag: this.settings.house,
         // },
         // {
-        //   title: this.$t('mozfest.appLayout.misinfoCon') as string,
+        //   title: this.$t('pdc.appLayout.misinfoCon') as string,
         //   name: ExtraRoutes.MisinfoCon,
         //   icon: MisinfoConIcon,
         //   pageFlag: this.settings.misinfoCon,
         // },
         // {
-        //   title: this.$t('mozfest.appLayout.social') as string,
+        //   title: this.$t('pdc.appLayout.social') as string,
         //   name: ExtraRoutes.Spaces,
         //   icon: SpacesIcon,
         //   pageFlag: this.settings.social,
         // },
         // {
-        //   title: this.$t('mozfest.appLayout.emergentSessions') as string,
+        //   title: this.$t('pdc.appLayout.emergentSessions') as string,
         //   name: ExtraRoutes.EmergentInfo,
         //   icon: EmergentIcon,
         //   pageFlag: this.settings.emergentInfo,
         // },
         // {
-        //   title: this.$t('mozfest.appLayout.emergentSessions') as string,
+        //   title: this.$t('pdc.appLayout.emergentSessions') as string,
         //   name: ExtraRoutes.EmergentSessions,
         //   icon: EmergentIcon,
         //   pageFlag: this.settings.emergentSessions,
         // },
         // {
-        //   title: this.$t('mozfest.appLayout.helpDesk') as string,
+        //   title: this.$t('pdc.appLayout.helpDesk') as string,
         //   name: Routes.HelpDesk,
         //   icon: HelpDeskIcon,
         //   pageFlag: this.settings.helpDesk,
@@ -181,7 +183,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.mozAppLayout-main {
+// TODO: migrate to deconf somehow
+.pdcAppLayout-main {
   flex: 1;
   display: flex;
   flex-direction: column;

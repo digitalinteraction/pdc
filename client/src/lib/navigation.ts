@@ -10,8 +10,6 @@ type AllPageFlags = {
 }
 
 // TODO: migrate to deconf version
-
-/** EXPERIMENTAL - guard a route against a PageFlag unless an admin is visiting */
 export function guardRoute(
   schedule: ConferenceConfig | undefined,
   key: keyof AllPageFlags,
