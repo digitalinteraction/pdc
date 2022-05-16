@@ -6,6 +6,8 @@
 
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
+import { fakeScheduleCommand } from './commands/fake-schedule-command.js'
+import { migrateCommand } from './commands/migrate-command.js'
 import { serveCommand } from './commands/serve-command.js'
 
 // commands ...
@@ -29,6 +31,20 @@ cli.command(
       .option('port', { type: 'number', default: 3000 })
       .option('migrate', { type: 'boolean', default: false }),
   (args) => serveCommand(args).catch(errorHandler)
+)
+
+cli.command(
+  'migrate',
+  'Run pending database migrations',
+  (yargs) => yargs,
+  (args) => migrateCommand(args).catch(errorHandler)
+)
+
+cli.command(
+  'fake-schedule',
+  'Generate a fake schedule for development',
+  (yargs) => yargs,
+  (args) => fakeScheduleCommand(args).catch(errorHandler)
 )
 
 cli.parse()

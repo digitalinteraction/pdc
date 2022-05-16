@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "server": "cd server && node --loader=ts-node/esm --require=dotenv/config src/cli.ts",
     "prepare": "husky install",
+    "cli": "cd server && node --loader=ts-node/esm --require=dotenv/config src/cli.ts",
     "build:server": "cd server && npx tsc",
     "build:client": "cd client && npx vue-cli-service build",
-    "serve:client": "cd client && npx vue-cli-service serve"
+    "serve:client": "cd client && npx vue-cli-service serve",
+    "serve:server": "npm -s run cli -- serve"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",

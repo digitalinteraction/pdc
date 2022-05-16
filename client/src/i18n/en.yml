@@ -174,7 +174,7 @@ deconf:
     google: Google Calendar
     cancel: Cancel
 
-mozfest:
+pdc:
   general:
     appName: Mozilla Festival 2022 Schedule
     backToAtrium: Back to Plaza

@@ -14,7 +14,23 @@ import { MetricsPlugin } from '@/plugins/metrics-plugin'
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
-  // todo
+  {
+    path: '/',
+    redirect: { name: Routes.Atrium },
+  },
+  {
+    path: '/plaza',
+    name: Routes.Atrium,
+    component: AtriumView,
+    meta: {
+      pageTitle: 'mozfest.pageTitles.atrium',
+    },
+  },
+  {
+    path: '/_auth',
+    name: Routes.TokenCapture,
+    component: TokenCaptureView,
+  },
 ]
 
 function getRouteTitle(route: Route): string {

@@ -1,0 +1,23 @@
+{
+  "admins": [{ "email": "robanderson@hey.com" }],
+  "mail": {
+    "fromEmail": "noreply@openlab.dev",
+    "replyToEmail": "festival@mozilla.org"
+  },
+  "organiser": {
+    "name": "PDC",
+    "email": "pdc@openlab.dev"
+  },
+  "carbon": {
+    "originCountry": "GB"
+  },
+  "sendgrid": {
+    "loginTemplateId": "d-095e893ab93b4ba48e7039b1e070677f"
+  },
+  "jwt": {
+    "issuer": "pdc-2022"
+  },
+  "content": {
+    "keys": [""]
+  }
+}

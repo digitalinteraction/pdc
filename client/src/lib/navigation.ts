@@ -1,10 +1,10 @@
 import { AuthToken, ConferenceConfig, PageFlag } from '@openlab/deconf-shared'
 import { Routes } from '@openlab/deconf-ui-toolkit'
 import VueRouter from 'vue-router'
-import { MozConferenceConfig } from './api'
+import { PdcConferenceConfig } from './api'
 
 type AllPageFlags = {
-  [K in keyof MozConferenceConfig]: MozConferenceConfig[K] extends PageFlag
+  [K in keyof PdcConferenceConfig]: PdcConferenceConfig[K] extends PageFlag
     ? PageFlag
     : never
 }

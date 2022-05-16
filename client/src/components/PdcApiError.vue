@@ -1,7 +1,7 @@
 <template>
   <ApiError :home-route="homeRoute">
-    <!-- <PdcLogo slot="brand" /> -->
-    <!-- <PdcPageFooter slot="footer" /> -->
+    <MainLogo slot="brand" />
+    <PageFooter slot="footer" />
   </ApiError>
 </template>
 
@@ -9,13 +9,11 @@
 import Vue from 'vue'
 import { ApiError } from '@openlab/deconf-ui-toolkit'
 
-// import PdcLogo from './PdcLogo.vue'
-// import PdcPageFooter from './PdcPageFooter.vue'
-
-// TODO: add logos
+import MainLogo from './MainLogo.vue'
+import PageFooter from './PageFooter.vue'
 
 export default Vue.extend({
-  components: { ApiError },
+  components: { ApiError, MainLogo, PageFooter },
   props: {
     homeRoute: { type: Object, required: true },
   },

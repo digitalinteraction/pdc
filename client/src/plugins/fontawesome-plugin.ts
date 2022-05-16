@@ -79,6 +79,6 @@ library.add(
 //
 export class FontawesomePlugin {
   static install(Vue: typeof _Vue): void {
-    Vue.component('fa', FontAwesomeIcon)
+    Vue.component('fa-icon', FontAwesomeIcon)
   }
 }
