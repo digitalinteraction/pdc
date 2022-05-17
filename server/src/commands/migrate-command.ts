@@ -7,9 +7,9 @@ import {
 } from '@openlab/deconf-api-toolkit'
 import { createDebug } from '../lib/module.js'
 
-const debug = createDebug('pdc:cmd:migrate')
+const debug = createDebug('cmd:migrate')
 
-const MOZFEST_MIGRATIONS = [...DECONF_MIGRATIONS]
+const PDC_MIGRATIONS = [...DECONF_MIGRATIONS]
 
 export interface MigrateCommandOptions {
   // ...
@@ -22,7 +22,7 @@ export async function migrateCommand(options: MigrateCommandOptions) {
 
   debug(
     'migrations %o',
-    MOZFEST_MIGRATIONS.map((m) => m.id)
+    PDC_MIGRATIONS.map((m) => m.id)
   )
 
   const postgres = new PostgresService({ env })
@@ -33,7 +33,7 @@ export async function migrateCommand(options: MigrateCommandOptions) {
     const migrate = new MigrateService({ migrateRepo })
 
     debug('running migrations')
-    await migrate.runMigrations(MOZFEST_MIGRATIONS)
+    await migrate.runMigrations(PDC_MIGRATIONS)
   })
 
   debug('disconnecting')

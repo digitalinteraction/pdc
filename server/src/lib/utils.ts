@@ -4,13 +4,16 @@ import {
 } from '@openlab/deconf-api-toolkit'
 
 import crypto from 'crypto'
+import debug from 'debug'
 import { AppConfigStruct } from './structs.js'
 
 //
 // Misc
 //
 
-export { default as createDebug } from 'debug'
+export function createDebug(namespace: string) {
+  return debug(`pdc:${namespace}`)
+}
 
 export function sha256Hash(input: string) {
   return crypto.createHash('sha256').update(input).digest('base64')

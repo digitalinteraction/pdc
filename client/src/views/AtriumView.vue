@@ -119,17 +119,17 @@ export default Vue.extend({
     ...mapApiState('api', ['schedule', 'user']),
     ...mapMetricsState('metrics', ['siteVisitors']),
     settings(): PdcConferenceConfig | null {
-      return (this.schedule?.settings as PdcConferenceConfig) ?? null
+      return (this.schedule?.settings as any) ?? null
     },
     siteVisitorsIsEnabled(): boolean {
       if (!this.settings) return false
-      return !this.settings.isStatic
+      return !this.settings.widgets.siteVisitors
     },
     siteVisitorsTitle(): string {
       return this.siteVisitors?.toString() ?? '~'
     },
     contentSlug(): string {
-      return this.user ? 'home-personal' : 'home-general'
+      return this.user ? 'home-personal' : 'home-public'
     },
     loginRoute(): Location {
       return { name: Routes.Login }

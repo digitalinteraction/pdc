@@ -16,6 +16,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import {
+  AppDialog,
   AppLoading,
   DevControl,
   mapApiState,
@@ -25,7 +26,6 @@ import { ConferenceConfig } from '@openlab/deconf-shared'
 import { Location } from 'vue-router'
 
 import PdcApiError from './components/PdcApiError.vue'
-import AppDialog from './components/AppDialog.vue'
 
 import { StorageKey } from './lib/module'
 import { setLocale } from './i18n/module'

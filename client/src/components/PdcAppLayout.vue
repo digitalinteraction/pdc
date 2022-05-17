@@ -74,18 +74,13 @@ export default Vue.extend({
   computed: {
     ...mapApiState('api', ['schedule', 'user']),
     settings(): PdcConferenceConfig | null {
-      return (this.schedule?.settings as PdcConferenceConfig) ?? null
+      return (this.schedule?.settings as any) ?? null
     },
     navLinks(): string[] {
       const links: string[] = []
-      links.push('login')
-      links.push('register')
-      links.push('profile')
-      // TODO: Pdc config generator
-      // if (this.settings?.navigation.showInterpret) links.push('interpret')
-      // if (this.settings?.navigation.showLogin) links.push('login')
-      // if (this.settings?.navigation.showProfile) links.push('profile')
-      // if (this.settings?.navigation.showRegister) links.push('register')
+      if (this.settings?.navigation.showLogin) links.push('login')
+      if (this.settings?.navigation.showProfile) links.push('profile')
+      if (this.settings?.navigation.showRegister) links.push('register')
       return links
     },
     routes(): AppRoute[] {
@@ -96,7 +91,7 @@ export default Vue.extend({
           title: this.$t('pdc.appLayout.atrium') as string,
           name: Routes.Atrium,
           icon: AtriumIcon,
-          pageFlag: this.settings.atrium,
+          pageFlag: this.settings.home,
         },
         // {
         //   title: this.$t('pdc.appLayout.whatsOn') as string,

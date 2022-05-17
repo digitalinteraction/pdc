@@ -1,0 +1,33 @@
+{
+  "admins": [{ "email": "user@example.com" }],
+  "mail": {
+    "fromEmail": "noreply@example.com",
+    "replyToEmail": "hello@example.com"
+  },
+  "organiser": {
+    "name": "Organisation",
+    "email": "hello@example.com"
+  },
+  "carbon": {
+    "originCountry": "GB"
+  },
+  "sendgrid": {
+    "loginTemplateId": ""
+  },
+  "jwt": {
+    "issuer": "test-app-0001"
+  },
+  "content": {
+    "keys": ["home-public", "home-personal"]
+  },
+  "notion": {
+    "db": {
+      "sessions": "",
+      "speakers": "",
+      "themes": "",
+      "tracks": "",
+      "types": "",
+      "copy": ""
+    }
+  }
+}

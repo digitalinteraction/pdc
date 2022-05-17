@@ -14,6 +14,16 @@ export const AppConfigStruct = assign(
     content: object({
       keys: array(string()),
     }),
+    notion: object({
+      db: object({
+        sessions: string(),
+        themes: string(),
+        tracks: string(),
+        speakers: string(),
+        types: string(),
+        copy: string(),
+      }),
+    }),
   })
 )
 

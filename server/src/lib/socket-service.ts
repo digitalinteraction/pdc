@@ -6,7 +6,7 @@ import {
   SocketService as DeconfSocketService,
 } from '@openlab/deconf-api-toolkit'
 
-const debug = createDebug('pdc:lib:socket-service')
+const debug = createDebug('lib:socket-service')
 
 export class SocketService implements Readonly<DeconfSocketService> {
   get #io() {

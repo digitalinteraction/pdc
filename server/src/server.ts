@@ -27,7 +27,7 @@ import { ContentRouter } from './deconf/content-router.js'
 import { RegistrationRouter } from './deconf/registration-router.js'
 import { ConferenceRouter } from './deconf/conference-router.js'
 
-const debug = createDebug('pdc:server')
+const debug = createDebug('server')
 
 /** A middleware to output requests when in debug mode */
 function debugMiddleware(): Koa.Middleware {
