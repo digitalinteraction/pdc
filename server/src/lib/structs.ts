@@ -21,7 +21,7 @@ export const AppConfigStruct = assign(
         tracks: string(),
         speakers: string(),
         types: string(),
-        copy: string(),
+        content: string(),
       }),
     }),
   })

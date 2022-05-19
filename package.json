@@ -8,7 +8,8 @@
     "build:server": "cd server && npx tsc",
     "build:client": "cd client && npx vue-cli-service build",
     "serve:client": "cd client && npx vue-cli-service serve",
-    "serve:server": "npm -s run cli -- serve"
+    "serve:server": "npm -s run cli -- serve",
+    "version": "bin/update-versions.mjs && git add -A"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",

@@ -42,7 +42,7 @@ const fmt = {
   slot: (s: any, e: any) => {
     const start = new Date(s)
     const end = new Date(e)
-    if (Number.isNaN(start.getTime()) || !Number.isNaN(end.getTime())) {
+    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
       return undefined
     }
     const id = start.getTime() + '__' + end.getTime()
@@ -166,8 +166,10 @@ async function retrieveAll(notion: NotionHq.Client, page: string) {
 
 // run once and output stdout to this file
 // run again with localFile set to that file to skip notion API calls
+type FetchSchedulePullMode = 'schedule' | 'content' | 'settings'
 export interface FetchScheduleCommandOptions {
   localFile?: string
+  only?: FetchSchedulePullMode[]
 }
 
 export async function fetchScheduleCommand(
@@ -184,10 +186,6 @@ export async function fetchScheduleCommand(
 
   const config = await loadConfig()
   const store = new RedisService(REDIS_URL)
-  const contentService = new ContentService({
-    store,
-    contentRepo: new ContentRepository({}),
-  })
 
   debug('creating client')
   const notion = new NotionHq.Client({
@@ -195,6 +193,12 @@ export async function fetchScheduleCommand(
   })
 
   const content: Record<string, NotionPage[]> = {}
+
+  function pull(mode: FetchSchedulePullMode) {
+    return (
+      !options.only || options.only.length === 0 || options.only.includes(mode)
+    )
+  }
 
   if (options.localFile) {
     debug('localFile=%o', options.localFile)
@@ -204,16 +208,97 @@ export async function fetchScheduleCommand(
     )
   } else {
     debug('using notion API')
-    Object.assign(content, {
-      sessions: await queryAll(notion, config.notion.db.sessions),
-      themes: await queryAll(notion, config.notion.db.themes),
-      tracks: await queryAll(notion, config.notion.db.tracks),
-      types: await queryAll(notion, config.notion.db.types),
-      speakers: await queryAll(notion, config.notion.db.speakers),
-      copy: await queryAll(notion, config.notion.db.copy),
-    })
+    const keys: Record<string, string> = {}
+
+    if (pull('schedule')) {
+      keys.sessions = config.notion.db.sessions
+      keys.themes = config.notion.db.themes
+      keys.tracks = config.notion.db.tracks
+      keys.types = config.notion.db.types
+      keys.speakers = config.notion.db.speakers
+    }
+
+    if (pull('content')) {
+      keys.content = config.notion.db.content
+    }
+
+    for (const [key, db] of Object.entries(keys)) {
+      content[key] = await queryAll(notion, db)
+    }
   }
 
+  if (pull('schedule')) {
+    await processSchedule(content, store)
+  }
+
+  if (pull('settings')) {
+    await processSettings(content, store)
+  }
+
+  if (pull('content')) {
+    await processContent(content, store)
+  }
+
+  console.log(JSON.stringify(content, null, 2))
+
+  await store.close()
+}
+
+async function processContent(
+  content: Record<string, NotionPage[]>,
+  store: RedisService
+) {
+  const contentService = new ContentService({
+    store,
+    contentRepo: new ContentRepository({}),
+  })
+
+  // Put any content we find into the content section
+  // TODO: english only for now
+  for (const page of content.content) {
+    const slug = fmt.title(page.props.Name)?.trim()
+    const content = getMarkdown(page.blocks)
+    if (!slug || !content) continue
+    await store.put(`content.${slug}`, {
+      en: contentService.processMarkdown(content),
+    })
+  }
+}
+
+async function processSettings(
+  content: Record<string, NotionPage[]>,
+  store: RedisService
+) {
+  // TODO: pull the settings from somewhere too
+  await store.put('schedule.settings', {
+    atrium: { enabled: true, visible: true },
+    schedule: { enabled: true, visible: true },
+    keynotes: { enabled: true, visible: true },
+    papers: { enabled: true, visible: true },
+    places: { enabled: true, visible: true },
+    newcastle: { enabled: true, visible: true },
+    social: { enabled: true, visible: true },
+    help: { enabled: true, visible: true },
+
+    navigation: {
+      showProfile: true,
+      showLogin: true,
+      showRegister: true,
+    },
+
+    widgets: {
+      siteVisitors: true,
+      twitter: true,
+      login: true,
+      register: true,
+    },
+  })
+}
+
+async function processSchedule(
+  content: Record<string, NotionPage[]>,
+  store: RedisService
+) {
   const themes: Theme[] = content.themes.map((page) => ({
     id: page.id,
     title: {
@@ -231,9 +316,10 @@ export async function fetchScheduleCommand(
   const speakers: Speaker[] = content.speakers.map((page) => ({
     id: page.id,
     name: fmt.title(page.props.Name),
-    role: { en: 'TODO' },
+    role: { en: fmt.richText(page.props.Role) },
     bio: { en: getMarkdown(page.blocks) },
-    headshot: page.props.Headshot?.files?.[0]?.file?.url,
+    // headshot: page.props.Headshot?.files?.[0]?.file?.url, // TODO
+    headshot: '/img/headshot.svg',
   }))
 
   const types: SessionType[] = content.types.map((page) => ({
@@ -246,14 +332,6 @@ export async function fetchScheduleCommand(
     },
   }))
 
-  // const getSlot = (rawStart: any, rawEnd: any): SessionSlot | null => {
-  //   const start = new Date(rawStart)
-  //   const end = new Date(rawEnd)
-  //   const id = fmt.slotId(start, end)
-  //   if (!id) return null
-  //   return { id, start, end }
-  // }
-
   const slotMap = new Map<string, SessionSlot>()
   for (const page of content.sessions) {
     const slot = fmt.slot(
@@ -262,6 +340,7 @@ export async function fetchScheduleCommand(
     )
     if (slot) slotMap.set(slot.id, slot)
   }
+  const slots = Array.from(slotMap.values())
 
   const sessions: Session[] = content.sessions.map((page) => {
     return {
@@ -294,49 +373,10 @@ export async function fetchScheduleCommand(
     }
   })
 
-  console.log(JSON.stringify(content, null, 2))
-
   await store.put('schedule.themes', themes)
   await store.put('schedule.types', types)
   await store.put('schedule.tracks', tracks)
   await store.put('schedule.speakers', speakers)
   await store.put('schedule.sessions', sessions)
-
-  // TODO: pull the settings from somewhere too
-  await store.put('schedule.settings', {
-    atrium: { enabled: true, visible: true },
-    schedule: { enabled: true, visible: true },
-    keynotes: { enabled: true, visible: true },
-    papers: { enabled: true, visible: true },
-    places: { enabled: true, visible: true },
-    newcastle: { enabled: true, visible: true },
-    social: { enabled: true, visible: true },
-    help: { enabled: true, visible: true },
-
-    navigation: {
-      showProfile: true,
-      showLogin: true,
-      showRegister: true,
-    },
-
-    widgets: {
-      siteVisitors: true,
-      twitter: true,
-      login: true,
-      register: true,
-    },
-  })
-
-  // Put any content we find into the content section
-  // TODO: english only for now
-  for (const page of content.copy) {
-    const slug = fmt.title(page.props.Name)?.trim()
-    const content = getMarkdown(page.blocks)
-    if (!slug || !content) continue
-    await store.put(`content.${slug}`, {
-      en: contentService.processMarkdown(content),
-    })
-  }
-
-  await store.close()
+  await store.put('schedule.slots', slots)
 }

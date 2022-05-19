@@ -6,12 +6,8 @@ TODO:
 - setup the rest of the routes
 - setup actual sponsors
 - go through "moz" copy in en.yml
-- `createMemoryStore` should be migrated to class-based
-- `RedisService` should be migrated to redis@4
-- explore general `options` in `Context` for domain-specific configuration
-- remove all use of now deprecated `Config`
 - review rich text rendering
-- caching images
+- caching notion images?
 - DeconfApiClient's
   - isn't finished?
 
@@ -19,6 +15,11 @@ future work
 
 - minimise "Routes" to be only the ones deconf needs
 - move `api/fetchContent` patch back to deconf
+- `createMemoryStore` should be migrated to class-based
+- `RedisService` should be migrated to redis@4
+- explore general `options` in `Context` for domain-specific configuration
+- remove all use of now deprecated `Config`
+- sort out exports on deconf-shared
 
 documentation needed
 

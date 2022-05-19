@@ -1,8 +1,10 @@
 {
   "type": "module",
+  "version": "0.0.0",
   "scripts": {
     "dev": "node --loader=ts-node/esm --require dotenv/config src/cli.ts",
-    "debug": "node --inspect-brk --loader=ts-node/esm --require dotenv/config src/cli.ts"
+    "debug": "node --inspect-brk --loader=ts-node/esm --require dotenv/config src/cli.ts",
+    "redis": "docker-compose exec redis redis-cli"
   },
   "dependencies": {
     "@godaddy/terminus": "^4.10.2",

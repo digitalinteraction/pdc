@@ -1,5 +1,6 @@
 {
   "type": "commonjs",
+  "version": "0.0.0",
   "scripts": {
     "serve": "vue-cli-service serve"
   },
