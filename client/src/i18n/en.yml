@@ -112,7 +112,7 @@ deconf:
     email:
       label: Email
       placeholder: e.g. geoff@example.com
-      help: The email you registered with on ti.to
+      help: The email you registered with
     badEmail: Bad email
     doneText: Login code sent
     submitButton: Request magic link

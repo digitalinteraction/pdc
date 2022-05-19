@@ -1,14 +1,14 @@
 <template>
-  <AppLayout>
-    <p>Register</p>
-  </AppLayout>
+  <UtilLayout>
+    <p>TODO: redirect to registration form ...</p>
+  </UtilLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import AppLayout from '@/components/PdcAppLayout.vue'
+import UtilLayout from '@/components/PdcUtilLayout.vue'
 
 export default Vue.extend({
-  components: { AppLayout },
+  components: { UtilLayout },
 })
 </script>
