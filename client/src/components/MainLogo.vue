@@ -1,4 +1,4 @@
 <template>
   <!-- TODO: add graphic -->
-  <img src="/moz-logo.svg" width="118" height="33" />
+  <img src="/img/main-brand.svg" width="160" height="28" />
 </template>

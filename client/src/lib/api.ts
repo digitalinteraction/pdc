@@ -1,9 +1,9 @@
-import { ConferenceConfig, PageFlag } from '@openlab/deconf-shared'
+import { PageFlag } from '@openlab/deconf-shared'
 
 // export type PdcConferenceConfig = ConferenceConfig
 export interface PdcConferenceConfig {
-  home?: PageFlag
-  programme?: PageFlag
+  atrium?: PageFlag
+  schedule?: PageFlag
   keynotes?: PageFlag
   papers?: PageFlag
   places?: PageFlag

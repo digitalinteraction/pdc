@@ -39,7 +39,7 @@ import SquareLogo from '@/components/SquareLogo.vue'
 import PageFooter from '@/components/PageFooter.vue'
 
 // TODO: temporary
-import AtriumIcon from '@/components/SquareLogo.vue'
+// import AtriumIcon from '@/components/SquareLogo.vue'
 
 // TODO: map actual icons
 // import ArtGalleryIcon from '@/icons/ArtGalleryIcon.vue'
@@ -47,7 +47,7 @@ import AtriumIcon from '@/components/SquareLogo.vue'
 // import HelpDeskIcon from '@/icons/HelpDeskIcon.vue'
 // import HouseIcon from '@/icons/HouseIcon.vue'
 // import SkillShareIcon from '@/icons/SkillShareIcon.vue'
-// import AtriumIcon from '@/icons/AtriumIcon.vue'
+import AtriumIcon from '@/icons/AtriumIcon.vue'
 // import ScheduleIcon from '@/icons/ScheduleIcon.vue'
 // import SpacesIcon from '@/icons/SpacesIcon.vue'
 // import EmergentIcon from '@/icons/EmergentIcon.vue'
@@ -88,77 +88,53 @@ export default Vue.extend({
 
       const routes: RouteIntermediate[] = [
         {
-          title: this.$t('pdc.appLayout.atrium') as string,
+          title: this.$t('pdc.pageTitles.atrium') as string,
           name: Routes.Atrium,
           icon: AtriumIcon,
-          pageFlag: this.settings.home,
+          pageFlag: this.settings.atrium,
         },
-        // {
-        //   title: this.$t('pdc.appLayout.whatsOn') as string,
-        //   name: Routes.WhatsOn,
-        //   icon: WhatsOnIcon,
-        //   pageFlag: this.settings.whatsOn,
-        // },
-        // {
-        //   title: this.$t('pdc.appLayout.schedule') as string,
-        //   name: Routes.Schedule,
-        //   icon: ScheduleIcon,
-        //   pageFlag: this.settings.schedule,
-        // },
-        // {
-        //   title: this.$t('pdc.appLayout.arts') as string,
-        //   name: ExtraRoutes.Arts,
-        //   icon: ArtGalleryIcon,
-        //   pageFlag: this.settings.arts,
-        // },
-        // {
-        //   title: this.$t('pdc.appLayout.skillShare') as string,
-        //   name: ExtraRoutes.SkillShare,
-        //   icon: SkillShareIcon,
-        //   pageFlag: this.settings.skillShare,
-        // },
-        // {
-        //   title: this.$t('pdc.appLayout.fringe') as string,
-        //   name: ExtraRoutes.Fringe,
-        //   icon: FringeIcon,
-        //   pageFlag: this.settings.fringe,
-        // },
-        // {
-        //   title: this.$t('pdc.appLayout.house') as string,
-        //   name: ExtraRoutes.House,
-        //   icon: HouseIcon,
-        //   pageFlag: this.settings.house,
-        // },
-        // {
-        //   title: this.$t('pdc.appLayout.misinfoCon') as string,
-        //   name: ExtraRoutes.MisinfoCon,
-        //   icon: MisinfoConIcon,
-        //   pageFlag: this.settings.misinfoCon,
-        // },
-        // {
-        //   title: this.$t('pdc.appLayout.social') as string,
-        //   name: ExtraRoutes.Spaces,
-        //   icon: SpacesIcon,
-        //   pageFlag: this.settings.social,
-        // },
-        // {
-        //   title: this.$t('pdc.appLayout.emergentSessions') as string,
-        //   name: ExtraRoutes.EmergentInfo,
-        //   icon: EmergentIcon,
-        //   pageFlag: this.settings.emergentInfo,
-        // },
-        // {
-        //   title: this.$t('pdc.appLayout.emergentSessions') as string,
-        //   name: ExtraRoutes.EmergentSessions,
-        //   icon: EmergentIcon,
-        //   pageFlag: this.settings.emergentSessions,
-        // },
-        // {
-        //   title: this.$t('pdc.appLayout.helpDesk') as string,
-        //   name: Routes.HelpDesk,
-        //   icon: HelpDeskIcon,
-        //   pageFlag: this.settings.helpDesk,
-        // },
+        {
+          title: this.$t('pdc.pageTitles.schedule') as string,
+          name: Routes.Schedule,
+          icon: AtriumIcon,
+          pageFlag: this.settings.schedule,
+        },
+        {
+          title: this.$t('pdc.pageTitles.keynotes') as string,
+          name: ExtraRoutes.Keynotes,
+          icon: AtriumIcon,
+          pageFlag: this.settings.keynotes,
+        },
+        {
+          title: this.$t('pdc.pageTitles.papers') as string,
+          name: ExtraRoutes.Papers,
+          icon: AtriumIcon,
+          pageFlag: this.settings.papers,
+        },
+        {
+          title: this.$t('pdc.pageTitles.places') as string,
+          name: ExtraRoutes.Places,
+          icon: AtriumIcon,
+          pageFlag: this.settings.places,
+        },
+        {
+          title: this.$t('pdc.pageTitles.newcastle') as string,
+          name: ExtraRoutes.Newcastle,
+          icon: AtriumIcon,
+          pageFlag: this.settings.newcastle,
+        },
+        {
+          title: this.$t('pdc.pageTitles.social') as string,
+          name: ExtraRoutes.Social,
+          icon: AtriumIcon,
+          pageFlag: this.settings.social,
+        },
+        {
+          title: this.$t('pdc.pageTitles.help') as string,
+          name: Routes.HelpDesk,
+          icon: AtriumIcon,
+          pageFlag: this.settings.help,
+        },
       ]
 
       return routes

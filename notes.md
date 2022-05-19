@@ -2,10 +2,7 @@
 
 TODO:
 
-- review things to be moved to deconf libraries
-- release new versions of the deconf libs
 - go through all code TODOs
-- experiment pulling from notion
 - setup the rest of the routes
 - setup actual sponsors
 - go through "moz" copy in en.yml
@@ -16,10 +13,12 @@ TODO:
 - review rich text rendering
 - caching images
 - DeconfApiClient's
-  - `jwtIssuer` doesn't do anything
-  - No way to unauthenticate
-  - isn't exported
   - isn't finished?
+
+future work
+
+- minimise "Routes" to be only the ones deconf needs
+- move `api/fetchContent` patch back to deconf
 
 documentation needed
 

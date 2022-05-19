@@ -6,7 +6,7 @@
         slot="top"
         :title="$t('pdc.atrium.title')"
         :subtitle="$t('pdc.atrium.subtitle')"
-        coverImage="/atrium.jpg"
+        coverImage="/img/atrium.png"
       />
 
       <BoxContent slot="left" :title="$t('pdc.atrium.heading')">
@@ -194,6 +194,12 @@ export default Vue.extend({
 $slack: #b7007e;
 
 .atriumView {
+  .heroCard-title,
+  .heroCard-subtitle {
+    color: $white;
+    text-shadow: 2px 3px 3px $black;
+  }
+
   // TODO: custom widget styles
   .colorWidget.is-slack {
     background-color: $slack;

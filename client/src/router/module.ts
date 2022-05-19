@@ -14,16 +14,19 @@ import { MetricsPlugin } from '@/plugins/metrics-plugin'
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
+  //
+  // CORE routes
+  //
   {
     path: '/',
     redirect: { name: Routes.Atrium },
   },
   {
-    path: '/plaza',
+    path: '/atrium',
     name: Routes.Atrium,
     component: AtriumView,
     meta: {
-      pageTitle: 'mozfest.pageTitles.atrium',
+      pageTitle: 'pdc.pageTitles.atrium',
     },
   },
   {
@@ -31,7 +34,136 @@ const routes: Array<RouteConfig> = [
     name: Routes.TokenCapture,
     component: TokenCaptureView,
   },
-  // TODO: more routes
+
+  //
+  // Auth routes
+  //
+  {
+    path: '/login',
+    name: Routes.Login,
+    component: () =>
+      import(/* webpackChunkName: "registration" */ '../views/LoginView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.login',
+    },
+  },
+  {
+    path: '/registration',
+    name: Routes.Register,
+    component: () =>
+      import(
+        /* webpackChunkName: "registration" */ '../views/RegisterView.vue'
+      ),
+  },
+  {
+    path: '/profile',
+    name: Routes.Profile,
+    component: () =>
+      import(/* webpackChunkName: "registration" */ '../views/ProfileView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.profile',
+    },
+  },
+
+  //
+  // SCHEDULE
+  //
+  {
+    path: '/programme',
+    name: Routes.Schedule,
+    component: () =>
+      import(/* webpackChunkName: "schedule" */ '../views/ScheduleView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.schedule',
+    },
+  },
+  {
+    path: '/session/:sessionId',
+    name: Routes.Session,
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "schedule" */ '../views/SessionView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.session',
+    },
+  },
+  {
+    path: '/newcastle',
+    name: ExtraRoutes.Newcastle,
+    component: () =>
+      import(/* webpackChunkName: "schedule" */ '../views/SessionView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.session',
+    },
+  },
+  {
+    path: '/keynotes',
+    name: ExtraRoutes.Keynotes,
+    component: () =>
+      import(/* webpackChunkName: "schedule" */ '../views/KeynotesView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.keynotes',
+    },
+  },
+  {
+    path: '/papers',
+    name: ExtraRoutes.Papers,
+    component: () =>
+      import(/* webpackChunkName: "schedule" */ '../views/PapersView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.papers',
+    },
+  },
+  {
+    path: '/places',
+    name: ExtraRoutes.Places,
+    component: () =>
+      import(/* webpackChunkName: "schedule" */ '../views/PlacesView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.places',
+    },
+  },
+
+  //
+  // MISC
+  //
+  {
+    path: '/social',
+    name: ExtraRoutes.Social,
+    component: () =>
+      import(/* webpackChunkName: "social" */ '../views/SocialView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.social',
+    },
+  },
+  {
+    path: '/help',
+    name: Routes.HelpDesk,
+    component: () =>
+      import(/* webpackChunkName: "help" */ '../views/HelpView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.session',
+    },
+  },
+  {
+    path: '/error/:errorCode',
+    props: true,
+    name: Routes.Error,
+    component: ApiErrorView,
+  },
+  {
+    path: '/error',
+    component: ApiErrorView,
+  },
+  {
+    path: '/not-found',
+    name: Routes.NotFound,
+    component: NotFoundView,
+  },
+  {
+    path: '*',
+    component: NotFoundView,
+  },
 ]
 
 function getRouteTitle(route: Route): string {
@@ -39,7 +171,7 @@ function getRouteTitle(route: Route): string {
     .reverse()
     .find((r) => r.meta.pageTitle)
 
-  const appName = i18n.t('mozfest.general.appName') as string
+  const appName = i18n.t('pdc.general.appName') as string
 
   if (routeWithTitle) {
     const pageName = i18n.t(routeWithTitle.meta.pageTitle)

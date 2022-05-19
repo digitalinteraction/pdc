@@ -1,3 +1,23 @@
 // TODO: CUSTOM VARIABLES
 
+$family-sans-serif: 'Roboto', BlinkMacSystemFont, -apple-system, 'Segoe UI',
+  'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+  'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+$white: white;
+$black: black;
+
+$pdc-navy: rgb(5, 29, 104);
+$pdc-sky: rgb(12, 200, 233);
+$pdc-ocean: rgb(0, 120, 216);
+$pdc-yellow: rgb(252, 204, 76);
+
+$primary: $pdc-ocean;
+$secondary: $pdc-navy;
+$link: $pdc-navy;
+
+$sideTabs-background: $pdc-navy;
+$sideTabs-activeBackground: $pdc-yellow;
+$sideTabs-active: $pdc-navy;
+
 @import '@openlab/deconf-ui-toolkit/common.scss';

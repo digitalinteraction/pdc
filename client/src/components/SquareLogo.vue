@@ -1,4 +1,4 @@
 <template>
   <!-- TODO -->
-  <img src="/sidebar-logo.png" width="64" height="64" />
+  <img src="/img/square-brand.png" width="64" height="64" />
 </template>

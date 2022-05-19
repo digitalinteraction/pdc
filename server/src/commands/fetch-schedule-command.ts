@@ -304,8 +304,8 @@ export async function fetchScheduleCommand(
 
   // TODO: pull the settings from somewhere too
   await store.put('schedule.settings', {
-    home: { enabled: true, visible: true },
-    programme: { enabled: true, visible: true },
+    atrium: { enabled: true, visible: true },
+    schedule: { enabled: true, visible: true },
     keynotes: { enabled: true, visible: true },
     papers: { enabled: true, visible: true },
     places: { enabled: true, visible: true },
@@ -314,9 +314,9 @@ export async function fetchScheduleCommand(
     help: { enabled: true, visible: true },
 
     navigation: {
-      showProfile: false,
-      showLogin: false,
-      showRegister: false,
+      showProfile: true,
+      showLogin: true,
+      showRegister: true,
     },
 
     widgets: {
