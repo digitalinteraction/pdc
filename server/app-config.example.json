@@ -18,7 +18,7 @@
     "issuer": "test-app-0001"
   },
   "content": {
-    "keys": ["home-public", "home-personal"]
+    "keys": ["home-public", "home-personal", "programme-filters"]
   },
   "notion": {
     "db": {
@@ -27,7 +27,7 @@
       "themes": "",
       "tracks": "",
       "types": "",
-      "copy": ""
+      "content": ""
     }
   }
 }
