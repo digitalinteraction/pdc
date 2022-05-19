@@ -16,7 +16,13 @@ import { StorageKey } from '@/lib/module'
 // or move all api-key related logic here (e.g. setLocale)
 
 export function apiModule(): ApiStoreModule {
-  const apiClient = new DeconfApiClient(env.SERVER_URL.href, {})
+  const apiClient = new DeconfApiClient(env.SERVER_URL.href, {
+    endpointMap: {
+      // TODO: migrate fix to deconf
+      'AttendanceRoutes.getSessionAttendance': (sessionId) =>
+        `attendance/${sessionId}`,
+    },
+  })
 
   return {
     ...createApiStoreModule(),

@@ -1,14 +1,64 @@
 <template>
-  <AppLayout>
-    <p>Session</p>
+  <AppLayout v-if="session">
+    <SessionView
+      api-module="api"
+      :session="session"
+      :schedule="schedule"
+      :logged-in="Boolean(user)"
+      :schedule-date="scheduleDate"
+    >
+      <BackButton slot="backButton" :to="backRoute">
+        {{ $t('deconf.session.mozfest.backButton') }}
+      </BackButton>
+
+      <template v-if="localeContent" slot="content">
+        <div class="content" v-html="localeContent"></div>
+      </template>
+    </SessionView>
   </AppLayout>
+  <NotFoundView v-else />
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { marked } from 'marked'
+import { Location } from 'vue-router'
+
 import AppLayout from '@/components/PdcAppLayout.vue'
+import { Session } from '@openlab/deconf-shared'
+import {
+  BackButton,
+  localiseFromObject,
+  Routes,
+  SessionView,
+} from '@openlab/deconf-ui-toolkit'
+
+import NotFoundView from '@/views/NotFoundView.vue'
+import { mapApiState } from '@/lib/module'
 
 export default Vue.extend({
-  components: { AppLayout },
+  components: { AppLayout, SessionView, BackButton, NotFoundView },
+  props: {
+    sessionId: { type: String, required: true },
+  },
+  computed: {
+    ...mapApiState('api', ['schedule', 'user']),
+    session(): Session | null {
+      if (!this.schedule) return null
+      return this.schedule.sessions.find((s) => s.id === this.sessionId) ?? null
+    },
+    backRoute(): Location {
+      return { name: Routes.Schedule }
+    },
+    scheduleDate(): Date {
+      return this.$dev.scheduleDate ?? this.$temporal.date
+    },
+    localeContent(): string | null {
+      if (!this.session) return null
+      const md = localiseFromObject(this.$i18n.locale, this.session.content)
+      if (!md) return null
+      return marked(md)
+    },
+  },
 })
 </script>

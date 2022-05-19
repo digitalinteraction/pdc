@@ -14,10 +14,10 @@ $pdc-yellow: rgb(252, 204, 76);
 
 $primary: $pdc-ocean;
 $secondary: $pdc-navy;
-$link: $pdc-navy;
+$link: $pdc-ocean;
 
 $sideTabs-background: $pdc-navy;
 $sideTabs-activeBackground: $pdc-yellow;
-$sideTabs-active: $pdc-navy;
+$sideTabs-active: $pdc-ocean;
 
 @import '@openlab/deconf-ui-toolkit/common.scss';
