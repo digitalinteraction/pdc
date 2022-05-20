@@ -26,14 +26,17 @@ secretGenerator:
   - name: server-env
     env: secrets/server.env
 
+patchesStrategicMerge:
+  - redis-patch.yml
+
 images:
   - name: redis
     newTag: 6-alpine
 
   # https://github.com/digitalinteraction/pdc/pkgs/container/pdc-client
   - name: ghcr.io/digitalinteraction/pdc-client
-    newTag: 1.0.0
+    newTag: 0.1.0
 
   # https://github.com/digitalinteraction/pdc/pkgs/container/pdc-server
   - name: ghcr.io/digitalinteraction/pdc-server
-    newTag: 1.0.0
+    newTag: 0.1.0
