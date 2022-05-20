@@ -3,13 +3,11 @@
 TODO:
 
 - go through all code TODOs
-- setup the rest of the routes
 - setup actual sponsors
 - go through "moz" copy in en.yml
 - review rich text rendering
 - caching notion images?
-- DeconfApiClient's
-  - isn't finished?
+- customize theme for PDC
 
 future work
 
