@@ -19,7 +19,8 @@
     "lint-staged": "^12.3.7",
     "prettier": "^2.6.2",
     "standard-version": "^9.5.0",
-    "ts-node": "^10.7.0"
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
   },
   "prettier": {
     "semi": false,
@@ -35,7 +36,16 @@
       "@commitlint/config-conventional"
     ]
   },
-  "dependencies": {
-    "typescript": "^4.6.4"
+  "standard-version": {
+    "packageFiles": [
+      "package.json",
+      "server/package.json",
+      "client/package.json"
+    ],
+    "bumpFiles": [
+      "package-lock.json",
+      "server/package-lock.json",
+      "client/package-lock.json"
+    ]
   }
 }
