@@ -42,7 +42,7 @@ export interface ServeCommandOptions {
 export async function serveCommand(options: ServeCommandOptions) {
   const env = createEnv()
   const config = await loadConfig()
-  const pkg = JSON.parse(await fs.readFile('../package.json', 'utf8'))
+  const pkg = JSON.parse(await fs.readFile('package.json', 'utf8'))
   const resources = await loadResources('res')
 
   debug('package name=%o version=%o', pkg.name, pkg.version)
