@@ -1,0 +1,56 @@
+{
+  "mail": {
+    "fromEmail": "noreply@openlab.dev",
+    "replyToEmail": "openlab@ncl.ac.uk"
+  },
+  "sendgrid": {
+    "loginTemplateId": "d-095e893ab93b4ba48e7039b1e070677f"
+  },
+  "jwt": {
+    "issuer": "pdc-2022"
+  },
+  "content": {
+    "keys": [
+      "home-public",
+      "home-personal",
+      "programme-filters",
+      "keynotes-filters",
+      "newcastle",
+      "help",
+      "social"
+    ]
+  },
+  "notion": {
+    "db": {
+      "sessions": "68b95fdf4c7246bda89ef78b158830ea",
+      "speakers": "ef72bd1663b649a38e86b91a25f7ced0",
+      "themes": "233b9b6d411f4bdba0d2474f602065c9",
+      "tracks": "7f7056fd8db74d3cabc1e79dc1c93c7e",
+      "types": "6688a08739684a33a23b1dcaf329b2cd",
+      "content": "081199c589f7413baac143e2aec84ddb"
+    }
+  },
+  "settings": {
+    "atrium": { "enabled": true, "visible": true },
+    "schedule": { "enabled": true, "visible": true },
+    "keynotes": { "enabled": true, "visible": true },
+    "papers": { "enabled": false, "visible": true },
+    "places": { "enabled": false, "visible": true },
+    "newcastle": { "enabled": true, "visible": true },
+    "social": { "enabled": true, "visible": true },
+    "help": { "enabled": true, "visible": true },
+
+    "navigation": {
+      "showProfile": true,
+      "showLogin": true,
+      "showRegister": true
+    },
+
+    "widgets": {
+      "siteVisitors": true,
+      "twitter": true,
+      "login": true,
+      "register": true
+    }
+  }
+}

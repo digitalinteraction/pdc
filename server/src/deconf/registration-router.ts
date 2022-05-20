@@ -20,6 +20,9 @@ export class RegistrationRouter implements AppRouter, RegistrationMailer {
       ...context,
       mailer: this,
       userDataStruct: object({}),
+      config: {
+        admins: [],
+      },
     })
   }
 

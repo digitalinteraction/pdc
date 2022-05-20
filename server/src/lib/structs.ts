@@ -12,11 +12,6 @@ const pageFlag = () =>
 
 export type AppConfig = Infer<typeof AppConfigStruct>
 export const AppConfigStruct = object({
-  admins: array(
-    object({
-      email: string(),
-    })
-  ),
   mail: object({
     fromEmail: string(),
     replyToEmail: string(),
