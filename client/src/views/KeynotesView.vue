@@ -28,7 +28,7 @@ import { getLanguageOptions, guardRoute, mapApiState } from '@/lib/module'
 const options: FilteredScheduleOptions = {
   predicate(session) {
     // Keynote type
-    return session.type === '29fe71f3586d4647b8e653bdc8963c9c'
+    return session.type === '29fe71f3-586d-4647-b8e6-53bdc8963c9c'
   },
   filtersKey: 'pdcKeynotesViewFilters',
   scheduleConfig: {
