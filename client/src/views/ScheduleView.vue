@@ -8,9 +8,9 @@
       :schedule-date="scheduleDate"
       @filter="onFilter"
     >
-      <span slot="title">{{ $t('pdc.schedule.title') }}</span>
+      <span slot="title">{{ $t('pdc.pageTitles.schedule') }}</span>
       <ApiContent slot="infoText" slug="programme-filters" />
-      <span slot="noResults">{{ $t('pdc.schedule.noResults') }}</span>
+      <span slot="noResults">{{ $t('pdc.general.noResults') }}</span>
     </FilteredScheduleView>
   </AppLayout>
 </template>

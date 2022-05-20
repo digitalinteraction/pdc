@@ -177,6 +177,7 @@ pdc:
     backToAtrium: Back to Atrium
     'yes': 'Yes'
     'no': 'No'
+    noResults: We couldn't find any sessions matching that
 
   atrium:
     heading: PDC 2022
@@ -216,45 +217,6 @@ pdc:
     places: Places
     newcastle: Newcastle
 
-  whatsOn:
-    title: Sneak Peek
-    noResults: Nothing matched your query
-    loading: Loading...
-
-  artAndMedia:
-    title: Art and Media
-    noResults: We couldn't find any sessions matching that
-    loading: Loading...
-
-  fringeEvents:
-    title: Fringe Events
-    noResults: We couldn't find any sessions matching that
-    loading: Loading...
-
-  houseEvents:
-    title: House Events
-    noResults: We couldn't find any sessions matching that
-    loading: Loading...
-
-  # TODO - new
-  misinfoCon:
-    title: MisinfoCon
-    noResults: We couldn't find any sessions matching that
-    loading: Loading...
-
-  # TODO - new
-  emergent:
-    title: Emergent Sessions
-    noResults: We couldn't find any sessions matching that
-    loading: Loading...
-    takePart: Take Part
-    caption: A sample of sessions that emerged at MozFest 2021
-
-  skillShare:
-    title: Lightning Talks
-    noResults: We couldn't find any sessions matching that
-    loading: Loading...
-
   notFound:
     title: Page Not Found
     info: We can't find the page you're looking for
@@ -275,7 +237,3 @@ pdc:
     info: Use this link to subscribe to "My Schedule" in your own calendar. Your calendar will refresh periodically to fetch the latest information and show you the events you have added to "My Schedule".
     copy: copy
     copied: copied
-
-  schedule:
-    title: Programme
-    noResults: Nothing matched your query

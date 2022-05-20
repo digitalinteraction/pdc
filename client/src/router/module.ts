@@ -91,7 +91,7 @@ const routes: Array<RouteConfig> = [
     path: '/newcastle',
     name: ExtraRoutes.Newcastle,
     component: () =>
-      import(/* webpackChunkName: "schedule" */ '../views/SessionView.vue'),
+      import(/* webpackChunkName: "schedule" */ '../views/NewcastleView.vue'),
     meta: {
       pageTitle: 'pdc.pageTitles.session',
     },

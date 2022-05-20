@@ -1,14 +1,12 @@
 <template>
-  <AppLayout>
-    <p>Help</p>
-  </AppLayout>
+  <ContentLayout slug="help" />
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import AppLayout from '@/components/PdcAppLayout.vue'
+import ContentLayout from '@/components/PdcContentLayout.vue'
 
 export default Vue.extend({
-  components: { AppLayout },
+  components: { ContentLayout },
 })
 </script>
