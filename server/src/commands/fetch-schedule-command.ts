@@ -36,10 +36,24 @@ interface NotionPage {
 
 /** Format notion properties */
 const fmt = {
-  title: (value: any) => value?.title?.[0]?.plain_text,
-  select: (value: any) => value?.select?.name,
-  relationIds: (value: any) => value?.relation?.map((i: any) => i.id),
-  slot: (s: any, e: any) => {
+  title(value: any) {
+    return value?.title?.[0]?.plain_text
+  },
+  select(value: any) {
+    return value?.select?.name
+  },
+  multiSelect(value: any) {
+    const result = value?.multi_select?.map((i: any) => i.name)
+    if (result?.length === 0) return undefined
+    return result
+  },
+  checkbox(value: any) {
+    return value?.checkbox === true
+  },
+  relationIds(value: any) {
+    return value?.relation?.map((i: any) => i.id)
+  },
+  slot(s: any, e: any) {
     const start = new Date(s)
     const end = new Date(e)
     if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
@@ -48,7 +62,7 @@ const fmt = {
     const id = start.getTime() + '__' + end.getTime()
     return { id, start, end }
   },
-  richText: (value: any) => {
+  richText(value: any) {
     const segments = value?.rich_text?.map((rt: any) => {
       let text = rt.text?.content ?? ''
       const wraps = []
@@ -232,7 +246,7 @@ export async function fetchScheduleCommand(
   }
 
   if (pull('settings')) {
-    await processSettings(content, store)
+    await store.put('schedule.settings', config.settings)
   }
 
   if (pull('content')) {
@@ -263,36 +277,6 @@ async function processContent(
       en: contentService.processMarkdown(content),
     })
   }
-}
-
-async function processSettings(
-  content: Record<string, NotionPage[]>,
-  store: RedisService
-) {
-  // TODO: pull the settings from somewhere too
-  await store.put('schedule.settings', {
-    atrium: { enabled: true, visible: true },
-    schedule: { enabled: true, visible: true },
-    keynotes: { enabled: true, visible: true },
-    papers: { enabled: true, visible: true },
-    places: { enabled: true, visible: true },
-    newcastle: { enabled: true, visible: true },
-    social: { enabled: true, visible: true },
-    help: { enabled: true, visible: true },
-
-    navigation: {
-      showProfile: true,
-      showLogin: true,
-      showRegister: true,
-    },
-
-    widgets: {
-      siteVisitors: true,
-      twitter: true,
-      login: true,
-      register: true,
-    },
-  })
 }
 
 async function processSchedule(
@@ -357,17 +341,17 @@ async function processSchedule(
         en: getMarkdown(page.blocks),
       },
       links: [],
-      hostLanguages: ['en'],
+      hostLanguages: fmt.multiSelect(page.props.Languages) ?? ['en'],
       enableInterpretation: false,
       speakers: fmt.relationIds(page.props.Speakers),
       hostOrganisation: {
         en: 'PDC 2022',
       },
-      isRecorded: false,
+      isRecorded: fmt.checkbox(page.props.IsRecorded),
       isOfficial: false,
-      isFeatured: false,
+      isFeatured: fmt.checkbox(page.props.Featured),
       visibility: SessionVisibility.public,
-      state: SessionState.confirmed,
+      state: fmt.select(page.props.State) ?? 'draft',
       participantCap: null,
       hideFromSchedule: false,
     }

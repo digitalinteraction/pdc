@@ -2,30 +2,68 @@ import {
   DeconfConfigStruct,
   ConferenceConfigStruct as DeconfConferenceConfigStruct,
 } from '@openlab/deconf-api-toolkit'
-import { array, assign, Infer, object, string } from 'superstruct'
+import { array, assign, boolean, Infer, object, string } from 'superstruct'
+
+const pageFlag = () =>
+  object({
+    enabled: boolean(),
+    visible: boolean(),
+  })
 
 export type AppConfig = Infer<typeof AppConfigStruct>
-export const AppConfigStruct = assign(
-  DeconfConfigStruct,
-  object({
-    sendgrid: object({
-      loginTemplateId: string(),
+export const AppConfigStruct = object({
+  admins: array(
+    object({
+      email: string(),
+    })
+  ),
+  mail: object({
+    fromEmail: string(),
+    replyToEmail: string(),
+  }),
+  sendgrid: object({
+    loginTemplateId: string(),
+  }),
+  jwt: object({
+    issuer: string(),
+  }),
+  content: object({
+    keys: array(string()),
+  }),
+  notion: object({
+    db: object({
+      sessions: string(),
+      themes: string(),
+      tracks: string(),
+      speakers: string(),
+      types: string(),
+      content: string(),
     }),
-    content: object({
-      keys: array(string()),
+  }),
+  settings: object({
+    atrium: pageFlag(),
+    schedule: pageFlag(),
+    keynotes: pageFlag(),
+    papers: pageFlag(),
+    places: pageFlag(),
+    newcastle: pageFlag(),
+    social: pageFlag(),
+    help: pageFlag(),
+
+    navigation: object({
+      showProfile: boolean(),
+      showLogin: boolean(),
+      showRegister: boolean(),
     }),
-    notion: object({
-      db: object({
-        sessions: string(),
-        themes: string(),
-        tracks: string(),
-        speakers: string(),
-        types: string(),
-        content: string(),
-      }),
+
+    widgets: object({
+      siteVisitors: boolean(),
+      twitter: boolean(),
+      login: boolean(),
+      register: boolean(),
     }),
-  })
-)
+  }),
+})
 
 /** Koa Session URL parameters e.g. /session/:sessionId */
 export const SessionIdStruct = object({

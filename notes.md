@@ -18,6 +18,9 @@ future work
 - `createMemoryStore` should be migrated to class-based
 - `RedisService` should be migrated to redis@4
 - explore general `options` in `Context` for domain-specific configuration
+  - non-standard: `CarbonRoutes`, `EmailService`, `I18nService`, `JwtService`,
+    `MetricsSockets`, `PretalxService`, `RegistrationRoutes`
+  - maybe a second `options` parameter?
 - remove all use of now deprecated `Config`
 - sort out exports on deconf-shared
 
