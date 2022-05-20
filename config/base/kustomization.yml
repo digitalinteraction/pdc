@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - client-deployment.yml
+  - client-service.yml
+  - schedule-cronjob.yml
+  - visitors-cronjob.yml
+  - redis-pvc.yml
+  - redis-deployment.yml
+  - redis-service.yml
+  - server-deployment.yml
+  - server-service.yml

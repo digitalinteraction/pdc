@@ -1,0 +1,39 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: pdc-2022
+namePrefix: dev-
+
+commonLabels:
+  app.kubernetes.io/app: pdc-2022
+  app.kubernetes.io/instance: development
+
+resources:
+  - ../../base
+  - client-ingress.yml
+  - server-ingress.yml
+
+configMapGenerator:
+  - name: server-resources
+    files:
+      - config/app-config.json
+  - name: client-resources
+    files:
+      - config/config.js
+      - config/nginx.conf
+
+secretGenerator:
+  - name: server-env
+    env: secrets/server.env
+
+images:
+  - name: redis
+    newTag: 6-alpine
+
+  # https://github.com/digitalinteraction/pdc/pkgs/container/pdc-client
+  - name: ghcr.io/digitalinteraction/pdc-client
+    newTag: 1.0.0
+
+  # https://github.com/digitalinteraction/pdc/pkgs/container/pdc-server
+  - name: ghcr.io/digitalinteraction/pdc-server
+    newTag: 1.0.0

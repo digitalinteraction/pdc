@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: client
+  labels:
+    app.kubernetes.io/component: client
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/affinity-mode: persistent
+    # nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: dev-basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: 'Authentication required - development'
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: pdc.openlab.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: client
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - pdc.openlab.dev
+      secretName: pdc.openlab.dev

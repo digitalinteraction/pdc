@@ -8,3 +8,5 @@ node_modules
 coverage
 dist
 server/notion.json
+
+config/**/secrets/*
