@@ -1,14 +1,17 @@
 <template>
-  <AppLayout>
-    <p>NOT FOUND</p>
-  </AppLayout>
+  <UtilLayout>
+    <div class="content">
+      <h1>{{ $t('pdc.notFound.title') }}</h1>
+      <p>{{ $t('pdc.notFound.info') }}</p>
+    </div>
+  </UtilLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import AppLayout from '@/components/PdcAppLayout.vue'
+import UtilLayout from '@/components/PdcUtilLayout.vue'
 
 export default Vue.extend({
-  components: { AppLayout },
+  components: { UtilLayout },
 })
 </script>
