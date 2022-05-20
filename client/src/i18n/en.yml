@@ -194,12 +194,12 @@ pdc:
 
   footer:
     appName: PDC 2022
-    guidelines: Community Guidelines
-    guidelinesUrl: https://www.mozillafestival.org/guidelines/
+    guidelines: Being Together Guide
+    guidelinesUrl: https://pdc2022.org/about/being-together-guide/
     privacy: Privacy
-    privacyUrl: https://www.mozilla.org/privacy/websites/
+    privacyUrl: https://webstore.ncl.ac.uk/help/privacy-notice
     terms: Terms & Conditions
-    termsUrl: https://www.mozillafestival.org/tickets/terms/
+    termsUrl: https://webstore.ncl.ac.uk/help/terms-and-conditions
 
   pageTitles:
     atrium: Home
