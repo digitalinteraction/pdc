@@ -33,11 +33,12 @@ module.exports = defineConfig({
         .end()
 
     // Use the slim socket.io in production
-    config.resolve.alias.set(
-      'socket.io-client',
-      process.env.NODE_ENV === 'development'
-        ? 'socket.io-client'
-        : 'socket.io-client/dist/socket.io.min.js'
-    )
+    // TODO: review this impact
+    // config.resolve.alias.set(
+    //   'socket.io-client',
+    //   process.env.NODE_ENV === 'development'
+    //     ? 'socket.io-client'
+    //     : 'socket.io-client/dist/socket.io.min.js'
+    // )
   },
 })
