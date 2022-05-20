@@ -9,7 +9,6 @@
     "build:client": "cd client && npx vue-cli-service build",
     "serve:client": "cd client && npx vue-cli-service serve",
     "serve:server": "npm -s run cli -- serve",
-    "version": "bin/update-versions.mjs && git add -A",
     "release": "standard-version && git push --follow-tags origin main"
   },
   "devDependencies": {
@@ -37,12 +36,9 @@
     ]
   },
   "standard-version": {
-    "packageFiles": [
-      "package.json",
-      "server/package.json",
-      "client/package.json"
-    ],
     "bumpFiles": [
+      "server/package.json",
+      "client/package.json",
       "package-lock.json",
       "server/package-lock.json",
       "client/package-lock.json"
