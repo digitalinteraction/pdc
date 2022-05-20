@@ -37,9 +37,10 @@
   },
   "standard-version": {
     "bumpFiles": [
+      "package.json",
+      "package-lock.json",
       "server/package.json",
       "client/package.json",
-      "package-lock.json",
       "server/package-lock.json",
       "client/package-lock.json"
     ]
