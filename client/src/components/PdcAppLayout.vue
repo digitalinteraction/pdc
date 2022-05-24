@@ -34,25 +34,17 @@ import {
 } from '@openlab/deconf-ui-toolkit'
 
 import MainLogo from '@/components/MainLogo.vue'
-// import AltLogo from '@/components/AltLogo.vue'
 import SquareLogo from '@/components/SquareLogo.vue'
 import PageFooter from '@/components/PageFooter.vue'
 
-// TODO: temporary
-// import AtriumIcon from '@/components/SquareLogo.vue'
-
-// TODO: map actual icons
-// import ArtGalleryIcon from '@/icons/ArtGalleryIcon.vue'
-// import FringeIcon from '@/icons/FringeIcon.vue'
-// import HelpDeskIcon from '@/icons/HelpDeskIcon.vue'
-// import HouseIcon from '@/icons/HouseIcon.vue'
-// import SkillShareIcon from '@/icons/SkillShareIcon.vue'
 import AtriumIcon from '@/icons/AtriumIcon.vue'
-// import ScheduleIcon from '@/icons/ScheduleIcon.vue'
-// import SpacesIcon from '@/icons/SpacesIcon.vue'
-// import EmergentIcon from '@/icons/EmergentIcon.vue'
-// import WhatsOnIcon from '@/icons/WhatsOnIcon.vue'
-// import MisinfoConIcon from '@/icons/MisinfoConIcon.vue'
+import HelpDeskIcon from '@/icons/HelpDeskIcon.vue'
+import KeynotesIcon from '@/icons/KeynotesIcon.vue'
+import NewcastleIcon from '@/icons/NewcastleIcon.vue'
+import PlacesIcon from '@/icons/PlacesIcon.vue'
+import ScheduleIcon from '@/icons/ScheduleIcon.vue'
+import SocialIcon from '@/icons/SocialIcon.vue'
+
 import { ExtraRoutes, PdcConferenceConfig } from '@/lib/module'
 import { Location } from 'vue-router'
 
@@ -96,43 +88,37 @@ export default Vue.extend({
         {
           title: this.$t('pdc.pageTitles.schedule') as string,
           name: Routes.Schedule,
-          icon: AtriumIcon,
+          icon: ScheduleIcon,
           pageFlag: this.settings.schedule,
         },
         {
           title: this.$t('pdc.pageTitles.keynotes') as string,
           name: ExtraRoutes.Keynotes,
-          icon: AtriumIcon,
+          icon: KeynotesIcon,
           pageFlag: this.settings.keynotes,
-        },
-        {
-          title: this.$t('pdc.pageTitles.papers') as string,
-          name: ExtraRoutes.Papers,
-          icon: AtriumIcon,
-          pageFlag: this.settings.papers,
         },
         {
           title: this.$t('pdc.pageTitles.places') as string,
           name: ExtraRoutes.Places,
-          icon: AtriumIcon,
+          icon: PlacesIcon,
           pageFlag: this.settings.places,
         },
         {
           title: this.$t('pdc.pageTitles.newcastle') as string,
           name: ExtraRoutes.Newcastle,
-          icon: AtriumIcon,
+          icon: NewcastleIcon,
           pageFlag: this.settings.newcastle,
         },
         {
           title: this.$t('pdc.pageTitles.social') as string,
           name: ExtraRoutes.Social,
-          icon: AtriumIcon,
+          icon: SocialIcon,
           pageFlag: this.settings.social,
         },
         {
           title: this.$t('pdc.pageTitles.help') as string,
           name: Routes.HelpDesk,
-          icon: AtriumIcon,
+          icon: HelpDeskIcon,
           pageFlag: this.settings.help,
         },
       ]
