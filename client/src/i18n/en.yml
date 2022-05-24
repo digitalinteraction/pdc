@@ -12,7 +12,7 @@ deconf:
 
   scheduleBlock:
     workshopTitle: Interactive Sessions
-    workshopDescription: To browse all of the exciting, interactive sessions happening at MozFest during this time period, click show all.
+    workshopDescription: These exciting sessions run concurrently to see them click show all.
     workshops: 'None | 1 session | {n} sessions'
     showWorkshops: Show all
     hideWorkshops: Hide all
@@ -110,12 +110,12 @@ deconf:
   login:
     title: Login
     email:
-      label: Email
+      label: Email address
       placeholder: e.g. geoff@example.com
       help: The email you registered with
     badEmail: Bad email
     doneText: Login code sent
-    submitButton: Request magic link
+    submitButton: Send magic link
     registerLabel: Not registered yet?
     registerAction: Register here
 
@@ -126,15 +126,15 @@ deconf:
     dangerLabel: Danger zone
     deleteButton: Delete account
     deleteText: This is permenant, are you sure?
-    mozfest:
-      emailText: Email
-      localeText: Chosen language
-      whenText: Logged in
-      registeredText: Registered
-      nameText: Name
-      countryText: Country
-      affiliationText: Affiliation
-      marketingText: Marketing
+    # mozfest:
+    #   emailText: Email
+    #   localeText: Chosen language
+    #   whenText: Logged in
+    #   registeredText: Registered
+    #   nameText: Name
+    #   countryText: Country
+    #   affiliationText: Affiliation
+    #   marketingText: Marketing
 
   schedule:
     allSessions: Full Schedule
@@ -154,9 +154,8 @@ deconf:
     teamsLink: Teams Meeting
     miroLink: Miro Board
     generalLink: Link
-    mozfest:
+    pdc:
       backButton: Back to Schedule
-      externalLinks: Please be aware the Facilitator for this session is using a third-party service not officially being used at MozFest.
 
   interestSection:
     message: Register your interest
@@ -165,7 +164,6 @@ deconf:
 
   addToCalendarDialog:
     title: Add session to calendar
-    # info: You can also get a personalised calendar link on the profile page.
     info: Use the buttons below to add this session to your preferred calendar.
     ical: Download event
     google: Google Calendar
@@ -177,7 +175,7 @@ pdc:
     backToAtrium: Back to Atrium
     'yes': 'Yes'
     'no': 'No'
-    noResults: We couldn't find any sessions matching that
+    noResults: No results
 
   atrium:
     heading: PDC 2022
@@ -208,9 +206,6 @@ pdc:
     schedule: Programme
     session: View Session
     social: Social
-    # terms: T's & C's
-    # guidelines: Guidelines
-    # privacy: Privacy
     help: Help Desk
     keynotes: Keynotes
     papers: Papers
