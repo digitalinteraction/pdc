@@ -39,7 +39,6 @@ export const AppConfigStruct = object({
     atrium: pageFlag(),
     schedule: pageFlag(),
     keynotes: pageFlag(),
-    papers: pageFlag(),
     places: pageFlag(),
     newcastle: pageFlag(),
     social: pageFlag(),

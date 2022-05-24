@@ -5,7 +5,6 @@ export interface PdcConferenceConfig {
   atrium?: PageFlag
   schedule?: PageFlag
   keynotes?: PageFlag
-  papers?: PageFlag
   places?: PageFlag
   newcastle?: PageFlag
   social?: PageFlag

@@ -34,7 +34,6 @@
     "atrium": { "enabled": true, "visible": true },
     "schedule": { "enabled": true, "visible": true },
     "keynotes": { "enabled": true, "visible": true },
-    "papers": { "enabled": false, "visible": true },
     "places": { "enabled": false, "visible": true },
     "newcastle": { "enabled": true, "visible": true },
     "social": { "enabled": true, "visible": true },
