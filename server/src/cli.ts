@@ -9,6 +9,7 @@ import { hideBin } from 'yargs/helpers'
 import { fakeScheduleCommand } from './commands/fake-schedule-command.js'
 import { fetchScheduleCommand } from './commands/fetch-schedule-command.js'
 import { migrateCommand } from './commands/migrate-command.js'
+import { optimizeSvgsCommand } from './commands/optimize-sgvs-command.js'
 import { serveCommand } from './commands/serve-command.js'
 
 // commands ...
@@ -58,6 +59,17 @@ cli.command(
       choices: ['schedule', 'content', 'settings'],
     }),
   (args) => fetchScheduleCommand(args).catch(errorHandler)
+)
+
+cli.command(
+  'svg',
+  'Optimize SVGs',
+  (yargs) =>
+    yargs.options({
+      input: { type: 'string', default: 'svgs/input' },
+      output: { type: 'string', default: 'svgs/output' },
+    }),
+  (args) => optimizeSvgsCommand(args)
 )
 
 cli.parse()
