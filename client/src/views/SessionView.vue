@@ -8,7 +8,7 @@
       :schedule-date="scheduleDate"
     >
       <BackButton slot="backButton" :to="backRoute">
-        {{ $t('deconf.session.mozfest.backButton') }}
+        {{ $t('deconf.session.pdc.backButton') }}
       </BackButton>
 
       <template v-if="localeContent" slot="content">
