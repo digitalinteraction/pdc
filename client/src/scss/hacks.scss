@@ -1,0 +1,9 @@
+//
+// Overrides for deconf styles
+//
+
+@include desktop {
+  .navbar-brand {
+    display: none;
+  }
+}

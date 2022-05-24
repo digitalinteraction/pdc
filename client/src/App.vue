@@ -124,4 +124,5 @@ export default Vue.extend({
 <style lang="scss">
 @import '@openlab/deconf-ui-toolkit/theme.scss';
 @import '@fortawesome/fontawesome-svg-core/styles.css';
+@import '@/scss/hacks.scss';
 </style>
