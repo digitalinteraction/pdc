@@ -106,15 +106,6 @@ const routes: Array<RouteConfig> = [
     },
   },
   {
-    path: '/papers',
-    name: ExtraRoutes.Papers,
-    component: () =>
-      import(/* webpackChunkName: "schedule" */ '../views/PapersView.vue'),
-    meta: {
-      pageTitle: 'pdc.pageTitles.papers',
-    },
-  },
-  {
     path: '/places',
     name: ExtraRoutes.Places,
     component: () =>
