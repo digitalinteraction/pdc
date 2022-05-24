@@ -1,4 +1,3 @@
-import Svgo from 'svgo'
 import fs from 'fs/promises'
 import path from 'path'
 import cp from 'child_process'
@@ -28,6 +27,8 @@ const currentColorPlugin = {
 }
 
 export async function optimizeSvgsCommand(options: OptimizeSvgsCommandOptions) {
+  const Svgo = await import('svgo')
+
   await fs.mkdir(options.output, { recursive: true })
 
   const files = await fs.readdir(options.input)
