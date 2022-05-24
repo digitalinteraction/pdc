@@ -32,12 +32,12 @@
   },
   "settings": {
     "atrium": { "enabled": true, "visible": true },
-    "schedule": { "enabled": true, "visible": true },
+    "schedule": { "enabled": false, "visible": true },
     "keynotes": { "enabled": true, "visible": true },
     "places": { "enabled": false, "visible": true },
     "newcastle": { "enabled": true, "visible": true },
     "social": { "enabled": true, "visible": true },
-    "help": { "enabled": true, "visible": true },
+    "help": { "enabled": false, "visible": true },
 
     "navigation": {
       "showProfile": true,
