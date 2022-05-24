@@ -53,7 +53,7 @@ export default Vue.extend({
     },
   },
   created() {
-    guardRoute(this.schedule?.settings.schedule, this.user, this.$router)
+    guardRoute(this.schedule?.settings.keynotes, this.user, this.$router)
   },
   methods: {
     onFilter(query: any) {
