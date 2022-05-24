@@ -172,17 +172,12 @@ export default Vue.extend({
     // },
     widgets(): Set<string> {
       const widgets = new Set<string>()
-      // const conf = this.settings?.atriumWidgets
+      const conf = this.settings?.widgets
 
-      // TODO: widget logic
-      // if (conf?.siteVisitors) widgets.add('siteVisitors')
-      // if (conf?.twitter) widgets.add('twitter')
-      // if (conf?.login) widgets.add('login')
-      // if (conf?.register) widgets.add('register')
-      // if (conf?.spatialChat) widgets.add('spatialChat')
-      // if (conf?.slack) widgets.add('slack')
-      // if (conf?.familyResources) widgets.add('familyResources')
-      // if (conf?.mozfestBook) widgets.add('mozfestBook')
+      if (conf?.siteVisitors) widgets.add('siteVisitors')
+      if (conf?.twitter) widgets.add('twitter')
+      if (conf?.login) widgets.add('login')
+      if (conf?.register) widgets.add('register')
 
       return widgets
     },
@@ -191,9 +186,10 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-$slack: #b7007e;
-
 .atriumView {
+  .heroCard {
+    background-color: $pdc-sky;
+  }
   .heroCard-title,
   .heroCard-subtitle {
     color: $white;
@@ -201,10 +197,18 @@ $slack: #b7007e;
   }
 
   // TODO: custom widget styles
-  .colorWidget.is-slack {
-    background-color: $slack;
+  .colorWidget.is-login {
+    color: $white;
+    background-color: $pdc-navy;
     &[href]:hover {
-      background-color: darken($slack, 7%);
+      background-color: darken($pdc-navy, 7%);
+    }
+  }
+  .colorWidget.is-register {
+    color: $black;
+    background-color: $pdc-sky;
+    &[href]:hover {
+      background-color: darken($pdc-sky, 7%);
     }
   }
 }
