@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/digitalinteraction/pdc/compare/v0.2.0...v0.2.1) (2022-05-24)
+
+### Bug Fixes
+
+- dynamically import svg library ([26ec29e](https://github.com/digitalinteraction/pdc/commit/26ec29ef898630c6521c4febc0b96adec52c8f72))
+
 ## [0.2.0](https://github.com/digitalinteraction/pdc/compare/v0.1.1...v0.2.0) (2022-05-24)
 
 ### ⚠ BREAKING CHANGES
