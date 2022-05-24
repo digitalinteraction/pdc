@@ -41,7 +41,17 @@ export async function optimizeSvgsCommand(options: OptimizeSvgsCommandOptions) {
       multipass: true,
       path: file,
       floatPrecision: 2,
-      plugins: ['preset-default', currentColorPlugin as any],
+      plugins: [
+        {
+          name: 'preset-default',
+          params: {
+            overrides: {
+              removeViewBox: false,
+            },
+          },
+        },
+        currentColorPlugin as any,
+      ],
     })
 
     if (result.modernError) throw result.modernError
