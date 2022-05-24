@@ -40,15 +40,15 @@
     "help": { "enabled": false, "visible": true },
 
     "navigation": {
-      "showProfile": true,
-      "showLogin": true,
+      "showProfile": false,
+      "showLogin": false,
       "showRegister": true
     },
 
     "widgets": {
       "siteVisitors": true,
       "twitter": true,
-      "login": true,
+      "login": false,
       "register": true
     }
   }
