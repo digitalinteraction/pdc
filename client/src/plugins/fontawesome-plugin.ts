@@ -9,7 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 //
 import {
   faTwitter,
-  faSlack,
+
+  // AddToCalendarDialog
   faGoogle,
 } from '@fortawesome/free-brands-svg-icons'
 
@@ -17,30 +18,63 @@ import {
 // Import solids ~ https://fontawesome.com/icons?d=gallery&s=solid
 //
 import {
+  // BackButton + JoinSession + MiniSession
   faArrowLeft,
   faArrowRight,
+
+  // PrimaryEmbed + SecondaryEmbed
   faVideo,
+
+  // NavigationBar + AttendanceSection + InterestSection
   faUser,
-  faUsers,
+
+  // faUsers,
+
+  // SessionAttributes + SessionHeader
   faCodeBranch,
+
+  // SessionAttributes + SessionHeader
   faTags,
+
+  // SessionAttributes + LanguageWarning
   faGlobe,
+
+  // SessionAttributes
   faSave,
+
+  // SessionAttributes
   faIdBadge,
+
+  // AddToCalendar + AddToCalendarDialog
   faCalendarPlus,
+
+  // NoResults
   faSearch,
+
+  // ColorWidget
   faChevronLeft,
   faChevronRight,
-  faHeadset,
-  faPuzzlePiece,
-  faBook,
+
+  // AttendanceSection + InterestSection
   faTimes,
+
+  // InterestSection + AttendanceSection
   faUserPlus,
+
+  // SessionState
   faCircle,
+
+  // SessionState
   faExclamationTriangle,
+
+  // SessionState
   faFire,
+
+  // TimeSlot
   faLongArrowAltRight,
   faLongArrowAltLeft,
+
+  // DevControl
   faTerminal,
   faClock,
   faForward,
@@ -49,16 +83,22 @@ import {
   faFastBackward,
   faPlay,
   faStop,
+
+  // AtriumView
   faEnvelope,
   faTicketAlt,
+
+  // <types>
   faComments,
   faObjectGroup,
-  faPeopleArrows,
+  // faPeopleArrows,
   faShareAlt,
   faPalette,
-  faPodcast,
+  faMicrophone,
+  faUsers,
+
+  // AppLoading
   faSync,
-  faSeedling,
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -71,7 +111,7 @@ import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons'
 // prettier-ignore
 //
 library.add(
-  farCircle, faTwitter, faSlack, faArrowLeft, faArrowRight, faVideo, faUser, faUsers, faCodeBranch, faTags, faGlobe, faSave, faIdBadge, faCalendarPlus, faSearch, faChevronLeft, faChevronRight, faHeadset, faPuzzlePiece, faBook, faTimes, faUserPlus, faCircle, faExclamationTriangle, faFire, faLongArrowAltRight, faLongArrowAltLeft, faTerminal, faClock, faForward, faFastForward, faBackward, faFastBackward, faPlay, faStop, faEnvelope, faTicketAlt, faComments, faObjectGroup, faPeopleArrows, faShareAlt, faPalette, faPodcast, faSync, faGoogle, faSeedling
+  farCircle, faTwitter, faArrowLeft, faArrowRight, faVideo, faUser, faCodeBranch, faTags, faGlobe, faSave, faIdBadge, faCalendarPlus, faSearch, faChevronLeft, faChevronRight, faTimes, faUserPlus, faCircle, faExclamationTriangle, faFire, faLongArrowAltRight, faLongArrowAltLeft, faTerminal, faClock, faForward, faFastForward, faBackward, faFastBackward, faPlay, faStop, faEnvelope, faTicketAlt, faComments, faObjectGroup, faShareAlt, faPalette, faSync,  faGoogle, faMicrophone, faUsers
 )
 
 //
