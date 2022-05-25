@@ -116,13 +116,13 @@ const routes: Array<RouteConfig> = [
   },
 
   //
-  // MISC
+  // Static
   //
   {
     path: '/social',
     name: ExtraRoutes.Social,
     component: () =>
-      import(/* webpackChunkName: "social" */ '../views/SocialView.vue'),
+      import(/* webpackChunkName: "static" */ '../views/SocialView.vue'),
     meta: {
       pageTitle: 'pdc.pageTitles.social',
     },
@@ -131,11 +131,33 @@ const routes: Array<RouteConfig> = [
     path: '/help',
     name: Routes.HelpDesk,
     component: () =>
-      import(/* webpackChunkName: "help" */ '../views/HelpView.vue'),
+      import(/* webpackChunkName: "static" */ '../views/HelpView.vue'),
     meta: {
       pageTitle: 'pdc.pageTitles.session',
     },
   },
+  {
+    path: '/privacy',
+    name: Routes.Privacy,
+    component: () =>
+      import(/* webpackChunkName: "static" */ '../views/PrivacyView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.privacy',
+    },
+  },
+  {
+    path: '/terms',
+    name: Routes.Terms,
+    component: () =>
+      import(/* webpackChunkName: "static" */ '../views/TermsView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.terms',
+    },
+  },
+
+  //
+  // Errors
+  //
   {
     path: '/error/:errorCode',
     props: true,

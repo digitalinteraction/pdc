@@ -210,6 +210,8 @@ pdc:
     keynotes: Keynotes
     places: Places
     newcastle: Newcastle
+    privacy: Privacy
+    terms: Terms
 
   notFound:
     title: Page Not Found

@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { PageFooter, PageFooterLink } from '@openlab/deconf-ui-toolkit'
+import { PageFooter, PageFooterLink, Routes } from '@openlab/deconf-ui-toolkit'
 import Vue from 'vue'
 
 interface Data {
@@ -34,11 +34,11 @@ export default Vue.extend({
       return [
         {
           title: this.$t('pdc.footer.privacy'),
-          url: this.$t('pdc.footer.privacyUrl'),
+          url: this.$router.resolve({ name: Routes.Privacy })?.href as string,
         },
         {
           title: this.$t('pdc.footer.terms'),
-          url: this.$t('pdc.footer.termsUrl'),
+          url: this.$router.resolve({ name: Routes.Terms })?.href as string,
         },
         {
           title: this.$t('pdc.footer.guidelines'),
