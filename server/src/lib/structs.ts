@@ -43,6 +43,7 @@ export const AppConfigStruct = object({
     newcastle: pageFlag(),
     social: pageFlag(),
     help: pageFlag(),
+    about: pageFlag(),
 
     navigation: object({
       showProfile: boolean(),

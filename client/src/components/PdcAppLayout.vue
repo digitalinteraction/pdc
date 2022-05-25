@@ -37,7 +37,7 @@ import MainLogo from '@/components/MainLogo.vue'
 import SquareLogo from '@/components/SquareLogo.vue'
 import PageFooter from '@/components/PageFooter.vue'
 
-import AtriumIcon from '@/icons/AtriumIcon.vue'
+import AboutIcon from '@/icons/AboutIcon.vue'
 import HelpDeskIcon from '@/icons/HelpDeskIcon.vue'
 import KeynotesIcon from '@/icons/KeynotesIcon.vue'
 import NewcastleIcon from '@/icons/NewcastleIcon.vue'
@@ -80,10 +80,10 @@ export default Vue.extend({
 
       const routes: RouteIntermediate[] = [
         {
-          title: this.$t('pdc.pageTitles.atrium') as string,
-          name: Routes.Atrium,
-          icon: AtriumIcon,
-          pageFlag: this.settings.atrium,
+          title: this.$t('pdc.pageTitles.about') as string,
+          name: ExtraRoutes.About,
+          icon: AboutIcon,
+          pageFlag: this.settings.about,
         },
         {
           title: this.$t('pdc.pageTitles.schedule') as string,

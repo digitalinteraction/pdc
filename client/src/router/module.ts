@@ -154,6 +154,15 @@ const routes: Array<RouteConfig> = [
       pageTitle: 'pdc.pageTitles.terms',
     },
   },
+  {
+    path: '/about',
+    name: ExtraRoutes.About,
+    component: () =>
+      import(/* webpackChunkName: "static" */ '../views/AboutView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.about',
+    },
+  },
 
   //
   // Errors

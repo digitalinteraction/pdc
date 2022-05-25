@@ -31,7 +31,8 @@ cli.command(
   (yargs) =>
     yargs
       .option('port', { type: 'number', default: 3000 })
-      .option('migrate', { type: 'boolean', default: false }),
+      .option('migrate', { type: 'boolean', default: false })
+      .option('settings', { type: 'boolean', default: false }),
   (args) => serveCommand(args).catch(errorHandler)
 )
 

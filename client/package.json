@@ -1,4 +1,5 @@
 {
+  "name": "@openlab/pdc-client",
   "type": "commonjs",
   "version": "0.2.1",
   "scripts": {

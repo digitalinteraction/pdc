@@ -9,6 +9,7 @@ export interface PdcConferenceConfig {
   newcastle?: PageFlag
   social?: PageFlag
   help?: PageFlag
+  about?: PageFlag
 
   navigation: {
     showProfile: boolean

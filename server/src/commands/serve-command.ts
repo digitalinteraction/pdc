@@ -37,6 +37,7 @@ const debug = createDebug('cmd:serve')
 export interface ServeCommandOptions {
   port: number
   migrate: boolean
+  settings: boolean
 }
 
 export async function serveCommand(options: ServeCommandOptions) {
@@ -66,6 +67,10 @@ export async function serveCommand(options: ServeCommandOptions) {
 
   if (options.migrate) {
     await migrateCommand({})
+  }
+
+  if (options.settings) {
+    await store.put('schedule.settings', config.settings)
   }
 
   // prettier-ignore

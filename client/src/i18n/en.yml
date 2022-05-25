@@ -201,6 +201,7 @@ pdc:
 
   pageTitles:
     atrium: Home
+    about: Home
     login: Log in
     profile: Your Profile
     schedule: Programme

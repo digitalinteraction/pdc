@@ -19,7 +19,8 @@
       "help",
       "social",
       "privacy",
-      "terms"
+      "terms",
+      "about"
     ]
   },
   "notion": {
@@ -40,6 +41,7 @@
     "newcastle": { "enabled": true, "visible": true },
     "social": { "enabled": true, "visible": true },
     "help": { "enabled": false, "visible": true },
+    "about": { "enabled": true, "visible": true },
 
     "navigation": {
       "showProfile": false,
