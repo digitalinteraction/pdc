@@ -69,6 +69,7 @@ cli.command(
     yargs.options({
       input: { type: 'string', default: 'svgs/input' },
       output: { type: 'string', default: 'svgs/output' },
+      currentColor: { type: 'boolean', default: false },
     }),
   (args) => optimizeSvgsCommand(args)
 )

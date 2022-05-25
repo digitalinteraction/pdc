@@ -8,6 +8,7 @@ const exec = promisify(cp.exec)
 export interface OptimizeSvgsCommandOptions {
   input: string
   output: string
+  currentColor: boolean
 }
 
 const currentColorPlugin = {
@@ -31,6 +32,9 @@ export async function optimizeSvgsCommand(options: OptimizeSvgsCommandOptions) {
 
   await fs.mkdir(options.output, { recursive: true })
 
+  const extraPlugins: any[] = []
+  if (options.currentColor) extraPlugins.push(currentColorPlugin)
+
   const files = await fs.readdir(options.input)
 
   for (const filename of files) {
@@ -51,7 +55,7 @@ export async function optimizeSvgsCommand(options: OptimizeSvgsCommandOptions) {
             },
           },
         },
-        currentColorPlugin as any,
+        ...extraPlugins,
       ],
     })
 
