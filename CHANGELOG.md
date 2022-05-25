@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/digitalinteraction/pdc/compare/v0.2.2...v0.2.3) (2022-05-25)
+
+### Features
+
+- convert KeynotesView to be a grid ([e3b5b9e](https://github.com/digitalinteraction/pdc/commit/e3b5b9e63eb63385298f9135d081bbe098195d60))
+
 ### [0.2.2](https://github.com/digitalinteraction/pdc/compare/v0.2.1...v0.2.2) (2022-05-25)
 
 ### Features
