@@ -37,8 +37,8 @@ images:
 
   # https://github.com/digitalinteraction/pdc/pkgs/container/pdc-client
   - name: ghcr.io/digitalinteraction/pdc-client
-    newTag: 0.2.1
+    newTag: 0.2.2
 
   # https://github.com/digitalinteraction/pdc/pkgs/container/pdc-server
   - name: ghcr.io/digitalinteraction/pdc-server
-    newTag: 0.2.1
+    newTag: 0.2.2
