@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/digitalinteraction/pdc/compare/v0.2.1...v0.2.2) (2022-05-25)
+
+### Features
+
+- add about page ([88d8844](https://github.com/digitalinteraction/pdc/commit/88d884448695e4fa0a886714ed222e1c90318879))
+- add sponsors ([be58897](https://github.com/digitalinteraction/pdc/commit/be588978231d691e07198d45448c888f6ef0d9dd))
+- add terms & privacy pages ([c410887](https://github.com/digitalinteraction/pdc/commit/c4108875f82aafe7f5632be869d8ab905e55ca8a))
+- **cli:** add "currentColor" option to svg command to configure swapping ([b375824](https://github.com/digitalinteraction/pdc/commit/b375824d37848f4b1d0c81b6aa4a1bc898e0cec8))
+- implement RegisterView's redirect ([e993cae](https://github.com/digitalinteraction/pdc/commit/e993cae2013c439e95678646dab389f985ec8edb))
+
+### Bug Fixes
+
+- update About title ([0297a70](https://github.com/digitalinteraction/pdc/commit/0297a70443acd3ff5577ceabc85b7519c8e5efaa))
+- update guidelines URL ([ed1d0c8](https://github.com/digitalinteraction/pdc/commit/ed1d0c8f8fa30e3f3927172a871d6274eeecfd93))
+
 ### [0.2.1](https://github.com/digitalinteraction/pdc/compare/v0.2.0...v0.2.1) (2022-05-24)
 
 ### Bug Fixes
