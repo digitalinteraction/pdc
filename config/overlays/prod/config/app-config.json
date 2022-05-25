@@ -1,13 +1,13 @@
 {
   "mail": {
     "fromEmail": "noreply@openlab.dev",
-    "replyToEmail": "openlab@ncl.ac.uk"
+    "replyToEmail": "john.vines@ed.ac.uk"
   },
   "sendgrid": {
     "loginTemplateId": "d-095e893ab93b4ba48e7039b1e070677f"
   },
   "jwt": {
-    "issuer": "pdc-dev-2022"
+    "issuer": "pdc-prod-2022"
   },
   "content": {
     "keys": [

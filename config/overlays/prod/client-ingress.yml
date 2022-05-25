@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: client
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/affinity-mode: persistent
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: schedule.pdc2022.org
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: client
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - schedule.pdc2022.org
+      secretName: schedule.pdc2022.org
