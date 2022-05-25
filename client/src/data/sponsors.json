@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "size": "medium",
+    "title": "Sponsors",
+    "sponsors": [
+      {
+        "title": "Newcastle University",
+        "image": "/sponsors/newcastle-university.svg",
+        "href": "https://www.ncl.ac.uk/"
+      },
+      {
+        "title": "Open Lab",
+        "image": "/sponsors/openlab.svg",
+        "href": "https://openlab.ncl.ac.uk/"
+      },
+      {
+        "title": "University of Edinburgh",
+        "image": "/sponsors/edinburgh-university.svg",
+        "href": "https://www.ed.ac.uk/"
+      },
+      {
+        "title": "Design Informatics",
+        "image": "/sponsors/design-informatics.png",
+        "href": "https://www.designinformatics.org/"
+      },
+      {
+        "title": "RMIT",
+        "image": "/sponsors/rmit-university.svg",
+        "href": "https://www.rmit.edu.au/"
+      },
+      {
+        "title": "Northumbria University",
+        "image": "/sponsors/northumbria-university.svg",
+        "href": "https://www.northumbria.ac.uk/"
+      }
+    ]
+  }
+]
