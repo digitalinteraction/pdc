@@ -6,7 +6,7 @@
 # - original gist: https://gist.github.com/robb-j/049217ca8cecf4e214b8b82123f7371b
 #
 
-name: 'Build Versioned Container'
+name: 'Build Container / Client'
 
 on:
   push:
