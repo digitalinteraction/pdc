@@ -23,13 +23,18 @@ import {
   FilteredScheduleOptions,
   FilteredScheduleView,
 } from '@openlab/deconf-ui-toolkit'
-import { getLanguageOptions, guardRoute, mapApiState } from '@/lib/module'
+import {
+  getLanguageOptions,
+  guardRoute,
+  mapApiState,
+  StorageKey,
+} from '@/lib/module'
 
 const options: FilteredScheduleOptions = {
   predicate(session) {
     return true
   },
-  filtersKey: 'pdcProgrammeViewFilters',
+  filtersKey: StorageKey.ScheduleFilters,
   scheduleConfig: {
     tileHeader: ['type'],
     tileAttributes: ['track', 'themes'],

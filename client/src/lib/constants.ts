@@ -4,7 +4,9 @@ export enum StorageKey {
   AuthToken = 'authToken',
   Analytics = 'analyticsConsent',
   Locale = 'chosenLocale',
-  // ScheduleFilters = 'scheduleFilters',
+
+  ScheduleFilters = 'pdcProgrammeViewFilters',
+  KeynotesFilters = 'pdcKeynotesViewFilters',
 }
 
 export enum ExtraRoutes {

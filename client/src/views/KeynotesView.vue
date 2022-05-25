@@ -1,17 +1,21 @@
 <template>
   <AppLayout>
-    <FilteredScheduleView
-      v-if="schedule"
-      :schedule="schedule"
-      :user-sessions="userSessions"
-      :options="options"
-      :schedule-date="scheduleDate"
+    <WhatsOnView
+      :schedule="filteredSchedule"
+      :sessions="filteredSessions"
+      filters-key="pdcKeynotesViewFilters"
+      :enabled-filters="enabledFilters"
+      :config="config"
+      slot-state="future"
+      :language-options="languages"
+      :url-filters="urlFilters"
       @filter="onFilter"
+      :readonly="true"
     >
       <span slot="title">{{ $t('pdc.pageTitles.keynotes') }}</span>
-      <ApiContent slot="infoText" slug="keynotes-filters" />
+      <ApiContent slot="info" slug="keynotes-filters" />
       <span slot="noResults">{{ $t('pdc.general.noResults') }}</span>
-    </FilteredScheduleView>
+    </WhatsOnView>
   </AppLayout>
 </template>
 
@@ -20,36 +24,64 @@ import Vue from 'vue'
 import AppLayout from '@/components/PdcAppLayout.vue'
 import {
   ApiContent,
-  FilteredScheduleOptions,
-  FilteredScheduleView,
+  decodeUrlScheduleFilters,
+  filterScheduleFromSessions,
+  ScheduleConfig,
+  ScheduleFilterRecord,
+  SelectOption,
+  WhatsOnView,
 } from '@openlab/deconf-ui-toolkit'
-import { getLanguageOptions, guardRoute, mapApiState } from '@/lib/module'
+import {
+  getLanguageOptions,
+  guardRoute,
+  mapApiState,
+  StorageKey,
+} from '@/lib/module'
+import { ScheduleRecord, Session } from '@openlab/deconf-shared/dist/conference'
 
-const options: FilteredScheduleOptions = {
-  predicate(session) {
-    // Keynote type
-    return session.type === '29fe71f3-586d-4647-b8e6-53bdc8963c9c'
-  },
-  filtersKey: 'pdcKeynotesViewFilters',
-  scheduleConfig: {
-    tileHeader: ['themes'],
-    tileAttributes: ['languages', 'recorded'],
-  },
-  enabledFilters: ['query', 'theme', 'date'],
-  languages: getLanguageOptions(),
+const predicate = (session: Session) => {
+  return session.type === '29fe71f3-586d-4647-b8e6-53bdc8963c9c'
 }
 
 interface Data {
-  options: FilteredScheduleOptions
+  filtersKey: string
+  enabledFilters: Array<keyof ScheduleFilterRecord>
+  config: ScheduleConfig
+  languages: SelectOption[]
+  urlFilters: ScheduleFilterRecord | null
 }
 
 export default Vue.extend({
-  components: { AppLayout, FilteredScheduleView, ApiContent },
-  data: (): Data => ({ options }),
+  components: { AppLayout, WhatsOnView, ApiContent },
+  data(): Data {
+    return {
+      filtersKey: StorageKey.KeynotesFilters,
+      enabledFilters: ['query', 'theme', 'language'],
+      config: {
+        tileHeader: ['type'],
+        tileAttributes: ['themes', 'languages'],
+      },
+      languages: getLanguageOptions(),
+      urlFilters: decodeUrlScheduleFilters(this.$route.query),
+    }
+  },
   computed: {
     ...mapApiState('api', ['schedule', 'user', 'userSessions']),
-    scheduleDate() {
+    scheduleDate(): Date {
       return this.$dev?.scheduleDate ?? this.$temporal.date
+    },
+    filteredSessions(): Session[] {
+      return this.schedule?.sessions.filter((s) => predicate(s)) ?? []
+    },
+    filteredSchedule(): ScheduleRecord | null {
+      if (!this.schedule) return null
+      return filterScheduleFromSessions(
+        this.schedule as any,
+        this.filteredSessions
+      )
+    },
+    scheduleIsLive(): boolean {
+      return Boolean(this.schedule?.settings?.schedule?.enabled)
     },
   },
   created() {
