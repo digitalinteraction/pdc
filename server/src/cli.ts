@@ -61,7 +61,7 @@ cli.command(
         default: [] as any[],
         choices: ['schedule', 'content', 'settings'],
       })
-      .option('imageDir', { key: 'string', default: 'notion/img' })
+      .option('staticDir', { key: 'string', default: 'static/notion' })
       .option('quiet', { key: 'boolean', default: false }),
   (args) => fetchScheduleCommand(args).catch(errorHandler)
 )
