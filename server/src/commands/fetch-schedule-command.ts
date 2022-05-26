@@ -184,6 +184,8 @@ type FetchSchedulePullMode = 'schedule' | 'content' | 'settings'
 export interface FetchScheduleCommandOptions {
   localFile?: string
   only?: FetchSchedulePullMode[]
+  imageDir: string
+  quiet: boolean
 }
 
 export async function fetchScheduleCommand(
@@ -241,8 +243,11 @@ export async function fetchScheduleCommand(
     }
   }
 
+  // A map of notion image id to local path
+  const images = new Map<string, string>()
+
   if (pull('schedule')) {
-    await processSchedule(content, store)
+    await processSchedule(content, store, images)
   }
 
   if (pull('settings')) {
@@ -250,17 +255,24 @@ export async function fetchScheduleCommand(
   }
 
   if (pull('content')) {
-    await processContent(content, store)
+    await processContent(content, store, images)
   }
 
-  console.log(JSON.stringify(content, null, 2))
+  if (options.quiet === false) {
+    console.log(JSON.stringify(content, null, 2))
+  }
 
   await store.close()
 }
 
+function getImage(images: Map<string, string>, some: any) {
+  // ...
+}
+
 async function processContent(
   content: Record<string, NotionPage[]>,
-  store: RedisService
+  store: RedisService,
+  images: Map<string, string>
 ) {
   const contentService = new ContentService({
     store,
@@ -281,7 +293,8 @@ async function processContent(
 
 async function processSchedule(
   content: Record<string, NotionPage[]>,
-  store: RedisService
+  store: RedisService,
+  images: Map<string, string>
 ) {
   const themes: Theme[] = content.themes.map((page) => ({
     id: page.id,
