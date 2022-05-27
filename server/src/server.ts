@@ -6,6 +6,8 @@ import koaCors from '@koa/cors'
 import koaJson from 'koa-json'
 import koaBodyParser from 'koa-bodyparser'
 import koaHelmet from 'koa-helmet'
+import koaStatic from 'koa-static'
+import koaMount from 'koa-mount'
 
 import { Server as SocketIoServer, Socket } from 'socket.io'
 import { createAdapter as socketIoRedisAdapter } from '@socket.io/redis-adapter'
@@ -27,6 +29,7 @@ import { ContentRouter } from './deconf/content-router.js'
 import { RegistrationRouter } from './deconf/registration-router.js'
 import { ConferenceRouter } from './deconf/conference-router.js'
 
+const STATIC_MAX_AGE = 30 * 60 * 1000
 const debug = createDebug('server')
 
 /** A middleware to output requests when in debug mode */
@@ -129,6 +132,7 @@ export function createServer(context: AppContext) {
   const app = new Koa()
     .use(koaHelmet())
     .use(koaCors({ origin: context.env.CLIENT_URL }))
+    .use(koaMount('/static', koaStatic('static', { maxage: STATIC_MAX_AGE })))
     .use(koaJson())
     .use(koaBodyParser())
     .use(debugMiddleware())

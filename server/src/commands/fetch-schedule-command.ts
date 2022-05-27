@@ -1,11 +1,14 @@
+import { promisify } from 'util'
+import stream from 'stream'
+import { createWriteStream } from 'fs'
+import path from 'path'
 import fs from 'fs/promises'
 import { mask, object, string } from 'superstruct'
-import NotionHq from '@notionhq/client'
 
 import {
+  LocalisedLink,
   Session,
   SessionSlot,
-  SessionState,
   SessionType,
   SessionVisibility,
   Speaker,
@@ -18,192 +21,53 @@ import {
   RedisService,
 } from '@openlab/deconf-api-toolkit'
 
-import { loadConfig, createDebug } from '../lib/module.js'
+import {
+  loadConfig,
+  createDebug,
+  NotionPage,
+  notionFmt as fmt,
+  NotionRenderContext,
+  UrlService,
+  NotionService,
+} from '../lib/module.js'
+import got from 'got'
 
+const pipeline = promisify(stream.pipeline)
 const debug = createDebug('cmd:fetch-schedule')
 
-interface NotionProp {
-  id: string
-  type: string
-  [id: string]: any
-}
-
-interface NotionPage {
-  id: string
-  props: Record<string, NotionProp>
-  blocks: any[]
-}
-
-/** Format notion properties */
-const fmt = {
-  title(value: any) {
-    return value?.title?.[0]?.plain_text
-  },
-  select(value: any) {
-    return value?.select?.name
-  },
-  multiSelect(value: any) {
-    const result = value?.multi_select?.map((i: any) => i.name)
-    if (result?.length === 0) return undefined
-    return result
-  },
-  checkbox(value: any) {
-    return value?.checkbox === true
-  },
-  relationIds(value: any) {
-    return value?.relation?.map((i: any) => i.id)
-  },
-  slot(s: any, e: any) {
-    const start = new Date(s)
-    const end = new Date(e)
-    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
-      return undefined
-    }
-    const id = start.getTime() + '__' + end.getTime()
-    return { id, start, end }
-  },
-  richText(value: any) {
-    const segments = value?.rich_text?.map((rt: any) => {
-      let text = rt.text?.content ?? ''
-      const wraps = []
-      if (rt.bold) wraps.push('**')
-      if (rt.italic) wraps.push('_')
-      if (rt.strikethrough) wraps.push('~')
-      // todo: underline?
-      if (rt.code) wraps.push('`')
-      if (rt.text?.link?.url) {
-        text = `[${text}](${rt.text.link.url})`
-      }
-      const unwraps = Array.from(wraps).reverse()
-
-      return wraps.join('') + text + unwraps.join('')
-    })
-    return segments?.join('')
-  },
-}
-/** Render notion blocks to markdown */
-const blockRenderers = new Map<string, (block: any) => string>()
-blockRenderers.set('paragraph', (block) => {
-  return fmt.richText(block.paragraph) + '\n'
-})
-blockRenderers.set('heading_1', (block) => {
-  return `# ${fmt.richText(block.heading_1)}\n`
-})
-blockRenderers.set('heading_2', (block) => {
-  return `## ${fmt.richText(block.heading_2)}\n`
-})
-blockRenderers.set('heading_3', (block) => {
-  return `### ${fmt.richText(block.heading_3)}\n`
-})
-blockRenderers.set('callout', (block) => {
-  return `> ${block.callout.icon} ${fmt.richText(block.callout)}\n`
-})
-blockRenderers.set('quote', (block) => {
-  return `> ${fmt.richText(block.quote)}\n`
-})
-blockRenderers.set('bulleted_list_item', (block) => {
-  return `* ${fmt.richText(block.bulleted_list_item)}`
-})
-blockRenderers.set('numbered_list_item', (block) => {
-  return `0. ${fmt.richText(block.numbered_list_item)}`
-})
-blockRenderers.set('to_do', (block) => {
-  const pre = block.to_do.checked ? 'x' : ' '
-  return `- [${pre}] ${fmt.richText(block.to_do)}`
-})
-blockRenderers.set('code', (block) => {
-  const text = fmt.richText(block.code)
-  return '```' + `${block.code.language}\n${text}` + '```\n'
-})
-
-/** Convert a sequence of notion blocks into a markdown file */
-function getMarkdown(blocks: any[]) {
-  return blocks
-    .map((b) => blockRenderers.get(b.type)?.(b))
-    .filter((t) => t)
-    .join('\n')
-}
-
-/** paginate through `notion.databases.query` and fetch page blocks */
-async function queryAll(notion: NotionHq.Client, db: string) {
-  debug('retrieveAll db=%o', db)
-
-  let res = await notion.databases.query({
-    database_id: db,
-  })
-  let all = res.results
-
-  while (res.next_cursor !== null) {
-    debug('retrieveAll db=%o next=%o', db, res.next_cursor)
-
-    res = await notion.databases.query({
-      database_id: db,
-      start_cursor: res.next_cursor,
-    })
-
-    all = all.concat(res.results)
-  }
-
-  const merged: Array<NotionPage> = []
-
-  for (const page of all) {
-    merged.push({
-      id: page.id,
-      props: (page as any).properties,
-      blocks: await retrieveAll(notion, page.id),
-    })
-  }
-
-  return merged
-}
-
-/** paginate through `notion.blocks.children.list` for a page */
-async function retrieveAll(notion: NotionHq.Client, page: string) {
-  debug('retrieveAll page=%o', page)
-
-  let res = await notion.blocks.children.list({ block_id: page })
-  let all = res.results
-
-  while (res.next_cursor !== null) {
-    debug('retrieveAll page=%o next=%o', page, res.next_cursor)
-
-    res = await notion.blocks.children.list({
-      block_id: page,
-      start_cursor: res.next_cursor,
-    })
-
-    all = all.concat(res.results)
-  }
-
-  return all
-}
-
-// run once and output stdout to this file
-// run again with localFile set to that file to skip notion API calls
 type FetchSchedulePullMode = 'schedule' | 'content' | 'settings'
 export interface FetchScheduleCommandOptions {
   localFile?: string
   only?: FetchSchedulePullMode[]
+  staticDir: string
+  quiet: boolean
 }
 
+// run once and output stdout to this file "> notion.json"
+// run again with localFile set to that file to skip notion API calls "--localFile=notion.json"
 export async function fetchScheduleCommand(
   options: FetchScheduleCommandOptions
 ) {
   debug('checking env')
-  const { NOTION_TOKEN, REDIS_URL } = mask(
+  const { NOTION_TOKEN, REDIS_URL, CLIENT_URL, SELF_URL } = mask(
     process.env,
     object({
       NOTION_TOKEN: string(),
       REDIS_URL: string(),
+      CLIENT_URL: string(),
+      SELF_URL: string(),
     })
   )
 
+  debug('creating services')
   const config = await loadConfig()
   const store = new RedisService(REDIS_URL)
-
-  debug('creating client')
-  const notion = new NotionHq.Client({
-    auth: NOTION_TOKEN,
+  const url = new UrlService({ env: { CLIENT_URL, SELF_URL } })
+  const notion = new NotionService({
+    url,
+    options: {
+      notionToken: NOTION_TOKEN,
+    },
   })
 
   const content: Record<string, NotionPage[]> = {}
@@ -237,12 +101,16 @@ export async function fetchScheduleCommand(
     }
 
     for (const [key, db] of Object.entries(keys)) {
-      content[key] = await queryAll(notion, db)
+      content[key] = await notion.queryNotionDatabase(db)
     }
   }
 
+  // A map of notion image id to local path
+  const ctx = await createRenderContext(options.staticDir, url)
+  const existingFiles = new Set(ctx.files.keys())
+
   if (pull('schedule')) {
-    await processSchedule(content, store)
+    await processSchedule(content, store, notion, ctx)
   }
 
   if (pull('settings')) {
@@ -250,17 +118,75 @@ export async function fetchScheduleCommand(
   }
 
   if (pull('content')) {
-    await processContent(content, store)
+    await processContent(content, store, notion, ctx)
   }
 
-  console.log(JSON.stringify(content, null, 2))
+  if (options.quiet === false && !options.localFile) {
+    console.log(JSON.stringify(content, null, 2))
+  }
+
+  if (ctx.files.size > 0) {
+    debug('processing files')
+    downloadFiles(options.staticDir, ctx, existingFiles)
+  }
 
   await store.close()
 }
 
+/**
+ * Create a context for rendering notion files to markdown,
+ * pre-cache existing images so they don't need to be redownloaded
+ */
+async function createRenderContext(baseDir: string, url: UrlService) {
+  const ctx: NotionRenderContext = {
+    files: new Map(),
+  }
+
+  // Preset existing files
+  for (const filename of await fs.readdir(path.join(baseDir))) {
+    ctx.files.set(filename, {
+      originalUrl: '',
+      newUrl: url.getNotionFile(filename).toString(),
+      filename,
+    })
+  }
+
+  return ctx
+}
+
+/** Download notion files into the static directory, skipping ones that are already present */
+async function downloadFiles(
+  baseDir: string,
+  ctx: NotionRenderContext,
+  existingFiles: Set<string>
+) {
+  for (const value of ctx.files.values()) {
+    if (existingFiles.has(value.filename)) {
+      debug('skip download %o', value.filename)
+      continue
+    }
+
+    const newPath = path.join(baseDir, value.filename)
+
+    debug('download %o', value.originalUrl)
+    const dir = path.dirname(newPath)
+    await fs.mkdir(dir, { recursive: true })
+
+    try {
+      await pipeline(got.stream(value.originalUrl), createWriteStream(newPath))
+    } catch (error) {
+      console.error('Failed to download %o', value.originalUrl)
+      throw error
+    }
+  }
+}
+
+/** Process the content/copy from notion and put into the store */
 async function processContent(
   content: Record<string, NotionPage[]>,
-  store: RedisService
+  store: RedisService,
+  notion: NotionService,
+  ctx: NotionRenderContext
 ) {
   const contentService = new ContentService({
     store,
@@ -268,10 +194,9 @@ async function processContent(
   })
 
   // Put any content we find into the content section
-  // TODO: english only for now
   for (const page of content.content) {
     const slug = fmt.title(page.props.Name)?.trim()
-    const content = getMarkdown(page.blocks)
+    const content = notion.getPageMarkdown(page.blocks, ctx)
     if (!slug || !content) continue
     await store.put(`content.${slug}`, {
       en: contentService.processMarkdown(content),
@@ -279,9 +204,12 @@ async function processContent(
   }
 }
 
+/** Process the schedule resources and put them into the store */
 async function processSchedule(
   content: Record<string, NotionPage[]>,
-  store: RedisService
+  store: RedisService,
+  notion: NotionService,
+  ctx: NotionRenderContext
 ) {
   const themes: Theme[] = content.themes.map((page) => ({
     id: page.id,
@@ -297,13 +225,18 @@ async function processSchedule(
     },
   }))
 
+  const getHeadshot = (page: any) => {
+    const url = page.props.Headshot?.files?.[0]?.file?.url
+    if (!url) return '/img/headshot.svg'
+    return notion.getFile(url, ctx)
+  }
+
   const speakers: Speaker[] = content.speakers.map((page) => ({
     id: page.id,
     name: fmt.title(page.props.Name),
     role: { en: fmt.richText(page.props.Role) },
-    bio: { en: getMarkdown(page.blocks) },
-    // headshot: page.props.Headshot?.files?.[0]?.file?.url, // TODO
-    headshot: '/img/headshot.svg',
+    bio: { en: notion.getPageMarkdown(page.blocks, ctx) },
+    headshot: getHeadshot(page),
   }))
 
   const types: SessionType[] = content.types.map((page) => ({
@@ -326,6 +259,17 @@ async function processSchedule(
   }
   const slots = Array.from(slotMap.values())
 
+  const getLinks = (page: any): LocalisedLink[] => {
+    return page.props.Links?.files
+      ?.map((f: any) => {
+        if (f.type === 'external') return f.external.url
+        if (f.type === 'file') return notion.getFile(f.file.url, ctx)
+        return null
+      })
+      .filter((url: any) => Boolean(url))
+      .map((url: string) => ({ type: '', url, title: '', language: 'en' }))
+  }
+
   const sessions: Session[] = content.sessions.map((page) => {
     return {
       id: page.id,
@@ -338,9 +282,9 @@ async function processSchedule(
         en: fmt.title(page.props.Name),
       },
       content: {
-        en: getMarkdown(page.blocks),
+        en: notion.getPageMarkdown(page.blocks, ctx),
       },
-      links: [],
+      links: getLinks(page),
       hostLanguages: fmt.multiSelect(page.props.Languages) ?? ['en'],
       enableInterpretation: false,
       speakers: fmt.relationIds(page.props.Speakers),

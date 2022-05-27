@@ -54,11 +54,15 @@ cli.command(
   'fetch-schedule',
   'Fetch schedule information from Notion',
   (yargs) =>
-    yargs.option('localFile', { type: 'string' }).option('only', {
-      type: 'array',
-      default: [] as any[],
-      choices: ['schedule', 'content', 'settings'],
-    }),
+    yargs
+      .option('localFile', { type: 'string' })
+      .option('only', {
+        type: 'array',
+        default: [] as any[],
+        choices: ['schedule', 'content', 'settings'],
+      })
+      .option('staticDir', { key: 'string', default: 'static/notion' })
+      .option('quiet', { key: 'boolean', default: false }),
   (args) => fetchScheduleCommand(args).catch(errorHandler)
 )
 

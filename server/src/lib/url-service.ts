@@ -40,4 +40,8 @@ export class UrlService implements Readonly<DeconfUrlService> {
   getClientAsset(asset: string): URL {
     return new URL(asset, this.#context.env.CLIENT_URL)
   }
+
+  getNotionFile(filename: string): URL {
+    return new URL(`static/notion/${filename}`, this.#context.env.SELF_URL)
+  }
 }

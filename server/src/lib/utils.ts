@@ -3,7 +3,6 @@ import {
   loadConfig as loadDeconfConfig,
 } from '@openlab/deconf-api-toolkit'
 
-import crypto from 'crypto'
 import debug from 'debug'
 import { AppConfigStruct } from './structs.js'
 
@@ -13,10 +12,6 @@ import { AppConfigStruct } from './structs.js'
 
 export function createDebug(namespace: string) {
   return debug(`pdc:${namespace}`)
-}
-
-export function sha256Hash(input: string) {
-  return crypto.createHash('sha256').update(input).digest('base64')
 }
 
 export function getRedirectErrorCode(error: unknown) {
