@@ -11,3 +11,4 @@ resources:
   - redis-service.yml
   - server-deployment.yml
   - server-service.yml
+  - static-pvc.yml

@@ -27,7 +27,8 @@ secretGenerator:
     env: secrets/server.env
 
 patchesStrategicMerge:
-  - redis-patch.yml
+  - redis-pvc-patch.yml
+  - static-pvc-patch.yml
 
 images:
   - name: redis
@@ -35,8 +36,8 @@ images:
 
   # https://github.com/digitalinteraction/pdc/pkgs/container/pdc-client
   - name: ghcr.io/digitalinteraction/pdc-client
-    newTag: 0.2.3
+    newTag: 0.2.5
 
   # https://github.com/digitalinteraction/pdc/pkgs/container/pdc-server
   - name: ghcr.io/digitalinteraction/pdc-server
-    newTag: 0.2.3
+    newTag: 0.2.5

@@ -26,6 +26,8 @@ spec:
                   name: resources
                   subPath: app-config.json
                   readOnly: true
+                - mountPath: /app/static
+                  name: static
               envFrom:
                 - secretRef: { name: server-env }
               env:
@@ -41,6 +43,9 @@ spec:
             - name: resources
               configMap:
                 name: server-resources
+            - name: static
+              persistentVolumeClaim:
+                claimName: static
 
           securityContext:
             runAsUser: 1000
