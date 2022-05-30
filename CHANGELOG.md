@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/digitalinteraction/pdc/compare/v0.2.4...v0.2.5) (2022-05-30)
+
+### Features
+
+- add STATIC_URL env var ([5cd858f](https://github.com/digitalinteraction/pdc/commit/5cd858f5a49cb8993303be847c623932ddb92902))
+
 ### [0.2.4](https://github.com/digitalinteraction/pdc/compare/v0.2.3...v0.2.4) (2022-05-30)
 
 ### Features
