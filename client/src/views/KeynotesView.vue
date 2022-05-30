@@ -10,7 +10,7 @@
       :language-options="languages"
       :url-filters="urlFilters"
       @filter="onFilter"
-      :readonly="false"
+      :readonly="true"
     >
       <span slot="title">{{ $t('pdc.pageTitles.keynotes') }}</span>
       <ApiContent slot="info" slug="keynotes-filters" />
