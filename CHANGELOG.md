@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.6](https://github.com/digitalinteraction/pdc/compare/v0.2.5...v0.2.6) (2022-05-30)
+
+### Features
+
+- **cli:** add option to turn svgs into vue components ([2552188](https://github.com/digitalinteraction/pdc/commit/2552188f6964fa3b5fa71727672d95a95efb3a03))
+- update icons and restyle tabs ([ad247a1](https://github.com/digitalinteraction/pdc/commit/ad247a1e119ba778fcbc5df76b075804b6956379))
+
 ### [0.2.5](https://github.com/digitalinteraction/pdc/compare/v0.2.4...v0.2.5) (2022-05-30)
 
 ### Features
