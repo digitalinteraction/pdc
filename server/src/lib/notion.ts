@@ -84,11 +84,11 @@ export const notionFmt = {
       }
 
       // Don't annotate empty-text
-      if (!text.trim()) return text
+      if (!text.trim()) return ''
 
-      return wraps.join('') + text + Array.from(wraps).reverse().join('')
+      return wraps.join('') + text.trim() + Array.from(wraps).reverse().join('')
     })
-    return segments?.join('')
+    return segments?.join(' ')
   },
 }
 
