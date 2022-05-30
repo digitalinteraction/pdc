@@ -10,6 +10,7 @@ import { SocketIoPlugin } from '@/plugins/socketio-plugin'
 import { TemporalPlugin, DevPlugin } from '@openlab/deconf-ui-toolkit'
 import { StoreState } from '@/store/module'
 import { DialogPlugin } from '@/plugins/dialog-plugin'
+import { DeconfPlugin } from '@openlab/deconf-ui-toolkit'
 
 declare module 'vue/types/vue' {
   // provide typings for `this` in Vue components
@@ -21,6 +22,6 @@ declare module 'vue/types/vue' {
     $metrics: MetricsPlugin
     $io?: SocketIoPlugin
     $dialog: DialogPlugin
-    // $deconf: DeconfPlugin
+    $deconf: DeconfPlugin
   }
 }
