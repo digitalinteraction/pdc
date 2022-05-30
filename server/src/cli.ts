@@ -74,6 +74,7 @@ cli.command(
       input: { type: 'string', default: 'svgs/input' },
       output: { type: 'string', default: 'svgs/output' },
       currentColor: { type: 'boolean', default: false },
+      vue: { type: 'boolean', default: false },
     }),
   (args) => optimizeSvgsCommand(args)
 )

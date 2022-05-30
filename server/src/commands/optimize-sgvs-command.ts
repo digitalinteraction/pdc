@@ -9,6 +9,7 @@ export interface OptimizeSvgsCommandOptions {
   input: string
   output: string
   currentColor: boolean
+  vue: boolean
 }
 
 const currentColorPlugin = {
@@ -61,7 +62,14 @@ export async function optimizeSvgsCommand(options: OptimizeSvgsCommandOptions) {
 
     if (result.modernError) throw result.modernError
 
-    await fs.writeFile(path.join(options.output, filename), result.data)
+    if (options.vue) {
+      await fs.writeFile(
+        path.join(options.output, filename.replace('.svg', '.vue')),
+        `<template>\n${result.data}\n</template>`
+      )
+    } else {
+      await fs.writeFile(path.join(options.output, filename), result.data)
+    }
   }
 
   const { stdout } = await exec(`du -hs ${options.input} ${options.output}`)
