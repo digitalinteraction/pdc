@@ -4,7 +4,9 @@ import {
 } from '@openlab/deconf-api-toolkit'
 
 type Context = {
-  env: Pick<DeconfEnv, 'CLIENT_URL' | 'SELF_URL'>
+  env: Pick<DeconfEnv, 'CLIENT_URL' | 'SELF_URL'> & {
+    STATIC_URL: string | null
+  }
 }
 
 export class UrlService implements Readonly<DeconfUrlService> {
@@ -42,6 +44,9 @@ export class UrlService implements Readonly<DeconfUrlService> {
   }
 
   getNotionFile(filename: string): URL {
+    if (this.#context.env.STATIC_URL) {
+      return new URL(`notion/${filename}`, this.#context.env.STATIC_URL)
+    }
     return new URL(`static/notion/${filename}`, this.#context.env.SELF_URL)
   }
 }

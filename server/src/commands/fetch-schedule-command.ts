@@ -3,7 +3,7 @@ import stream from 'stream'
 import { createWriteStream } from 'fs'
 import path from 'path'
 import fs from 'fs/promises'
-import { mask, object, string } from 'superstruct'
+import { mask, nullable, object, string } from 'superstruct'
 
 import {
   LocalisedLink,
@@ -49,20 +49,22 @@ export async function fetchScheduleCommand(
   options: FetchScheduleCommandOptions
 ) {
   debug('checking env')
-  const { NOTION_TOKEN, REDIS_URL, CLIENT_URL, SELF_URL } = mask(
+  const { NOTION_TOKEN, REDIS_URL, CLIENT_URL, SELF_URL, STATIC_URL } = mask(
     process.env,
     object({
       NOTION_TOKEN: string(),
       REDIS_URL: string(),
       CLIENT_URL: string(),
       SELF_URL: string(),
+      STATIC_URL: nullable(string()),
     })
   )
 
   debug('creating services')
   const config = await loadConfig()
   const store = new RedisService(REDIS_URL)
-  const url = new UrlService({ env: { CLIENT_URL, SELF_URL } })
+  const env = { CLIENT_URL, SELF_URL, STATIC_URL }
+  const url = new UrlService({ env })
   const notion = new NotionService({
     url,
     options: {
