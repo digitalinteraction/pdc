@@ -78,16 +78,6 @@ const routes: Array<RouteConfig> = [
     },
   },
   {
-    path: '/session/:sessionId',
-    name: Routes.Session,
-    props: true,
-    component: () =>
-      import(/* webpackChunkName: "schedule" */ '../views/SessionView.vue'),
-    meta: {
-      pageTitle: 'pdc.pageTitles.session',
-    },
-  },
-  {
     path: '/newcastle',
     name: ExtraRoutes.Newcastle,
     component: () =>
@@ -112,6 +102,30 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "schedule" */ '../views/PlacesView.vue'),
     meta: {
       pageTitle: 'pdc.pageTitles.places',
+    },
+  },
+
+  //
+  // Session
+  //
+  {
+    path: '/session/:sessionId',
+    name: Routes.Session,
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "session" */ '../views/SessionView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.session',
+    },
+  },
+  {
+    path: '/keynotes/:sessionId',
+    name: ExtraRoutes.KeynoteSession,
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "session" */ '../views/SessionView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.session',
     },
   },
 

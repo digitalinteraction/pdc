@@ -11,6 +11,13 @@
         {{ $t('deconf.session.pdc.backButton') }}
       </BackButton>
 
+      <img
+        v-if="session.coverImage"
+        class="sessionView-coverImage"
+        slot="beforeHeader"
+        :src="session.coverImage"
+      />
+
       <template v-if="localeContent" slot="content">
         <div class="content" v-html="localeContent"></div>
       </template>
@@ -34,7 +41,7 @@ import {
 } from '@openlab/deconf-ui-toolkit'
 
 import NotFoundView from '@/views/NotFoundView.vue'
-import { mapApiState } from '@/lib/module'
+import { ExtraRoutes, mapApiState } from '@/lib/module'
 
 export default Vue.extend({
   components: { AppLayout, SessionView, BackButton, NotFoundView },
@@ -48,6 +55,9 @@ export default Vue.extend({
       return this.schedule.sessions.find((s) => s.id === this.sessionId) ?? null
     },
     backRoute(): Location {
+      if (this.$route.name === ExtraRoutes.KeynoteSession) {
+        return { name: ExtraRoutes.Keynotes }
+      }
       return { name: Routes.Schedule }
     },
     scheduleDate(): Date {
@@ -62,3 +72,12 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="scss">
+.sessionView-coverImage {
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  object-fit: cover;
+  border-radius: 4px;
+}
+</style>

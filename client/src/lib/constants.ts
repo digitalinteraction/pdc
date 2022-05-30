@@ -11,6 +11,7 @@ export enum StorageKey {
 
 export enum ExtraRoutes {
   Keynotes = 'keynotes',
+  KeynoteSession = 'keynoteSession',
   Places = 'places',
   Newcastle = 'newcastle',
   Social = 'social',

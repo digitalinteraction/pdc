@@ -10,7 +10,7 @@
       :language-options="languages"
       :url-filters="urlFilters"
       @filter="onFilter"
-      :readonly="true"
+      :readonly="false"
     >
       <span slot="title">{{ $t('pdc.pageTitles.keynotes') }}</span>
       <ApiContent slot="info" slug="keynotes-filters" />
@@ -32,6 +32,7 @@ import {
   WhatsOnView,
 } from '@openlab/deconf-ui-toolkit'
 import {
+  ExtraRoutes,
   getLanguageOptions,
   guardRoute,
   mapApiState,
@@ -60,6 +61,12 @@ export default Vue.extend({
       config: {
         tileHeader: ['type'],
         tileAttributes: ['themes', 'languages'],
+        getSessionRoute(session) {
+          return {
+            name: ExtraRoutes.KeynoteSession,
+            params: { sessionId: session.id },
+          }
+        },
       },
       languages: getLanguageOptions(),
       urlFilters: decodeUrlScheduleFilters(this.$route.query),
