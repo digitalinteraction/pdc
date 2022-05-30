@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.4](https://github.com/digitalinteraction/pdc/compare/v0.2.3...v0.2.4) (2022-05-30)
+
+### Features
+
+- add seperate Keynote Sessions route and show cover image if set ([4b8cc36](https://github.com/digitalinteraction/pdc/commit/4b8cc36563aa09cd58a0409ff281322c6c0eee4c))
+- **cli:** add 'quiet' option to fetch-schedule ([ede7cf3](https://github.com/digitalinteraction/pdc/commit/ede7cf3490876214a928e359d6bc9d9b35ca5410))
+- improve notion parser ([03a8073](https://github.com/digitalinteraction/pdc/commit/03a80738e815cc707c2eba653705835e61aa895d))
+- pull cover image from notion ([50ab740](https://github.com/digitalinteraction/pdc/commit/50ab740d5ead2f47e3688cc86fb2aaeb54a99079))
+
+### Bug Fixes
+
+- **notion:** improve markdown generator ([9857ca7](https://github.com/digitalinteraction/pdc/commit/9857ca725f541cb85170717bda0c21c4f00c9205))
+- **speaker:** add custom speaker dialog that renders markdown ([fbba12c](https://github.com/digitalinteraction/pdc/commit/fbba12cc945ae8fbe0c7dd818fdf3b48d89dcd89))
+- turn of keynote-session pages ([8fc1ae6](https://github.com/digitalinteraction/pdc/commit/8fc1ae6307ea8db898a5c3332b648f92fb4af75e))
+- update atrium asset ([6249032](https://github.com/digitalinteraction/pdc/commit/6249032e7d4b6ce93a9f9401042970b42e8f0012))
+
 ### [0.2.3](https://github.com/digitalinteraction/pdc/compare/v0.2.2...v0.2.3) (2022-05-25)
 
 ### Features
