@@ -70,6 +70,9 @@ export async function fetchScheduleCommand(
     },
   })
 
+  debug('ensuring folder %o', options.staticDir)
+  await fs.mkdir(options.staticDir, { recursive: true })
+
   const content: Record<string, NotionPage[]> = {}
 
   function pull(mode: FetchSchedulePullMode) {
@@ -143,7 +146,7 @@ async function createRenderContext(baseDir: string, url: UrlService) {
   }
 
   // Preset existing files
-  for (const filename of await fs.readdir(path.join(baseDir))) {
+  for (const filename of await fs.readdir(baseDir)) {
     ctx.files.set(filename, {
       originalUrl: '',
       newUrl: url.getNotionFile(filename).toString(),
@@ -166,13 +169,9 @@ async function downloadFiles(
       continue
     }
 
-    const newPath = path.join(baseDir, value.filename)
-
     debug('download %o', value.originalUrl)
-    const dir = path.dirname(newPath)
-    await fs.mkdir(dir, { recursive: true })
-
     try {
+      const newPath = path.join(baseDir, value.filename)
       await pipeline(got.stream(value.originalUrl), createWriteStream(newPath))
     } catch (error) {
       console.error('Failed to download %o', value.originalUrl)
@@ -261,11 +260,7 @@ async function processSchedule(
 
   const getLinks = (page: any): LocalisedLink[] => {
     return page.props.Links?.files
-      ?.map((f: any) => {
-        if (f.type === 'external') return f.external.url
-        if (f.type === 'file') return notion.getFile(f.file.url, ctx)
-        return null
-      })
+      ?.map((f: any) => notion.getFileUrl(f, ctx))
       .filter((url: any) => Boolean(url))
       .map((url: string) => ({ type: '', url, title: '', language: 'en' }))
   }
@@ -284,6 +279,7 @@ async function processSchedule(
       content: {
         en: notion.getPageMarkdown(page.blocks, ctx),
       },
+      coverImage: notion.getFileUrl(page.cover, ctx),
       links: getLinks(page),
       hostLanguages: fmt.multiSelect(page.props.Languages) ?? ['en'],
       enableInterpretation: false,

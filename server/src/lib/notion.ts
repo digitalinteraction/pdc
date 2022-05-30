@@ -13,13 +13,17 @@ const debug = createDebug('lib:notion')
 export interface NotionProp {
   id: string
   type: string
-  [id: string]: any
+  [type: string]: any
 }
 
 export interface NotionPage {
   id: string
   props: Record<string, NotionProp>
   blocks: NotionBlock[]
+  cover: {
+    type: string
+    [type: string]: any
+  }
 }
 
 export type NotionBlock = Record<string, any> & {
@@ -198,6 +202,16 @@ export class NotionService {
     return newUrl
   }
 
+  /**
+   * Get a file's URL, marking the file for download if needed.
+   * This was in `fmt` but it needs a context and NotionService instance
+   */
+  getFileUrl(value: any, ctx: NotionRenderContext) {
+    if (value?.type === 'external') return value.external.url
+    if (value?.type === 'file') return this.getFile(value.file.url, ctx)
+    return null
+  }
+
   /** Convert a sequence of notion blocks into a markdown file */
   getPageMarkdown(blocks: NotionBlock[], ctx: NotionRenderContext) {
     return blocks
@@ -231,6 +245,7 @@ export class NotionService {
     for (const page of all) {
       merged.push({
         id: page.id,
+        cover: (page as any).cover,
         props: (page as any).properties,
         blocks: (await this.queryPageBlocks(page.id)) as any,
       })
