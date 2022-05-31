@@ -1,5 +1,5 @@
 <template>
-  <ContentLayout slug="newcastle" />
+  <ContentLayout slug="newcastle" class="newcastleView" />
 </template>
 
 <script lang="ts">
@@ -10,3 +10,14 @@ export default Vue.extend({
   components: { ContentLayout },
 })
 </script>
+
+<style lang="scss">
+.newcastleView .contentLayout {
+  @include tablet {
+    background-image: url(/public/backgrounds/newcastle.png);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+</style>

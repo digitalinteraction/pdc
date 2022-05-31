@@ -1,5 +1,5 @@
 <template>
-  <AppLayout>
+  <AppLayout class="keynotesView">
     <WhatsOnView
       :schedule="filteredSchedule"
       :sessions="filteredSessions"
@@ -101,3 +101,18 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="scss">
+.keynotesView {
+  .whatsOnView {
+    background-color: $background;
+
+    @include tablet {
+      background-image: url(/public/backgrounds/keynotes.png);
+      background-position: right top;
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+    }
+  }
+}
+</style>
