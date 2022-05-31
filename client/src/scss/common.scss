@@ -1,5 +1,3 @@
-// TODO: CUSTOM VARIABLES
-
 $family-sans-serif: 'Roboto', BlinkMacSystemFont, -apple-system, 'Segoe UI',
   'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
   'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -15,6 +13,9 @@ $pdc-yellow: rgb(252, 204, 76);
 $primary: $pdc-ocean;
 $secondary: $pdc-navy;
 $link: $pdc-ocean;
+
+$radius-small: 2px;
+$radius: 4px;
 
 $sideTabs-background: $pdc-navy;
 $sideTabs-activeBackground: $pdc-yellow;

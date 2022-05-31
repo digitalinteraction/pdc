@@ -197,18 +197,12 @@ export default Vue.extend({
   }
 
   // TODO: custom widget styles
-  .colorWidget.is-login {
-    color: $white;
-    background-color: $pdc-navy;
-    &[href]:hover {
-      background-color: darken($pdc-navy, 7%);
-    }
-  }
+  .colorWidget.is-login,
   .colorWidget.is-register {
     color: $black;
-    background-color: $pdc-sky;
+    background-color: $pdc-yellow;
     &[href]:hover {
-      background-color: darken($pdc-sky, 7%);
+      background-color: darken($pdc-yellow, 7%);
     }
   }
 }

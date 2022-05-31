@@ -22,3 +22,33 @@
   max-width: 720px;
   margin-inline: auto;
 }
+
+.button {
+  font-weight: bold;
+  border-radius: 4px;
+}
+.button.is-small {
+  padding-inline: 0.8rem;
+
+  &:not(.is-rounded) {
+    border-radius: $radius-small;
+  }
+}
+
+.navbar {
+  background-color: $pdc-yellow;
+  color: $black;
+
+  .navbar-menu {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .button.is-light {
+    background-color: $black;
+    color: $white;
+  }
+
+  .navbar-item:not([disabled]):not(.is-active):hover {
+    background-color: unset;
+  }
+}
