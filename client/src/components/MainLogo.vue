@@ -1,4 +1,4 @@
 <template>
   <!-- TODO: add graphic -->
-  <img src="/img/main-brand.svg" width="160" height="28" />
+  <img src="/img/main-brand.png" width="180" height="28" />
 </template>
