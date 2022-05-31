@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.7](https://github.com/digitalinteraction/pdc/compare/v0.2.6...v0.2.7) (2022-05-31)
+
+### Bug Fixes
+
+- add a11y tag to home logo ([6c6b120](https://github.com/digitalinteraction/pdc/commit/6c6b1205d82a5064752bdd1b1bfd7a7dbcc1e70c))
+- add positional artwork ([4ffed61](https://github.com/digitalinteraction/pdc/commit/4ffed610c27350ca3387a11e04608919715c5e53))
+- style the active atrium ([5bafd18](https://github.com/digitalinteraction/pdc/commit/5bafd189d6852e15996c14585fa3bae319518751))
+- tweak styles ([67f5703](https://github.com/digitalinteraction/pdc/commit/67f5703a07c3d2cde9aee6db3fc82bbbd31d499f))
+- update about icon ([bece594](https://github.com/digitalinteraction/pdc/commit/bece5946d40ae9d81cce0132ad40f418454ae4e9))
+- update main-brand ([b6ddfa4](https://github.com/digitalinteraction/pdc/commit/b6ddfa4a9cb94ae66cf5048a66e2c8ad391fe663))
+
 ### [0.2.6](https://github.com/digitalinteraction/pdc/compare/v0.2.5...v0.2.6) (2022-05-30)
 
 ### Features
