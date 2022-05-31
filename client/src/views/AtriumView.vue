@@ -1,7 +1,6 @@
 <template>
   <AppLayout class="atriumView">
     <AtriumLayout>
-      <!-- TODO: graphic -->
       <HeroCard
         slot="top"
         :title="$t('pdc.atrium.title')"
@@ -52,8 +51,6 @@
           :icon="['fab', 'twitter']"
         />
 
-        <!-- TODO: custom widgets -->
-
         <FeaturedSessions
           v-if="user && featuredSessions && featuredSessions.length > 0"
           :featured="featuredSessions"
@@ -81,12 +78,12 @@ import {
   SponsorGroup,
   deepSeal,
   Routes,
-  SessionAndSlot,
   mapApiState,
   mapMetricsState,
   ApiContent,
+  getFeaturedSessions,
+  SessionAndSlot,
 } from '@openlab/deconf-ui-toolkit'
-import { SessionSlot } from '@openlab/deconf-shared'
 import AppLayout from '@/components/PdcAppLayout.vue'
 import { PdcConferenceConfig } from '@/lib/module'
 
@@ -95,9 +92,6 @@ import sponsorData from '@/data/sponsors.json'
 interface Data {
   sponsors: SponsorGroup[]
 }
-
-// TODO filter out non art-gallery types, confirm with marc
-// const featuredTypeBlocklist = new Set(['art-and-media'])
 
 export default Vue.extend({
   components: {
@@ -141,35 +135,16 @@ export default Vue.extend({
       return this.$dev.scheduleDate ?? this.$temporal.date
     },
 
-    // TODO: migrate to deconf-ui's getFeaturedSessions
     featuredSessions(): null | SessionAndSlot[] {
-      if (!this.schedule) return null
-      if (!this.schedule.settings.schedule.enabled) return null
-
-      const now = this.scheduleDate.getTime()
-      const inAWeek = now + 7 * 24 * 60 * 60 * 1000
-      const slotMap = new Map(this.schedule.slots.map((s) => [s.id, s]))
-
-      return this.schedule.sessions
-        .filter((session) => Boolean(session.slot) && session.isFeatured)
-        .map((session) => ({
-          slot: slotMap.get(session.slot as string) as SessionSlot,
-          session: session,
-        }))
-        .filter(
-          (group) =>
-            Boolean(group.slot) &&
-            group.slot.end.getTime() > now &&
-            group.slot.start.getTime() < inAWeek
-        )
-        .sort((a, b) => a.slot?.start.getTime() - b.slot?.start.getTime())
-        .slice(0, 3)
+      return (
+        getFeaturedSessions(
+          this.schedule,
+          7,
+          this.scheduleDate,
+          (s) => Boolean(s.slot) && s.isFeatured
+        )?.slice(0, 3) ?? null
+      )
     },
-    // TODO: review if this is needed
-    // conferenceIsOver(): boolean {
-    //   if (!this.settings) return false
-    //   return this.scheduleDate.getTime() > this.settings.endDate.getTime()
-    // },
     widgets(): Set<string> {
       const widgets = new Set<string>()
       const conf = this.settings?.widgets
@@ -196,7 +171,6 @@ export default Vue.extend({
     text-shadow: 2px 3px 3px $black;
   }
 
-  // TODO: custom widget styles
   .colorWidget.is-login,
   .colorWidget.is-register {
     color: $black;

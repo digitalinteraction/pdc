@@ -95,7 +95,7 @@ deconf:
     message: 'Please note this session is only available in {0}'
 
   navigationBar:
-    profile: My profile # TODO - new
+    profile: My profile
     login: Login
     interpret: Interpret mode
     register: Register
@@ -120,7 +120,7 @@ deconf:
     registerAction: Register here
 
   profile:
-    title: My Profile # TODO - new
+    title: My Profile
     actionLabel: Actions
     logoutButton: Log out
     dangerLabel: Danger zone

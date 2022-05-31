@@ -24,14 +24,3 @@ export interface PdcConferenceConfig {
     register: boolean
   }
 }
-
-// TODO: migrate to deconf use
-
-export function getSlug(input: string): string {
-  return input
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/[^\w-]+/g, '')
-}

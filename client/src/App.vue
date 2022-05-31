@@ -30,8 +30,6 @@ import PdcApiError from './components/PdcApiError.vue'
 import { StorageKey } from './lib/module'
 import { setLocale } from './i18n/module'
 
-// TODO: review for PDC
-
 interface Data {
   timerId: null | number
 }

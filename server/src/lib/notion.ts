@@ -77,7 +77,6 @@ export const notionFmt = {
       if (rt.annotations?.bold) wraps.push('**')
       if (rt.annotations?.italic) wraps.push('_')
       if (rt.annotations?.strikethrough) wraps.push('~')
-      // todo: annotations?.underline ???
       if (rt.annotations?.code) wraps.push('`')
       if (rt.text?.link?.url) {
         text = `[${text}](${rt.text.link.url})`

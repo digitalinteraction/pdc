@@ -1,9 +1,12 @@
-import { DeconfPlugin, MetricsEvent } from '@openlab/deconf-ui-toolkit'
+import {
+  DeconfPlugin,
+  DialogPlugin,
+  MetricsEvent,
+} from '@openlab/deconf-ui-toolkit'
 import { Session } from '@openlab/deconf-shared'
 import _Vue, { Component } from 'vue'
 import { env } from './env-plugin'
 import { MetricsPlugin } from './metrics-plugin'
-import { DialogPlugin } from './dialog-plugin'
 
 import SpeakerDialog from '../components/SpeakerDialog.vue'
 
