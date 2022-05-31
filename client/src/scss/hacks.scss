@@ -8,6 +8,16 @@
   }
 }
 
+.sideTabs-tab:first-child {
+  line-height: 1;
+}
+.sideTabs-tab:first-child > .router-link-active {
+  background-color: $white;
+  border-radius: $radius;
+  padding: 0.5em;
+  margin: -0.5em;
+}
+
 .appLayout:not(.atriumView) .boxContent {
   max-width: 720px;
   margin-inline: auto;
