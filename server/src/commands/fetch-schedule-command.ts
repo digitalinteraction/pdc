@@ -3,7 +3,14 @@ import stream from 'stream'
 import { createWriteStream } from 'fs'
 import path from 'path'
 import fs from 'fs/promises'
-import { mask, nullable, object, string } from 'superstruct'
+import {
+  defaulted,
+  mask,
+  nullable,
+  object,
+  optional,
+  string,
+} from 'superstruct'
 
 import {
   LocalisedLink,
@@ -56,7 +63,7 @@ export async function fetchScheduleCommand(
       REDIS_URL: string(),
       CLIENT_URL: string(),
       SELF_URL: string(),
-      STATIC_URL: nullable(string()),
+      STATIC_URL: nullable(defaulted(string(), null)),
     })
   )
 
