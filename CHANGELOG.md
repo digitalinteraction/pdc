@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.10](https://github.com/digitalinteraction/pdc/compare/v0.2.9...v0.2.10) (2022-06-01)
+
+### Bug Fixes
+
+- **atrium:** remove title from box-content ([70a67bb](https://github.com/digitalinteraction/pdc/commit/70a67bba96a2d98464aaa4f2d53d8654a8675ca5))
+
 ### [0.2.9](https://github.com/digitalinteraction/pdc/compare/v0.2.8...v0.2.9) (2022-06-01)
 
 ### Bug Fixes
