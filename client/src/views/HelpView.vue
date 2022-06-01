@@ -14,10 +14,10 @@ export default Vue.extend({
 <style lang="scss">
 .helpView .contentLayout {
   @include tablet {
-    background-image: url(/public/backgrounds/help.png);
-    background-position: right bottom;
+    background-image: url(/public/backgrounds/help.webp);
+    background-position: top right;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: auto 66.6%;
   }
 }
 </style>

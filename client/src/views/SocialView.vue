@@ -14,10 +14,10 @@ export default Vue.extend({
 <style lang="scss">
 .socialsView .contentLayout {
   @include tablet {
-    background-image: url(/public/backgrounds/socials.png);
-    background-position: bottom right;
-    background-repeat: no-repeat;
-    background-size: auto 100%;
+    background-image: url(/public/backgrounds/socials.webp);
+    background-position: 100% 100px;
+    background-repeat: repeat-y;
+    background-size: 200px auto;
   }
 }
 </style>

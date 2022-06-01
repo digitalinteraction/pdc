@@ -14,7 +14,7 @@ export default Vue.extend({
 <style lang="scss">
 .newcastleView .contentLayout {
   @include tablet {
-    background-image: url(/public/backgrounds/newcastle.png);
+    background-image: url(/public/backgrounds/newcastle.webp);
     background-position: bottom right;
     background-repeat: no-repeat;
     background-size: contain;
