@@ -108,10 +108,10 @@ export default Vue.extend({
     background-color: $background;
 
     @include tablet {
-      background-image: url(/public/backgrounds/keynotes.png);
+      background-image: url(/public/backgrounds/keynotes.webp);
       background-position: right top;
       background-repeat: no-repeat;
-      background-size: auto 100%;
+      background-size: 500px auto;
     }
   }
 }
