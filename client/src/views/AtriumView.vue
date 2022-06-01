@@ -8,7 +8,7 @@
         coverImage="/img/atrium.png"
       />
 
-      <BoxContent slot="left" :title="$t('pdc.atrium.heading')">
+      <BoxContent slot="left">
         <div class="atriumView-content">
           <ApiContent :slug="contentSlug">
             <!-- TODO: custom embeds -->
