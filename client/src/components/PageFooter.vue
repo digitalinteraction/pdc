@@ -1,5 +1,13 @@
 <template>
   <PageFooter :links="links">
+    <template slot="beforeLinks">
+      <span class="pageFooter-acknowledgement">
+        We Acknowledge the Traditional Custodians of the lands, skies and waters
+        and give respect to all First Nations members. We also give thanks to
+        the deep wisdoms of Indigenous Elders before, now and into the future,
+        and honour their strength, resilience and creativity.
+      </span>
+    </template>
     Made by
     <a href="https://openlab.ncl.ac.uk/" target="_blank" rel="noopener">
       Open Lab
@@ -49,3 +57,14 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="scss">
+.pageFooter-acknowledgement {
+  max-width: $tablet;
+  margin-inline: auto;
+  display: inline-block;
+  text-align: justify;
+  margin-block-end: 16px;
+  font-size: $size-7;
+}
+</style>
