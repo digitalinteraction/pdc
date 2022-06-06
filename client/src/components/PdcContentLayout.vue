@@ -4,8 +4,8 @@
       <section class="section">
         <div class="container">
           <BoxContent>
-            <slot name="content">
-              <ApiContent :slug="slug" />
+            <slot>
+              <ApiContent v-if="slug" :slug="slug" />
             </slot>
           </BoxContent>
         </div>
@@ -24,7 +24,7 @@ import { PageFlag } from '@openlab/deconf-shared/dist/conference'
 
 export default Vue.extend({
   props: {
-    slug: { type: String, required: true },
+    slug: { type: String as PropType<string | null>, default: null },
     flag: { type: Object as PropType<PageFlag | null>, default: null },
   },
   components: { AppLayout, ApiContent, BoxContent },
