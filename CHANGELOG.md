@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.12](https://github.com/digitalinteraction/pdc/compare/v0.2.11...v0.2.12) (2022-06-06)
+
+### Features
+
+- add social links embed ([0e4393f](https://github.com/digitalinteraction/pdc/commit/0e4393f8e452d4ddae66a6d3f8b0f2bf194f4562))
+
 ### [0.2.11](https://github.com/digitalinteraction/pdc/compare/v0.2.10...v0.2.11) (2022-06-01)
 
 ### [0.2.10](https://github.com/digitalinteraction/pdc/compare/v0.2.9...v0.2.10) (2022-06-01)
