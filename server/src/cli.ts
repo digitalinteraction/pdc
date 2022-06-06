@@ -61,7 +61,8 @@ cli.command(
         default: [] as any[],
         choices: ['schedule', 'content', 'settings'],
       })
-      .option('staticDir', { key: 'string', default: 'static/notion' })
+      .option('staticDir', { type: 'string', default: 'static/notion' })
+      .option('skipFiles', { type: 'boolean', default: false })
       .option('quiet', { key: 'boolean', default: false }),
   (args) => fetchScheduleCommand(args).catch(errorHandler)
 )

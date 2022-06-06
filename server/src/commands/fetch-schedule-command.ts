@@ -48,6 +48,7 @@ export interface FetchScheduleCommandOptions {
   only?: FetchSchedulePullMode[]
   staticDir: string
   quiet: boolean
+  skipFiles: boolean
 }
 
 // run once and output stdout to this file "> notion.json"
@@ -137,7 +138,7 @@ export async function fetchScheduleCommand(
     console.log(JSON.stringify(content, null, 2))
   }
 
-  if (ctx.files.size > 0) {
+  if (ctx.files.size > 0 && options.skipFiles !== true) {
     debug('processing files')
     downloadFiles(options.staticDir, ctx, existingFiles)
   }
