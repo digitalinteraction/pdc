@@ -106,13 +106,6 @@ export default Vue.extend({
 .keynotesView {
   .whatsOnView {
     background-color: $background;
-
-    @include tablet {
-      background-image: url(/public/backgrounds/keynotes.webp);
-      background-position: right top;
-      background-repeat: no-repeat;
-      background-size: 500px auto;
-    }
   }
 }
 </style>
