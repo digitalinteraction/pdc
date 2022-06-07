@@ -14,10 +14,10 @@ export default Vue.extend({
 <style lang="scss">
 .newcastleView .contentLayout {
   @include tablet {
-    background-image: url(/public/backgrounds/newcastle.webp);
-    background-position: bottom right;
+    background-image: url(/public/backgrounds/keynotes.webp);
+    background-position: right top;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 500px auto;
   }
 }
 </style>
