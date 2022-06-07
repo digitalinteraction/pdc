@@ -1,0 +1,4 @@
+{
+  "tommasonegri.vue.config.extension.languageServer" : "Vetur",
+  "tommasonegri.vue.config.vetur.misc.useWorkspaceDependencies" : "Enable"
+}
