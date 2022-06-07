@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.13](https://github.com/digitalinteraction/pdc/compare/v0.2.12...v0.2.13) (2022-06-07)
+
+### Features
+
+- **cli:** add option to skip fetching files ([5e90457](https://github.com/digitalinteraction/pdc/commit/5e90457046489a6fd64e438d04aefebff99ceba1))
+
+### Bug Fixes
+
+- remove keynotes background ([e8a439b](https://github.com/digitalinteraction/pdc/commit/e8a439b3c691ae38370668e547c76e434ad46465))
+- swap newcastle background for keynotes ([36f4f3e](https://github.com/digitalinteraction/pdc/commit/36f4f3e7aaa56657374d7145728b049c8b70cc05))
+- update footer acknowledgement ([d521225](https://github.com/digitalinteraction/pdc/commit/d5212258d498cb7ab205896de619b9c2313ea176))
+
 ### [0.2.12](https://github.com/digitalinteraction/pdc/compare/v0.2.11...v0.2.12) (2022-06-06)
 
 ### Features
