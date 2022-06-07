@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.14](https://github.com/digitalinteraction/pdc/compare/v0.2.13...v0.2.14) (2022-06-07)
+
+### Bug Fixes
+
+- remove vls dev dependency ([46a830f](https://github.com/digitalinteraction/pdc/commit/46a830f96dc952c855657a0aec0b665c00d55eb3))
+
 ### [0.2.13](https://github.com/digitalinteraction/pdc/compare/v0.2.12...v0.2.13) (2022-06-07)
 
 ### Features
