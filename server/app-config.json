@@ -4,10 +4,10 @@
     "replyToEmail": "openlab@ncl.ac.uk"
   },
   "sendgrid": {
-    "loginTemplateId": "d-095e893ab93b4ba48e7039b1e070677f"
+    "loginTemplateId": "d-0618637dac8c4438827d5ffa82a2b324"
   },
   "jwt": {
-    "issuer": "pdc-2022"
+    "issuer": "pdc-2022-dev"
   },
   "content": {
     "keys": [
@@ -30,7 +30,8 @@
       "themes": "233b9b6d411f4bdba0d2474f602065c9",
       "tracks": "7f7056fd8db74d3cabc1e79dc1c93c7e",
       "types": "6688a08739684a33a23b1dcaf329b2cd",
-      "content": "081199c589f7413baac143e2aec84ddb"
+      "content": "081199c589f7413baac143e2aec84ddb",
+      "registrations": "8a8e2a77edff468da19b9c82f896488f"
     }
   },
   "settings": {

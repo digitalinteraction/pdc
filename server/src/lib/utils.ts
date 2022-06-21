@@ -1,3 +1,4 @@
+import crypto from 'crypto'
 import {
   ApiError,
   loadConfig as loadDeconfConfig,
@@ -29,4 +30,12 @@ export function getRedirectErrorCode(error: unknown) {
 
 export function loadConfig() {
   return loadDeconfConfig('app-config.json', AppConfigStruct)
+}
+
+export function trimEmail(input: string) {
+  return input.trim().toLowerCase()
+}
+
+export function sha256UrlHash(input: string) {
+  return crypto.createHash('sha256').update(input).digest('base64url')
 }

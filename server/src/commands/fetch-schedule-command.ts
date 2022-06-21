@@ -36,13 +36,20 @@ import {
   NotionRenderContext,
   UrlService,
   NotionService,
+  RegisteredUsers,
+  trimEmail,
+  sha256UrlHash,
 } from '../lib/module.js'
 import got from 'got'
 
 const pipeline = promisify(stream.pipeline)
 const debug = createDebug('cmd:fetch-schedule')
 
-type FetchSchedulePullMode = 'schedule' | 'content' | 'settings'
+type FetchSchedulePullMode =
+  | 'schedule'
+  | 'content'
+  | 'settings'
+  | 'registrations'
 export interface FetchScheduleCommandOptions {
   localFile?: string
   only?: FetchSchedulePullMode[]
@@ -109,6 +116,10 @@ export async function fetchScheduleCommand(
       keys.speakers = config.notion.db.speakers
     }
 
+    if (pull('registrations')) {
+      keys.registrations = config.notion.db.registrations
+    }
+
     if (pull('content')) {
       keys.content = config.notion.db.content
     }
@@ -128,6 +139,10 @@ export async function fetchScheduleCommand(
 
   if (pull('settings')) {
     await store.put('schedule.settings', config.settings)
+  }
+
+  if (pull('registrations')) {
+    await processRegistrations(content, store)
   }
 
   if (pull('content')) {
@@ -213,6 +228,18 @@ async function processContent(
   }
 }
 
+async function processRegistrations(
+  content: Record<string, NotionPage[]>,
+  store: RedisService
+) {
+  const records: RegisteredUsers[] = content.registrations.map((page) => ({
+    name: fmt.title(page.props.Name),
+    email: sha256UrlHash(trimEmail(fmt.email(page.props.Email))),
+  }))
+
+  await store.put('registration.users', records)
+}
+
 /** Process the schedule resources and put them into the store */
 async function processSchedule(
   content: Record<string, NotionPage[]>,
@@ -261,8 +288,8 @@ async function processSchedule(
   const slotMap = new Map<string, SessionSlot>()
   for (const page of content.sessions) {
     const slot = fmt.slot(
-      page.props.Date?.date.start,
-      page.props.Date?.date.end
+      page.props.Date?.date?.start,
+      page.props.Date?.date?.end
     )
     if (slot) slotMap.set(slot.id, slot)
   }
@@ -279,7 +306,7 @@ async function processSchedule(
     return {
       id: page.id,
       type: fmt.relationIds(page.props.Type)[0],
-      slot: fmt.slot(page.props.Date?.date.start, page.props.Date?.date.end)
+      slot: fmt.slot(page.props.Date?.date?.start, page.props.Date?.date?.end)
         ?.id,
       track: fmt.relationIds(page.props.Track)[0],
       themes: fmt.relationIds(page.props.Themes),

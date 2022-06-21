@@ -1,10 +1,9 @@
 import path from 'path'
-import crypto from 'crypto'
 
 import NotionHq from '@notionhq/client'
 import { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints'
 
-import { createDebug } from './utils.js'
+import { createDebug, sha256UrlHash } from './utils.js'
 import { UrlService } from './url-service.js'
 import { LocalisedLink } from '@openlab/deconf-shared/dist/conference'
 
@@ -38,13 +37,10 @@ export type NotionBlock = Record<string, any> & {
   archived: boolean
 }
 
-function sha256Hash(input: string) {
-  return crypto.createHash('sha256').update(input).digest('base64url')
-}
-
 /** Utilities for formatting notion data into useful values */
 export const notionFmt = {
   title(value: any) {
+    // TODO: this might need to be a map/join thing?
     return value?.title?.[0]?.plain_text
   },
   select(value: any) {
@@ -69,6 +65,9 @@ export const notionFmt = {
     }
     const id = start.getTime() + '__' + end.getTime()
     return { id, start, end }
+  },
+  email(value: any) {
+    return value?.email
   },
   richText(value: any) {
     const segments = value?.rich_text?.map((rt: any) => {
@@ -189,7 +188,7 @@ export class NotionService {
     // and appending the file extension
     // uses "base64url" to ensure it is a valid filename
     const url = this.stripUrlParameters(inputUrl)
-    const filename = sha256Hash(url) + path.extname(url)
+    const filename = sha256UrlHash(url) + path.extname(url)
 
     // Return an existing file if it was preloaded or already processed
     const existing = ctx.files.get(filename)

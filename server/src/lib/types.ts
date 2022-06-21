@@ -46,3 +46,8 @@ export type AppContext = Pick<
   url: Readonly<UrlService>
   sockets: Readonly<SocketService>
 }
+
+export interface RegisteredUsers {
+  name: string
+  email: string
+}

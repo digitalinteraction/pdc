@@ -4,7 +4,7 @@
 // The cli entrypoint
 //
 
-import yargs from 'yargs'
+import yargs, { alias } from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { fakeScheduleCommand } from './commands/fake-schedule-command.js'
 import { fetchScheduleCommand } from './commands/fetch-schedule-command.js'
@@ -59,7 +59,7 @@ cli.command(
       .option('only', {
         type: 'array',
         default: [] as any[],
-        choices: ['schedule', 'content', 'settings'],
+        choices: ['schedule', 'content', 'settings', 'registrations'],
       })
       .option('staticDir', { type: 'string', default: 'static/notion' })
       .option('skipFiles', { type: 'boolean', default: false })

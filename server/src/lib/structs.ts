@@ -1,7 +1,4 @@
-import {
-  DeconfConfigStruct,
-  ConferenceConfigStruct as DeconfConferenceConfigStruct,
-} from '@openlab/deconf-api-toolkit'
+import { ConferenceConfigStruct as DeconfConferenceConfigStruct } from '@openlab/deconf-api-toolkit'
 import { array, assign, boolean, Infer, object, string } from 'superstruct'
 
 const pageFlag = () =>
@@ -33,6 +30,7 @@ export const AppConfigStruct = object({
       speakers: string(),
       types: string(),
       content: string(),
+      registrations: string(),
     }),
   }),
   settings: object({
