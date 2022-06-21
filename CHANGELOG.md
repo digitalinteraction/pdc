@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/digitalinteraction/pdc/compare/v1.0.0...v1.1.0) (2022-06-21)
+
+### Features
+
+- add notion-login ([8aa556a](https://github.com/digitalinteraction/pdc/commit/8aa556ae734450d63a87d0703ba83bc0267f0ea8))
+- add private calendar to ProfileView ([496484c](https://github.com/digitalinteraction/pdc/commit/496484c2667db45591eeeefa9491d1f0af08cb2a))
+- add profile page ([3ffe6b3](https://github.com/digitalinteraction/pdc/commit/3ffe6b3690cfefec9c6723a31abb7780ea215678))
+
 ## [1.0.0](https://github.com/digitalinteraction/pdc/compare/v0.2.14...v1.0.0) (2022-06-07)
 
 ### [0.2.14](https://github.com/digitalinteraction/pdc/compare/v0.2.13...v0.2.14) (2022-06-07)
