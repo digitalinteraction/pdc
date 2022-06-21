@@ -166,6 +166,13 @@ deconf:
     google: Google Calendar
     cancel: Cancel
 
+  addUserCalendar:
+    title: Private calendar
+    generate: Generate URL
+    copy: copy
+    copied: copied
+    info: Use this link to subscribe to "My Schedule" in your personal calendar.
+
 pdc:
   general:
     appName: PDC 2022

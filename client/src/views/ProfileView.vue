@@ -7,8 +7,7 @@
       @logout="onLogout"
       @unregister="onUnregister"
     >
-      <!-- AddUserCalendar? -->
-      <div slot="preActions" />
+      <PrivateCalendarCreator slot="preActions" />
     </ProfileView>
   </UtilLayout>
 </template>
@@ -18,6 +17,7 @@ import Vue from 'vue'
 import {
   FullAuthToken,
   mapApiState,
+  PrivateCalendarCreator,
   ProfileField,
   ProfileView,
 } from '@openlab/deconf-ui-toolkit'
@@ -27,7 +27,7 @@ import { StorageKey } from '@/lib/module'
 import languageData from '@/data/languages.json'
 
 export default Vue.extend({
-  components: { UtilLayout, ProfileView },
+  components: { UtilLayout, ProfileView, PrivateCalendarCreator },
   computed: {
     ...mapApiState('api', ['user', 'profile']),
     fields(): ProfileField[] {

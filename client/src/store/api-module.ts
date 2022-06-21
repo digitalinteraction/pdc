@@ -8,20 +8,28 @@ import {
   FullAuthToken,
 } from '@openlab/deconf-ui-toolkit'
 
+import { UserRegistration, PrivateCalendar } from '@openlab/deconf-shared'
+
 import { env } from '@/plugins/env-plugin'
 import { SocketIoPlugin } from '@/plugins/socketio-plugin'
 import { StorageKey } from '@/lib/module'
-import { UserRegistration } from '@openlab/deconf-shared/dist/registration'
 
 // TODO: move non-ApiClient auth logic somewhere else
 // or move all api-key related logic here (e.g. setLocale)
 
 // TODO: move these fixes back to deconf
 class PdcApiClient extends DeconfApiClient {
+  // FIXME: make the endpoint return the flat object or update the types
   getRegistration(): Promise<UserRegistration | null> {
     return this.fetchJson<{ registration: UserRegistration }>(
       this.getEndpoint('RegistrationRoutes.getRegistration')
     ).then((d) => d?.registration ?? null)
+  }
+  // FIXME: make PrivateCalendarCreate handle the URL properly
+  createUserCalendar(): Promise<PrivateCalendar | null> {
+    return this.fetchJson<any>(
+      this.getEndpoint('CalendarRoutes.createUserCalendar')
+    ).then((r) => r.url)
   }
 }
 
