@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/digitalinteraction/pdc/compare/v1.1.0...v1.2.0) (2022-06-22)
+
+### Features
+
+- add places page ([63e4346](https://github.com/digitalinteraction/pdc/commit/63e434678208106c06ca71d4d3aba83d7b6c9695))
+
 ## [1.1.0](https://github.com/digitalinteraction/pdc/compare/v1.0.0...v1.1.0) (2022-06-21)
 
 ### Features

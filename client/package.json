@@ -1,7 +1,7 @@
 {
   "name": "@openlab/pdc-client",
   "type": "commonjs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "scripts": {
     "build": "vue-cli-service build --modern",
     "serve": "vue-cli-service serve"
