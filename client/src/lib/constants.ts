@@ -2,14 +2,12 @@ export enum StorageKey {
   AuthToken = 'authToken',
   Analytics = 'analyticsConsent',
   Locale = 'chosenLocale',
-
-  ScheduleFilters = 'pdcProgrammeViewFilters',
-  KeynotesFilters = 'pdcKeynotesViewFilters',
 }
 
 export enum ExtraRoutes {
   Keynotes = 'keynotes',
   KeynoteSession = 'keynoteSession',
+  PlacesSession = 'placesSession',
   Places = 'places',
   Newcastle = 'newcastle',
   Social = 'social',

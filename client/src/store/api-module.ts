@@ -36,9 +36,13 @@ class PdcApiClient extends DeconfApiClient {
 export function apiModule(): ApiStoreModule {
   const apiClient = new PdcApiClient(env.SERVER_URL.href, {
     endpointMap: {
-      // TODO: migrate fix to deconf
+      // TODO: migrate fixes to deconf
       'AttendanceRoutes.getSessionAttendance': (sessionId) =>
         `attendance/${sessionId}`,
+      'AttendanceRoutes.attend': (sessionId) =>
+        `attendance/${sessionId}/attend`,
+      'AttendanceRoutes.unattend': (sessionId) =>
+        `attendance/${sessionId}/unattend`,
     },
   })
 

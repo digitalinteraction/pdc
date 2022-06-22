@@ -36,7 +36,6 @@ import {
   getLanguageOptions,
   guardRoute,
   mapApiState,
-  StorageKey,
 } from '@/lib/module'
 import { ScheduleRecord, Session } from '@openlab/deconf-shared/dist/conference'
 
@@ -45,7 +44,6 @@ const predicate = (session: Session) => {
 }
 
 interface Data {
-  filtersKey: string
   enabledFilters: Array<keyof ScheduleFilterRecord>
   config: ScheduleConfig
   languages: SelectOption[]
@@ -56,7 +54,6 @@ export default Vue.extend({
   components: { AppLayout, WhatsOnView, ApiContent },
   data(): Data {
     return {
-      filtersKey: StorageKey.KeynotesFilters,
       enabledFilters: ['query', 'theme', 'language'],
       config: {
         tileHeader: ['type'],

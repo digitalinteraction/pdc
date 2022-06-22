@@ -128,6 +128,16 @@ const routes: Array<RouteConfig> = [
       pageTitle: 'pdc.pageTitles.session',
     },
   },
+  {
+    path: '/places/:sessionId',
+    name: ExtraRoutes.PlacesSession,
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "session" */ '../views/SessionView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.session',
+    },
+  },
 
   //
   // Static

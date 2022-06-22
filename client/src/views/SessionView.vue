@@ -58,6 +58,9 @@ export default Vue.extend({
       if (this.$route.name === ExtraRoutes.KeynoteSession) {
         return { name: ExtraRoutes.Keynotes }
       }
+      if (this.$route.name === ExtraRoutes.PlacesSession) {
+        return { name: ExtraRoutes.Places }
+      }
       return { name: Routes.Schedule }
     },
     scheduleDate(): Date {

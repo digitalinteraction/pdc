@@ -55,6 +55,10 @@
   .navbar-item:not([disabled]):not(.is-active):hover {
     background-color: unset;
   }
+
+  .button {
+    border-color: $black;
+  }
 }
 
 .button.is-facebook {
