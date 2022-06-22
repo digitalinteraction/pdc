@@ -1,15 +1,19 @@
 import { PageFlag } from '@openlab/deconf-shared'
 
+export type PdcPageFlag = PageFlag & {
+  readonly: boolean
+}
+
 // export type PdcConferenceConfig = ConferenceConfig
 export interface PdcConferenceConfig {
-  atrium?: PageFlag
-  schedule?: PageFlag
-  keynotes?: PageFlag
-  places?: PageFlag
-  newcastle?: PageFlag
-  social?: PageFlag
-  help?: PageFlag
-  about?: PageFlag
+  atrium?: PdcPageFlag
+  schedule?: PdcPageFlag
+  keynotes?: PdcPageFlag
+  places?: PdcPageFlag
+  newcastle?: PdcPageFlag
+  social?: PdcPageFlag
+  help?: PdcPageFlag
+  about?: PdcPageFlag
 
   navigation: {
     showProfile: boolean

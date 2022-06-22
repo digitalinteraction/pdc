@@ -7,8 +7,9 @@
     "dev": "node --loader=ts-node/esm --require dotenv/config src/cli.ts",
     "debug": "node --inspect-brk --loader=ts-node/esm --require dotenv/config src/cli.ts",
     "redis": "docker-compose exec redis redis-cli",
+    "serve": "npm run -s dev serve -- --settings",
     "schedule": "npm run -s dev fetch-schedule > notion.json",
-    "schedule:local": "npm run -s dev fetch-schedule --localFile notion.json"
+    "schedule:local": "npm run -s dev fetch-schedule -- --localFile notion.json"
   },
   "dependencies": {
     "@godaddy/terminus": "^4.10.2",

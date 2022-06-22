@@ -38,8 +38,8 @@
   "settings": {
     "atrium": { "enabled": true, "visible": true },
     "schedule": { "enabled": false, "visible": true },
-    "keynotes": { "enabled": true, "visible": true },
-    "places": { "enabled": false, "visible": true },
+    "keynotes": { "enabled": true, "visible": true, "readonly": true },
+    "places": { "enabled": true, "visible": true },
     "newcastle": { "enabled": true, "visible": true },
     "social": { "enabled": true, "visible": true },
     "help": { "enabled": false, "visible": true },

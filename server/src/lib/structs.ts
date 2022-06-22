@@ -1,11 +1,19 @@
 import { ConferenceConfigStruct as DeconfConferenceConfigStruct } from '@openlab/deconf-api-toolkit'
-import { array, assign, boolean, Infer, object, string } from 'superstruct'
+import {
+  array,
+  assign,
+  boolean,
+  defaulted,
+  Infer,
+  object,
+  string,
+} from 'superstruct'
 
-const pageFlag = () =>
-  object({
-    enabled: boolean(),
-    visible: boolean(),
-  })
+const PageFlag = object({
+  enabled: boolean(),
+  visible: boolean(),
+  readonly: defaulted(boolean(), false),
+})
 
 export type AppConfig = Infer<typeof AppConfigStruct>
 export const AppConfigStruct = object({
@@ -34,14 +42,14 @@ export const AppConfigStruct = object({
     }),
   }),
   settings: object({
-    atrium: pageFlag(),
-    schedule: pageFlag(),
-    keynotes: pageFlag(),
-    places: pageFlag(),
-    newcastle: pageFlag(),
-    social: pageFlag(),
-    help: pageFlag(),
-    about: pageFlag(),
+    atrium: PageFlag,
+    schedule: PageFlag,
+    keynotes: PageFlag,
+    places: PageFlag,
+    newcastle: PageFlag,
+    social: PageFlag,
+    help: PageFlag,
+    about: PageFlag,
 
     navigation: object({
       showProfile: boolean(),

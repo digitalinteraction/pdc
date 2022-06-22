@@ -10,7 +10,7 @@
       :language-options="languages"
       :url-filters="urlFilters"
       @filter="onFilter"
-      :readonly="true"
+      :readonly="readonly"
     >
       <span slot="title">{{ $t('pdc.pageTitles.keynotes') }}</span>
       <ApiContent slot="info" slug="keynotes-filters" />
@@ -86,6 +86,9 @@ export default Vue.extend({
     },
     scheduleIsLive(): boolean {
       return Boolean(this.schedule?.settings?.schedule?.enabled)
+    },
+    readonly(): boolean {
+      return Boolean(this.schedule?.settings?.keynotes?.readonly)
     },
   },
   created() {

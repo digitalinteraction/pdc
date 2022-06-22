@@ -1,5 +1,4 @@
 import fs from 'fs/promises'
-import Yaml from 'yaml'
 import { createTerminus } from '@godaddy/terminus'
 
 import {
@@ -27,6 +26,7 @@ import {
   loadConfig,
   SocketService,
   UrlService,
+  watchConfig,
 } from '../lib/module.js'
 import { createServer } from '../server.js'
 import { migrateCommand } from './migrate-command.js'
@@ -43,6 +43,7 @@ export interface ServeCommandOptions {
 export async function serveCommand(options: ServeCommandOptions) {
   const env = createEnv()
   const config = await loadConfig()
+
   const pkg = JSON.parse(await fs.readFile('package.json', 'utf8'))
   const resources = await loadResources('res')
 
@@ -64,6 +65,11 @@ export async function serveCommand(options: ServeCommandOptions) {
   const conferenceRepo = new ConferenceRepository({ store })
   const registrationRepo = new RegistrationRepository({ postgres })
   const metricsRepo = new MetricsRepository({ postgres })
+
+  const configWatcher =
+    env.NODE_ENV === 'development' && options.settings
+      ? watchConfig(config, store)
+      : null
 
   if (options.migrate) {
     await migrateCommand({})
@@ -113,6 +119,7 @@ export async function serveCommand(options: ServeCommandOptions) {
       debug('onSignal')
       await store.close()
       await postgres.close()
+      configWatcher?.abort()
 
       const adapter = io?.of('/').adapter
       if (adapter && adapter instanceof RedisAdapter) {

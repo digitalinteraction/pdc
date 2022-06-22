@@ -10,7 +10,7 @@
       :language-options="languages"
       :url-filters="urlFilters"
       @filter="onFilter"
-      :readonly="false"
+      :readonly="readonly"
     >
       <span slot="title">{{ $t('pdc.pageTitles.places') }}</span>
       <ApiContent slot="info" slug="places-filters" />
@@ -86,6 +86,9 @@ export default Vue.extend({
     },
     scheduleIsLive(): boolean {
       return Boolean(this.schedule?.settings?.schedule?.enabled)
+    },
+    readonly(): boolean {
+      return Boolean(this.schedule?.settings?.places?.readonly)
     },
   },
   created() {
