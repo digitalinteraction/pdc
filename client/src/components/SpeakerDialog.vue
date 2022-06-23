@@ -19,7 +19,7 @@
 <script lang="ts">
 import { marked } from 'marked'
 import { Speaker } from '@openlab/deconf-shared'
-import { localiseFromObject } from '@openlab/deconf-ui-toolkit'
+import { localiseFromObject, stripMarkdown } from '@openlab/deconf-ui-toolkit'
 
 import Vue, { PropType } from 'vue'
 
@@ -29,7 +29,8 @@ export default Vue.extend({
   },
   computed: {
     localeRole(): string | null {
-      return localiseFromObject(this.$i18n.locale, this.speaker.role)
+      const content = localiseFromObject(this.$i18n.locale, this.speaker.role)
+      return content ? stripMarkdown(content) : null
     },
     localeContent(): string | null {
       const content = localiseFromObject(this.$i18n.locale, this.speaker.bio)

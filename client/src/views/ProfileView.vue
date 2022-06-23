@@ -7,7 +7,7 @@
       @logout="onLogout"
       @unregister="onUnregister"
     >
-      <PrivateCalendarCreator slot="preActions" />
+      <PrivateCalendarCreator slot="preActions" api-module="api" />
     </ProfileView>
   </UtilLayout>
 </template>
