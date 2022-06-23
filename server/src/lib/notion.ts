@@ -40,8 +40,8 @@ export type NotionBlock = Record<string, any> & {
 /** Utilities for formatting notion data into useful values */
 export const notionFmt = {
   title(value: any) {
-    // TODO: this might need to be a map/join thing?
-    return value?.title?.[0]?.plain_text
+    // Our titles ignore markdown
+    return value?.title?.map((t: any) => t.plain_text)?.join(' ')
   },
   select(value: any) {
     return value?.select?.name
@@ -75,7 +75,7 @@ export const notionFmt = {
       const wraps = []
       if (rt.annotations?.bold) wraps.push('**')
       if (rt.annotations?.italic) wraps.push('_')
-      if (rt.annotations?.strikethrough) wraps.push('~')
+      if (rt.annotations?.strikethrough) wraps.push('~~')
       if (rt.annotations?.code) wraps.push('`')
       if (rt.text?.link?.url) {
         text = `[${text}](${rt.text.link.url})`
