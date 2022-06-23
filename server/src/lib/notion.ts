@@ -90,6 +90,36 @@ export const notionFmt = {
   },
 }
 
+function parseEmbedUrl(url: URL): Record<string, string> | null {
+  if (url.host.endsWith('youtube.com')) {
+    const video = url.searchParams.get('v')
+    const list = url.searchParams.get('list')
+
+    const attrs = {
+      title: 'YouTube video player',
+      allow:
+        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+      allowfullscreen: '',
+    }
+
+    if (list) {
+      return {
+        ...attrs,
+        src: `https://www.youtube-nocookie.com/embed/videoseries?list=${list}`,
+      }
+    }
+
+    if (video) {
+      return {
+        ...attrs,
+        src: `https://www.youtube-nocookie.com/embed/${video}`,
+      }
+    }
+  }
+
+  return null
+}
+
 /** A context that persists during the rendering of notion content */
 export interface NotionRenderContext {
   /** Files that have been touched and may need re-downloading */
@@ -166,6 +196,40 @@ export class NotionService {
       }
       return `![${alt}](${url} "${alt.replace(/"/g, '')}")`
     }
+    if (block.type === 'pdf') {
+      let url: string
+      if (block.pdf.type === 'file') {
+        url = this.getFile(block.pdf.file.url, ctx)
+      } else {
+        console.error('Unknown pdf type %o', block.pdf.type)
+        return ''
+      }
+      return `<a class="button is-primary" download="paper.pdf" href="${url}" target="_blank">Download PDF →</a>`
+    }
+    if (block.type === 'video') {
+      let url: URL
+      if (block.video.type === 'external') {
+        url = new URL(block.video.external.url)
+      } else {
+        console.error('Unknown video type %o', block.image.type)
+        return ''
+      }
+
+      const attrs = Object.entries(parseEmbedUrl(url) ?? {})
+        .map(([key, value]) => `${key}="${value}"`)
+        .join(' ')
+
+      if (!attrs) {
+        console.error('Unknown embed %o', url.toString())
+        return ''
+      }
+
+      return [
+        '<div class="iframeEmbed">',
+        `<iframe class="iframeEmbed-iframe" width="100%" height="100%" ${attrs}></iframe>`,
+        '</div>',
+      ].join('')
+    }
 
     console.error('Unknown block type %o', block.type)
     return '' // unknown block
@@ -215,7 +279,7 @@ export class NotionService {
     return blocks
       .map((b) => this.getMarkdown(b, ctx))
       .filter((t) => t)
-      .join('\n')
+      .join('\n\n')
   }
 
   /** paginate through `notion.databases.query` and fetch page blocks */
