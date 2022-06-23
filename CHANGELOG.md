@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/digitalinteraction/pdc/compare/v1.2.0...v1.3.0) (2022-06-23)
+
+### Features
+
+- add configurable "readonly" for pages via config + watch config in development ([5e0fa75](https://github.com/digitalinteraction/pdc/commit/5e0fa75bc3e2a80ccfd4fb888715737044f37055))
+- add notion embeds ([d5f232c](https://github.com/digitalinteraction/pdc/commit/d5f232c3012d61989c686a45626a083a7b911bb6))
+- strip markdown and use fixed deconf-ui ([a2a07b6](https://github.com/digitalinteraction/pdc/commit/a2a07b68874dec02e5f46b5ef658876137ea4711))
+
+### Bug Fixes
+
+- add icon for paper sessions ([0d08e34](https://github.com/digitalinteraction/pdc/commit/0d08e34aa514858175df2e134fe0bb4397f4ce8b))
+- improve title parsing ([3553c9c](https://github.com/digitalinteraction/pdc/commit/3553c9cc8794f4d63e1996208cfaf3d69ac5093b))
+- stop concurrent migrations with a semaphore ([e2a4a43](https://github.com/digitalinteraction/pdc/commit/e2a4a43e07624d56131fd4fc92cf47377f6143f5))
+
 ## [1.2.0](https://github.com/digitalinteraction/pdc/compare/v1.1.0...v1.2.0) (2022-06-22)
 
 ### Features
