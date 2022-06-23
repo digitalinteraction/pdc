@@ -13,3 +13,6 @@ server/svgs
 server/static/notion
 
 config/**/secrets/*
+
+# Custom kubectl for old openlab cluster
+kubectl

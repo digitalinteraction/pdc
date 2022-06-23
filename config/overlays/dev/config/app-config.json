@@ -37,7 +37,7 @@
   },
   "settings": {
     "atrium": { "enabled": true, "visible": true },
-    "schedule": { "enabled": false, "visible": true },
+    "schedule": { "enabled": true, "visible": true },
     "keynotes": { "enabled": true, "visible": true },
     "places": { "enabled": true, "visible": true },
     "newcastle": { "enabled": true, "visible": true },
