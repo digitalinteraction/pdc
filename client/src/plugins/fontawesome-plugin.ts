@@ -98,6 +98,7 @@ import {
   faPalette,
   faMicrophone,
   faUsers,
+  faCopy,
 
   // AppLoading
   faSync,
@@ -113,7 +114,7 @@ import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons'
 // prettier-ignore
 //
 library.add(
-  farCircle, faTwitter, faArrowLeft, faArrowRight, faVideo, faUser, faCodeBranch, faTags, faGlobe, faSave, faIdBadge, faCalendarPlus, faSearch, faChevronLeft, faChevronRight, faTimes, faUserPlus, faCircle, faExclamationTriangle, faFire, faLongArrowAltRight, faLongArrowAltLeft, faTerminal, faClock, faForward, faFastForward, faBackward, faFastBackward, faPlay, faStop, faEnvelope, faTicketAlt, faComments, faObjectGroup, faShareAlt, faPalette, faSync,  faGoogle, faMicrophone, faUsers, faFacebookF, faInstagram
+  farCircle, faTwitter, faArrowLeft, faArrowRight, faVideo, faUser, faCodeBranch, faTags, faGlobe, faSave, faIdBadge, faCalendarPlus, faSearch, faChevronLeft, faChevronRight, faTimes, faUserPlus, faCircle, faExclamationTriangle, faFire, faLongArrowAltRight, faLongArrowAltLeft, faTerminal, faClock, faForward, faFastForward, faBackward, faFastBackward, faPlay, faStop, faEnvelope, faTicketAlt, faComments, faObjectGroup, faShareAlt, faPalette, faSync,  faGoogle, faMicrophone, faUsers, faFacebookF, faInstagram, faCopy
 )
 
 //
