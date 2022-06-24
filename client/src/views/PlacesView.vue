@@ -82,9 +82,10 @@ export default Vue.extend({
   font-size: 2rem;
   font-weight: bold;
   font-family: $family-title;
+  text-align: center;
 }
 .placeCell-title a {
-  color: $black;
+  color: $pdc-navy;
   text-decoration: underline;
 }
 </style>
