@@ -157,6 +157,9 @@ export class NotionService {
     if (block.type === 'heading_3') {
       return `### ${notionFmt.richText(block.heading_3)}\n`
     }
+    if (block.type === 'divider') {
+      return '<hr>'
+    }
     if (block.type === 'callout') {
       // if (block.callout.icon.emoji === '🏷️') {
       //   return `<p class="sessionThemes">${notionFmt.richText(
