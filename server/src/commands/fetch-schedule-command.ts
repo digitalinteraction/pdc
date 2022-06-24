@@ -159,6 +159,8 @@ export async function fetchScheduleCommand(
   }
 
   await store.close()
+
+  debug('done')
 }
 
 /**

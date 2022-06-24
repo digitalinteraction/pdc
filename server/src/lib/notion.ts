@@ -158,7 +158,13 @@ export class NotionService {
       return `### ${notionFmt.richText(block.heading_3)}\n`
     }
     if (block.type === 'callout') {
-      return `> ${block.callout.icon} ${notionFmt.richText(block.callout)}\n`
+      // if (block.callout.icon.emoji === '🏷️') {
+      //   return `<p class="sessionThemes">${notionFmt.richText(
+      //     block.callout
+      //   )}</p>`
+      // }
+      const prefix = block.callout.icon.emoji ?? ''
+      return `> ${prefix} ${notionFmt.richText(block.callout)}\n`
     }
     if (block.type === 'quote') {
       return `> ${notionFmt.richText(block.quote)}\n`
