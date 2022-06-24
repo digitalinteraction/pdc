@@ -133,6 +133,10 @@ export default Vue.extend({
     background-color: $background;
   }
 
+  .scheduleFilters {
+    display: none;
+  }
+
   .backLink {
     text-decoration: underline;
     color: $black;
