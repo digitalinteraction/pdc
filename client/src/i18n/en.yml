@@ -146,7 +146,7 @@ deconf:
     linkPreview: The session links will be available 15 minutes before the start time
     actions: Actions
     logIn: If you wish to attend this session please login and press the "Add to My Schedule" button. Links to join the session will then appear 15 minutes before the session starts.
-    speakers: Facilitators
+    speakers: Presenters
     zoomLink: Zoom Room
     teamsLink: Teams Meeting
     miroLink: Miro Board
