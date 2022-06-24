@@ -26,13 +26,14 @@
   },
   "notion": {
     "db": {
+      "content": "081199c589f7413baac143e2aec84ddb",
+      "places": "ea7bed0f085442c280481c2cf8762078",
+      "registrations": "8a8e2a77edff468da19b9c82f896488f",
       "sessions": "68b95fdf4c7246bda89ef78b158830ea",
       "speakers": "ef72bd1663b649a38e86b91a25f7ced0",
       "themes": "233b9b6d411f4bdba0d2474f602065c9",
       "tracks": "7f7056fd8db74d3cabc1e79dc1c93c7e",
-      "types": "6688a08739684a33a23b1dcaf329b2cd",
-      "content": "081199c589f7413baac143e2aec84ddb",
-      "registrations": "8a8e2a77edff468da19b9c82f896488f"
+      "types": "6688a08739684a33a23b1dcaf329b2cd"
     }
   },
   "settings": {

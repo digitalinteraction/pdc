@@ -47,6 +47,7 @@ export default Vue.extend({
   components: { AppLayout, SessionView, BackButton, NotFoundView },
   props: {
     sessionId: { type: String, required: true },
+    placeId: { type: String, required: false },
   },
   computed: {
     ...mapApiState('api', ['schedule', 'user']),
@@ -59,7 +60,14 @@ export default Vue.extend({
         return { name: ExtraRoutes.Keynotes }
       }
       if (this.$route.name === ExtraRoutes.PlacesSession) {
-        return { name: ExtraRoutes.Places }
+        if (this.placeId) {
+          return {
+            name: ExtraRoutes.PlaceDetail,
+            params: { placeId: this.placeId },
+          }
+        }
+        throw new Error('TODO: Not implemented')
+        // return { name: ExtraRoutes.Places }
       }
       return { name: Routes.Schedule }
     },

@@ -32,13 +32,14 @@ export const AppConfigStruct = object({
   }),
   notion: object({
     db: object({
+      content: string(),
+      places: string(),
+      registrations: string(),
       sessions: string(),
+      speakers: string(),
       themes: string(),
       tracks: string(),
-      speakers: string(),
       types: string(),
-      content: string(),
-      registrations: string(),
     }),
   }),
   settings: object({

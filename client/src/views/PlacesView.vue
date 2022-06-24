@@ -1,102 +1,53 @@
 <template>
-  <AppLayout class="placesView">
-    <WhatsOnView
-      :schedule="filteredSchedule"
-      :sessions="filteredSessions"
-      filters-key="pdcPlacesViewFilters"
-      :enabled-filters="enabledFilters"
-      :config="config"
-      slot-state="future"
-      :language-options="languages"
-      :url-filters="urlFilters"
-      @filter="onFilter"
-      :readonly="readonly"
-    >
-      <span slot="title">{{ $t('pdc.pageTitles.places') }}</span>
-      <ApiContent slot="info" slug="places-filters" />
-      <span slot="noResults">{{ $t('pdc.general.noResults') }}</span>
-    </WhatsOnView>
+  <AppLayout>
+    <div class="placesView">
+      <header class="placesView-header">
+        <h1 class="whatsOnView-title">{{ $t('pdc.places.title') }}</h1>
+        <div class="placesView-info">
+          <ApiContent slug="places-filters" />
+        </div>
+        <!-- <ScheduleFilters
+          :schedule="schedule"
+          :filters="filters"
+          @filter="onFilter"
+          :enabled-filters="enabledFilters"
+          :language-options="languageOptions"
+        /> -->
+      </header>
+      <SessionBoard>
+        <article class="placeCell" v-for="place in places" :key="place.id">
+          <p class="placeCell-title">
+            <router-link :to="placesRoute(place)">
+              {{ place.title }}
+            </router-link>
+          </p>
+        </article>
+      </SessionBoard>
+    </div>
   </AppLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import AppLayout from '@/components/PdcAppLayout.vue'
-import {
-  ApiContent,
-  decodeUrlScheduleFilters,
-  filterScheduleFromSessions,
-  ScheduleConfig,
-  ScheduleFilterRecord,
-  SelectOption,
-  WhatsOnView,
-} from '@openlab/deconf-ui-toolkit'
-import {
-  ExtraRoutes,
-  getLanguageOptions,
-  guardRoute,
-  mapApiState,
-} from '@/lib/module'
-import { ScheduleRecord, Session } from '@openlab/deconf-shared/dist/conference'
-
-const predicate = (session: Session) => {
-  return session.track === 'fb858d34-9492-4596-b5e9-20b9a6e035f2'
-}
-
-interface Data {
-  enabledFilters: Array<keyof ScheduleFilterRecord>
-  config: ScheduleConfig
-  languages: SelectOption[]
-  urlFilters: ScheduleFilterRecord | null
-}
+import { mapPlacesState } from '@/lib/utils'
+import { ApiContent, SessionBoard } from '@openlab/deconf-ui-toolkit'
+import { PlaceRecord } from '@/store/places-module'
+import { ExtraRoutes } from '@/lib/constants'
+import { RawLocation } from 'vue-router'
 
 export default Vue.extend({
-  components: { AppLayout, WhatsOnView, ApiContent },
-  data(): Data {
-    return {
-      enabledFilters: ['query', 'theme', 'language'],
-      config: {
-        tileHeader: ['type'],
-        tileAttributes: ['themes', 'languages'],
-        getSessionRoute(session) {
-          return {
-            name: ExtraRoutes.PlacesSession,
-            params: { sessionId: session.id },
-          }
-        },
-      },
-      languages: getLanguageOptions(),
-      urlFilters: decodeUrlScheduleFilters(this.$route.query),
-    }
-  },
+  components: { AppLayout, ApiContent, SessionBoard },
   computed: {
-    ...mapApiState('api', ['schedule', 'user', 'userSessions']),
-    scheduleDate(): Date {
-      return this.$dev?.scheduleDate ?? this.$temporal.date
-    },
-    filteredSessions(): Session[] {
-      return this.schedule?.sessions.filter((s) => predicate(s)) ?? []
-    },
-    filteredSchedule(): ScheduleRecord | null {
-      if (!this.schedule) return null
-      return filterScheduleFromSessions(
-        this.schedule as any,
-        this.filteredSessions
-      )
-    },
-    scheduleIsLive(): boolean {
-      return Boolean(this.schedule?.settings?.schedule?.enabled)
-    },
-    readonly(): boolean {
-      return Boolean(this.schedule?.settings?.places?.readonly)
-    },
+    ...mapPlacesState('places', ['places']),
   },
-  created() {
-    guardRoute(this.schedule?.settings.places, this.user, this.$router)
+  mounted() {
+    this.$store.dispatch('places/fetch')
   },
   methods: {
-    onFilter(query: any) {
-      this.$router.replace({ query })
+    placesRoute(place: PlaceRecord): RawLocation {
+      const params = { placeId: place.id }
+      return { name: ExtraRoutes.PlaceDetail, params }
     },
   },
 })
@@ -104,8 +55,36 @@ export default Vue.extend({
 
 <style lang="scss">
 .placesView {
-  .whatsOnView {
-    background-color: $background;
-  }
+  background-color: $background;
+}
+.placesView-header {
+  padding: $block-spacing;
+  background-color: $white;
+  border-bottom: 1px solid $border;
+  flex: 0;
+}
+.placesView-header > * + * {
+  margin-block-start: 0.5rem;
+}
+.placesView-title {
+  font-size: $size-3;
+  font-weight: bold;
+  font-family: $family-title;
+}
+.placesView-info {
+}
+
+// ...
+
+.placeCell {
+}
+.placeCell-title {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: $family-title;
+}
+.placeCell-title a {
+  color: $black;
+  text-decoration: underline;
 }
 </style>

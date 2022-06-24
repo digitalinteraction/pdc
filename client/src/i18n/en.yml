@@ -238,3 +238,7 @@ pdc:
     info: Use this link to subscribe to "My Schedule" in your own calendar. Your calendar will refresh periodically to fetch the latest information and show you the events you have added to "My Schedule".
     copy: copy
     copied: copied
+
+  places:
+    title: Places
+    info: Welcome to PDC places...

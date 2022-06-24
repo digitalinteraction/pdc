@@ -104,6 +104,16 @@ const routes: Array<RouteConfig> = [
       pageTitle: 'pdc.pageTitles.places',
     },
   },
+  {
+    path: '/places/:placeId',
+    name: ExtraRoutes.PlaceDetail,
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "schedule" */ '../views/PlaceDetailView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.places',
+    },
+  },
 
   //
   // Session
@@ -129,7 +139,7 @@ const routes: Array<RouteConfig> = [
     },
   },
   {
-    path: '/places/:sessionId',
+    path: '/places/:placeId/:sessionId',
     name: ExtraRoutes.PlacesSession,
     props: true,
     component: () =>

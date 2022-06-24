@@ -50,6 +50,8 @@ type FetchSchedulePullMode =
   | 'content'
   | 'settings'
   | 'registrations'
+  | 'places'
+
 export interface FetchScheduleCommandOptions {
   localFile?: string
   only?: FetchSchedulePullMode[]
@@ -124,6 +126,10 @@ export async function fetchScheduleCommand(
       keys.content = config.notion.db.content
     }
 
+    if (pull('places')) {
+      keys.places = config.notion.db.places
+    }
+
     for (const [key, db] of Object.entries(keys)) {
       content[key] = await notion.queryNotionDatabase(db)
     }
@@ -147,6 +153,10 @@ export async function fetchScheduleCommand(
 
   if (pull('content')) {
     await processContent(content, store, notion, ctx)
+  }
+
+  if (pull('places')) {
+    await processPlaces(content, store, notion, ctx)
   }
 
   if (options.quiet === false && !options.localFile) {
@@ -240,6 +250,23 @@ async function processRegistrations(
   }))
 
   await store.put('registration.users', records)
+}
+
+async function processPlaces(
+  content: Record<string, NotionPage[]>,
+  store: RedisService,
+  notion: NotionService,
+  ctx: NotionRenderContext
+) {
+  const places = content.places.map((page) => ({
+    id: page.id,
+    title: fmt.title(page.props.Name),
+    sessions: fmt.relationIds(page.props.Sessions),
+    content: notion.getPageMarkdown(page.blocks, ctx),
+  }))
+  places.sort((a, b) => a.title.localeCompare(b.title))
+
+  await store.put('schedule.places', places)
 }
 
 /** Process the schedule resources and put them into the store */
