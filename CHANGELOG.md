@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/digitalinteraction/pdc/compare/v1.3.0...v1.4.0) (2022-06-27)
+
+### Features
+
+- add wip papers pages ([612053a](https://github.com/digitalinteraction/pdc/commit/612053a7398c608cfaf5d4ed9a597f405df20be1))
+- pull papers from notion and serve them ([35b0703](https://github.com/digitalinteraction/pdc/commit/35b0703ea70f199fe3ff52e5fcac351aba39db79))
+- rework places page with hierachy ([95faed7](https://github.com/digitalinteraction/pdc/commit/95faed776284a0d4e0c7599bbdc04c5b7f6ae587))
+- support dividers from notion blocks ([397efe2](https://github.com/digitalinteraction/pdc/commit/397efe2fae4b4fbac8eabf7596683de2477fe77e))
+
+### Bug Fixes
+
+- don't show html in summaries ([38a1f4b](https://github.com/digitalinteraction/pdc/commit/38a1f4b4c162c7b57fba8a1c8bc3cf78dfe30792))
+- fix incorrect place-detail-session-view routing ([95aae3e](https://github.com/digitalinteraction/pdc/commit/95aae3ebfd5fbc48a35eb8ad456329e9a9fd8be2))
+- hide add-to-calendar buttons ([c2057f1](https://github.com/digitalinteraction/pdc/commit/c2057f13185a35eebb6cfe56b95ad55c325cb85c))
+- hide filters from place-detail-view ([8ab4d8f](https://github.com/digitalinteraction/pdc/commit/8ab4d8f50b08815cce453bd35438ada0de81634d))
+- style places cells ([fe3e0e4](https://github.com/digitalinteraction/pdc/commit/fe3e0e41ef9e65c6ae04b6d9b94cc5d7786f664c))
+
 ## [1.3.0](https://github.com/digitalinteraction/pdc/compare/v1.2.0...v1.3.0) (2022-06-23)
 
 ### Features
