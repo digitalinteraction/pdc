@@ -68,12 +68,13 @@ export default Vue.extend({
       config: {
         tileHeader: ['type'],
         tileAttributes: ['themes', 'languages'],
-        getSessionRoute(session) {
-          return {
-            name: ExtraRoutes.PlacesSession,
-            params: { sessionId: session.id },
-          }
-        },
+        getSessionRoute: (session) => ({
+          name: ExtraRoutes.PlacesSession,
+          params: {
+            sessionId: session.id,
+            placeId: this.placeId,
+          },
+        }),
       },
       languages: getLanguageOptions(),
       urlFilters: decodeUrlScheduleFilters(this.$route.query),

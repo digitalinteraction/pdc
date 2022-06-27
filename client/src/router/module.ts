@@ -139,7 +139,7 @@ const routes: Array<RouteConfig> = [
     },
   },
   {
-    path: '/places/:placeId/:sessionId',
+    path: '/places/:placeId/session/:sessionId',
     name: ExtraRoutes.PlacesSession,
     props: true,
     component: () =>
