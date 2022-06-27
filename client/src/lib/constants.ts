@@ -10,6 +10,8 @@ export enum ExtraRoutes {
   PlacesSession = 'placesSession',
   Places = 'places',
   PlaceDetail = 'placeDetail',
+  Papers = 'papers',
+  PaperDetail = 'paperDetail',
   Newcastle = 'newcastle',
   Social = 'social',
   About = 'about',

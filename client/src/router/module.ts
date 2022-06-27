@@ -150,6 +150,29 @@ const routes: Array<RouteConfig> = [
   },
 
   //
+  // Papers
+  //
+  {
+    path: '/papers',
+    name: ExtraRoutes.Papers,
+    component: () =>
+      import(/* webpackChunkName: "papers" */ '../views/PapersView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.papers',
+    },
+  },
+  {
+    path: '/papers/:paperId',
+    name: ExtraRoutes.PaperDetail,
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "papers" */ '../views/PaperDetailView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.papers',
+    },
+  },
+
+  //
   // Static
   //
   {

@@ -2,36 +2,36 @@ import { env } from '@/plugins/env-plugin'
 import { DeconfApiClient } from '@openlab/deconf-ui-toolkit'
 import { Module } from 'vuex'
 
-export interface PlaceRecord {
+export interface PaperRecord {
   id: string
   title: string
   sessions: string[]
   content: string
 }
 
-export interface PlacesModuleState {
-  places: null | PlaceRecord[]
+export interface PapersModuleState {
+  papers: null | PaperRecord[]
 }
 
-export type PlacesStoreModule = Module<PlacesModuleState, unknown>
+export type PapersStoreModule = Module<PapersModuleState, unknown>
 
-export function placesModule(): PlacesStoreModule {
+export function papersModule(): PapersStoreModule {
   const api = new DeconfApiClient(env.SERVER_URL.href)
 
   return {
     namespaced: true,
     state: {
-      places: [],
+      papers: [],
     },
     mutations: {
-      places(state, places: PlaceRecord[]) {
-        state.places = places
+      papers(state, papers: PaperRecord[]) {
+        state.papers = papers
       },
     },
     actions: {
       async fetch(ctx) {
-        const places = await api.fetchJson('places')
-        ctx.commit('places', places)
+        const papers = await api.fetchJson('papers')
+        ctx.commit('papers', papers)
       },
     },
   }

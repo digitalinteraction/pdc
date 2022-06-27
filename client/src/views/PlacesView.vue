@@ -1,9 +1,9 @@
 <template>
   <AppLayout>
-    <div class="placesView">
-      <header class="placesView-header">
-        <h1 class="whatsOnView-title">{{ $t('pdc.places.title') }}</h1>
-        <div class="placesView-info">
+    <div class="offWhiteBackground">
+      <header class="filterHeader">
+        <h1 class="filterHeader-title">{{ $t('pdc.places.title') }}</h1>
+        <div class="filterHeader-info">
           <ApiContent slug="places-filters" />
         </div>
         <!-- <ScheduleFilters
@@ -41,7 +41,7 @@ export default Vue.extend({
   computed: {
     ...mapPlacesState('places', ['places']),
   },
-  mounted() {
+  created() {
     this.$store.dispatch('places/fetch')
   },
   methods: {
@@ -54,28 +54,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.placesView {
-  background-color: $background;
-}
-.placesView-header {
-  padding: $block-spacing;
-  background-color: $white;
-  border-bottom: 1px solid $border;
-  flex: 0;
-}
-.placesView-header > * + * {
-  margin-block-start: 0.5rem;
-}
-.placesView-title {
-  font-size: $size-3;
-  font-weight: bold;
-  font-family: $family-title;
-}
-.placesView-info {
-}
-
-// ...
-
 .placeCell {
 }
 .placeCell-title {

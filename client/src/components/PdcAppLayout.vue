@@ -42,6 +42,7 @@ import HelpDeskIcon from '@/icons/HelpDeskIcon.vue'
 import KeynotesIcon from '@/icons/KeynotesIcon.vue'
 import NewcastleIcon from '@/icons/NewcastleIcon.vue'
 import PlacesIcon from '@/icons/PlacesIcon.vue'
+import PapersIcon from '@/icons/PapersIcon.vue'
 import ScheduleIcon from '@/icons/ScheduleIcon.vue'
 import SocialIcon from '@/icons/SocialIcon.vue'
 
@@ -102,6 +103,12 @@ export default Vue.extend({
           name: ExtraRoutes.Places,
           icon: PlacesIcon,
           pageFlag: this.settings.places,
+        },
+        {
+          title: this.$t('pdc.pageTitles.papers') as string,
+          name: ExtraRoutes.Papers,
+          icon: PapersIcon,
+          pageFlag: this.settings.papers,
         },
         {
           title: this.$t('pdc.pageTitles.newcastle') as string,

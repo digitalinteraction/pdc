@@ -214,6 +214,7 @@ pdc:
     help: Help Desk
     keynotes: Keynotes
     places: Places
+    papers: Papers
     newcastle: Newcastle
     privacy: Privacy
     terms: Terms
@@ -241,4 +242,6 @@ pdc:
 
   places:
     title: Places
-    info: Welcome to PDC places...
+
+  papers:
+    title: Papers

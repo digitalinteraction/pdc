@@ -1,0 +1,22 @@
+.offWhiteBackground {
+  background-color: $background;
+}
+
+//
+// Filter header
+//
+.filterHeader {
+  padding: 1.5rem;
+  background-color: $white;
+  border-bottom: 1px solid $border;
+}
+.filterHeader > * + * {
+  margin-block-start: 0.5rem;
+}
+.filterHeader-title {
+  font-size: $size-3;
+  font-weight: bold;
+  font-family: $family-title;
+}
+.filterHeader-info {
+}

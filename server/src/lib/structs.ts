@@ -48,6 +48,7 @@ export const AppConfigStruct = object({
     schedule: PageFlag,
     keynotes: PageFlag,
     places: PageFlag,
+    papers: PageFlag,
     newcastle: PageFlag,
     social: PageFlag,
     help: PageFlag,

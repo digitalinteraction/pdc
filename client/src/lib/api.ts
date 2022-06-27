@@ -10,6 +10,7 @@ export interface PdcConferenceConfig {
   schedule?: PdcPageFlag
   keynotes?: PdcPageFlag
   places?: PdcPageFlag
+  papers?: PdcPageFlag
   newcastle?: PdcPageFlag
   social?: PdcPageFlag
   help?: PdcPageFlag
