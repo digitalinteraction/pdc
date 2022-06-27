@@ -24,5 +24,9 @@ export class GeneralRouter implements AppRouter {
     router.get('general.places', '/places', async (ctx) => {
       ctx.body = await this.#context.store.retrieve('schedule.places')
     })
+
+    router.get('general.papers', '/papers', async (ctx) => {
+      ctx.body = await this.#context.store.retrieve('schedule.papers')
+    })
   }
 }

@@ -51,6 +51,7 @@ type FetchSchedulePullMode =
   | 'settings'
   | 'registrations'
   | 'places'
+  | 'papers'
 
 export interface FetchScheduleCommandOptions {
   localFile?: string
@@ -130,6 +131,10 @@ export async function fetchScheduleCommand(
       keys.places = config.notion.db.places
     }
 
+    if (pull('papers')) {
+      keys.papers = config.notion.db.papers
+    }
+
     for (const [key, db] of Object.entries(keys)) {
       content[key] = await notion.queryNotionDatabase(db)
     }
@@ -157,6 +162,10 @@ export async function fetchScheduleCommand(
 
   if (pull('places')) {
     await processPlaces(content, store, notion, ctx)
+  }
+
+  if (pull('papers')) {
+    await processPapers(content, store, notion, ctx)
   }
 
   if (options.quiet === false && !options.localFile) {
@@ -250,6 +259,27 @@ async function processRegistrations(
   }))
 
   await store.put('registration.users', records)
+}
+
+async function processPapers(
+  content: Record<string, NotionPage[]>,
+  store: RedisService,
+  notion: NotionService,
+  ctx: NotionRenderContext
+) {
+  const onCommas = () => /\s*,\s*/
+
+  const papers = content.papers.map((page) => ({
+    id: page.id,
+    title: fmt.title(page.props.Name),
+    themes: fmt.relationIds(page.props.Themes),
+    keywords: fmt.richText(page.props.Keywords).split(onCommas()),
+    authors: fmt.richText(page.props.Authors).split(onCommas()),
+    content: notion.getPageMarkdown(page.blocks, ctx),
+  }))
+  papers.sort((a, b) => a.title.localeCompare(b.title))
+
+  await store.put('schedule.papers', papers)
 }
 
 async function processPlaces(

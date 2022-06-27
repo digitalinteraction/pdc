@@ -33,6 +33,7 @@ export const AppConfigStruct = object({
   notion: object({
     db: object({
       content: string(),
+      papers: string(),
       places: string(),
       registrations: string(),
       sessions: string(),
