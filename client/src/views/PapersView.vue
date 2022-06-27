@@ -32,13 +32,16 @@ import { mapPapersState } from '@/lib/utils'
 import { PaperRecord } from '@/store/papers-module'
 import { Location } from 'vue-router'
 import { ExtraRoutes } from '@/lib/constants'
+import { guardRoute, mapApiState } from '@/lib/module'
 
 export default Vue.extend({
   components: { AppLayout, ApiContent, SessionBoard },
   computed: {
+    ...mapApiState('api', ['schedule', 'user']),
     ...mapPapersState('papers', ['papers']),
   },
   created() {
+    guardRoute(this.schedule?.settings.papers, this.user, this.$router)
     this.$store.dispatch('papers/fetch')
   },
   methods: {

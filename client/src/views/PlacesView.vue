@@ -35,13 +35,16 @@ import { ApiContent, SessionBoard } from '@openlab/deconf-ui-toolkit'
 import { PlaceRecord } from '@/store/places-module'
 import { ExtraRoutes } from '@/lib/constants'
 import { RawLocation } from 'vue-router'
+import { guardRoute, mapApiState } from '@/lib/module'
 
 export default Vue.extend({
   components: { AppLayout, ApiContent, SessionBoard },
   computed: {
+    ...mapApiState('api', ['schedule', 'user']),
     ...mapPlacesState('places', ['places']),
   },
   created() {
+    guardRoute(this.schedule?.settings.places, this.user, this.$router)
     this.$store.dispatch('places/fetch')
   },
   methods: {
