@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/digitalinteraction/pdc/compare/v1.4.0...v1.5.0) (2022-06-29)
+
+### Features
+
+- add filters to paper view ([5c60e73](https://github.com/digitalinteraction/pdc/commit/5c60e73cac9569197ed94affdfa3ff3765fc3b7c))
+- add paper detail view ([f1365dc](https://github.com/digitalinteraction/pdc/commit/f1365dcee16f98f50a6843acf64469c9252e7fc9))
+
+### Bug Fixes
+
+- add page guards ([816e989](https://github.com/digitalinteraction/pdc/commit/816e98913646300689d3571c3dd2d13a59ff8d55))
+- fix overflowing paper cells ([9f54d45](https://github.com/digitalinteraction/pdc/commit/9f54d45d86a3d8811557cbb4f9e1ff38c5a17229))
+- update paper parsing ([ae1c5f9](https://github.com/digitalinteraction/pdc/commit/ae1c5f9199474696bdaa6cdd35e1cbe65da72134))
+
 ## [1.4.0](https://github.com/digitalinteraction/pdc/compare/v1.3.0...v1.4.0) (2022-06-27)
 
 ### Features
