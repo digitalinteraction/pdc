@@ -86,3 +86,8 @@
 .sessionTile-title a {
   color: $pdc-navy;
 }
+
+.sessionBoard > * {
+  // https://stackoverflow.com/a/63471850
+  display: inline-grid;
+}
