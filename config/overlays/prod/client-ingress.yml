@@ -12,7 +12,7 @@ spec:
     - host: schedule.pdc2022.org
       http:
         paths:
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
