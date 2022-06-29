@@ -267,7 +267,7 @@ async function processPapers(
   notion: NotionService,
   ctx: NotionRenderContext
 ) {
-  const onCommas = () => /\s*,\s*/
+  const onCommas = () => /\s*[,&]\s*/
 
   const papers = content.papers.map((page) => ({
     id: page.id,
@@ -276,6 +276,7 @@ async function processPapers(
     keywords: fmt.richText(page.props.Keywords).split(onCommas()),
     authors: fmt.richText(page.props.Authors).split(onCommas()),
     content: notion.getPageMarkdown(page.blocks, ctx),
+    sessionId: fmt.relationIds(page.props.Session)[0] ?? null,
   }))
   papers.sort((a, b) => a.title.localeCompare(b.title))
 
