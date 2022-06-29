@@ -147,6 +147,6 @@ export default Vue.extend({
 }
 .placesDetailView-extraTop {
   flex: 0 !important;
-  padding: 0.5rem $block-spacing 0;
+  padding: $block-spacing $block-spacing 0;
 }
 </style>

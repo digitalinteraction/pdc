@@ -55,13 +55,20 @@ export default Vue.extend({
 <style lang="scss">
 .paperCell {
 }
+.paperCell > * + * {
+  margin-block-start: 0.5rem;
+}
 .paperCell-title {
   font-size: 2rem;
   font-weight: bold;
   font-family: $family-title;
+  line-height: 1.2;
 }
 .paperCell-title a {
   color: $pdc-navy;
+  text-decoration: none;
+}
+.paperCell-title a:hover {
   text-decoration: underline;
 }
 </style>

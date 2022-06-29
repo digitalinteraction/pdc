@@ -5,7 +5,9 @@ import { Module } from 'vuex'
 export interface PaperRecord {
   id: string
   title: string
-  sessions: string[]
+  keywords: string[]
+  authors: string[]
+  sessionId: string | null
   content: string
 }
 
