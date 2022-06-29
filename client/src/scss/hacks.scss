@@ -88,6 +88,5 @@
 }
 
 .sessionBoard > * {
-  // https://stackoverflow.com/a/63471850
-  display: inline-grid;
+  overflow: hidden;
 }
