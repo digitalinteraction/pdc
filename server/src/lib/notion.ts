@@ -97,8 +97,7 @@ function parseEmbedUrl(url: URL): Record<string, string> | null {
 
     const attrs = {
       title: 'YouTube video player',
-      allow:
-        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+      allow: 'clipboard-write; encrypted-media; picture-in-picture',
       allowfullscreen: '',
     }
 
@@ -203,7 +202,12 @@ export class NotionService {
         console.error('Unknown image type %o', block.image.type)
         return '' // unknown image type
       }
-      return `![${alt}](${url} "${alt.replace(/"/g, '')}")`
+      return [
+        `<figure>`,
+        `<img src="${url}">`,
+        alt ? `<figcaption>${alt}</figcaption>` : '',
+        `</figure>`,
+      ].join('')
     }
     if (block.type === 'pdf') {
       let url: string
