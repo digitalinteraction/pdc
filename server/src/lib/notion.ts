@@ -71,20 +71,33 @@ export const notionFmt = {
   },
   richText(value: any) {
     const segments = value?.rich_text?.map((rt: any) => {
-      let text = rt.text?.content ?? ''
-      const wraps = []
-      if (rt.annotations?.bold) wraps.push('**')
-      if (rt.annotations?.italic) wraps.push('_')
-      if (rt.annotations?.strikethrough) wraps.push('~~')
-      if (rt.annotations?.code) wraps.push('`')
-      if (rt.text?.link?.url) {
-        text = `[${text}](${rt.text.link.url})`
+      if (rt.type === 'text') {
+        const text = rt.text.content
+        if (!text?.trim()) return ''
+
+        const wraps = []
+        if (rt.annotations?.bold) wraps.push('**')
+        if (rt.annotations?.italic) wraps.push('_')
+        if (rt.annotations?.strikethrough) wraps.push('~~')
+        if (rt.annotations?.code) wraps.push('`')
+
+        const unwraps = Array.from(wraps).reverse()
+        const annotated = [...wraps, text.trim(), ...unwraps].join('')
+
+        if (rt.text.link?.url) {
+          return /view paper|open session/i.test(text)
+            ? `<a class="button is-link is-medium" href="${rt.text.link.url}">${text} →</a>`
+            : `[${annotated}](${rt.text.link.url})`
+        }
+
+        return annotated
       }
-
-      // Don't annotate empty-text
-      if (!text.trim()) return ''
-
-      return wraps.join('') + text.trim() + Array.from(wraps).reverse().join('')
+      // if (rt.type === 'mention') {
+      //   const url = rt.href
+      //   return `<a class="button is-link is-medium" href="${url}">Open →</a>`
+      // }
+      console.error('Unknown rich_text type %o', rt.type)
+      return ''
     })
     return segments?.join(' ')
   },
