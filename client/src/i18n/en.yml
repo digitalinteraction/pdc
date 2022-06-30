@@ -40,7 +40,7 @@ deconf:
     clearFilters: Clear filters
     dateFilter: Date
     typeFilter: Type
-    trackFilter: Space
+    trackFilter: Track
     themeFilter: Theme
     recordedFilter: Is Recorded
     languageFilter: Language
