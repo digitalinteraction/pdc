@@ -34,5 +34,16 @@
         "href": "https://www.northumbria.ac.uk/"
       }
     ]
+  },
+  {
+    "size": "small",
+    "title": "Supported by ACM SIGCHI",
+    "sponsors": [
+      {
+        "title": "Supported by ACM SIGCHI",
+        "image": "/sponsors/sigchi-logo.png",
+        "href": "https://sigchi.org/"
+      }
+    ]
   }
 ]
