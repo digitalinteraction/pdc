@@ -98,9 +98,16 @@ export default Vue.extend({
     filteredSessions(): Session[] {
       if (!this.schedule || !this.place) return []
       const sessions = new Map(this.schedule.sessions.map((s) => [s.id, s]))
+      const slots = new Map(this.schedule.slots.map((s) => [s.id, s]))
       return this.place.sessions
         .map((id) => sessions.get(id) as Session)
         .filter((s) => s)
+        .sort((a, b) => {
+          const s1 = a.slot ? slots.get(a.slot) : undefined
+          const s2 = b.slot ? slots.get(b.slot) : undefined
+          if (!s1 || !s2) return 0
+          return s1.start.getTime() - s2.start.getTime()
+        })
     },
     filteredSchedule(): ScheduleRecord | null {
       if (!this.schedule) return null
