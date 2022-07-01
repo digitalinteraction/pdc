@@ -66,8 +66,6 @@ export default Vue.extend({
             params: { placeId: this.placeId },
           }
         }
-        throw new Error('TODO: Not implemented')
-        // return { name: ExtraRoutes.Places }
       }
       return { name: Routes.Schedule }
     },

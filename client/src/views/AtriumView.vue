@@ -10,9 +10,7 @@
 
       <BoxContent slot="left">
         <div class="atriumView-content">
-          <ApiContent :slug="contentSlug">
-            <!-- TODO: custom embeds -->
-          </ApiContent>
+          <ApiContent :slug="contentSlug"> </ApiContent>
         </div>
       </BoxContent>
 

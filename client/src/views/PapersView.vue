@@ -6,7 +6,6 @@
         <div class="filterHeader-info">
           <ApiContent slug="papers-filters" />
         </div>
-        <!-- TODO: filters here -->
         <ScheduleFilters
           :schedule="schedule"
           :filters="filters"
