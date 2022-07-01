@@ -107,5 +107,8 @@ export default Vue.extend({
   .whatsOnView {
     background-color: $background;
   }
+  .scheduleFilters {
+    display: none;
+  }
 }
 </style>
