@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.2](https://github.com/digitalinteraction/pdc/compare/v1.5.1...v1.5.2) (2022-07-01)
+
+### Bug Fixes
+
+- hide keynote filters ([92b5e5e](https://github.com/digitalinteraction/pdc/commit/92b5e5e073d8fa1f3b58dfd3257f359a28ef7d33))
+- improve notion markdown renderer ([5b4c649](https://github.com/digitalinteraction/pdc/commit/5b4c649e5a3262af6404078270403ce8334ec2b4))
+- improve notion rendering ([14b0162](https://github.com/digitalinteraction/pdc/commit/14b01628c508eac4e75148f94f3e5aa426916ab5))
+- show themes on papers ([183d1c6](https://github.com/digitalinteraction/pdc/commit/183d1c6ea0d8e35e25249fb9d16a3dc52029303e))
+- sort date filters chronologically ([4086b26](https://github.com/digitalinteraction/pdc/commit/4086b26e4ce5ece044dd5df2259cc1c9973af66c))
+- sort places' sessions chronologically ([913e3fc](https://github.com/digitalinteraction/pdc/commit/913e3fc82946948de85a0b7578581666bcc29afe))
+
 ### [1.5.1](https://github.com/digitalinteraction/pdc/compare/v1.5.0...v1.5.1) (2022-06-29)
 
 ## [1.5.0](https://github.com/digitalinteraction/pdc/compare/v1.4.0...v1.5.0) (2022-06-29)
