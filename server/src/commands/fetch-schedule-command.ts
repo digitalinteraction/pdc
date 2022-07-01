@@ -323,7 +323,7 @@ async function processSchedule(
 
   const getHeadshot = (page: any) => {
     const url = page.props.Headshot?.files?.[0]?.file?.url
-    if (!url) return '/img/headshot.svg'
+    if (!url) return '/img/headshot.webp'
     return notion.getFile(url, ctx)
   }
 
