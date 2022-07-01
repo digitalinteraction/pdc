@@ -26,8 +26,16 @@
         </SidebarItem>
 
         <SidebarItem title="Authors">
-          <ul class="paperDetailView-authors">
+          <ul class="paperDetailView-list">
             <li v-for="author in paper.authors" :key="author">{{ author }}</li>
+          </ul>
+        </SidebarItem>
+
+        <SidebarItem title="Themes" v-if="themes.length > 0">
+          <ul class="paperDetailView-list">
+            <li v-for="theme in themes" :key="theme.id">
+              {{ theme.title.en }}
+            </li>
           </ul>
         </SidebarItem>
       </div>
@@ -53,6 +61,7 @@ import {
 import { PaperRecord } from '@/store/papers-module'
 import { RawLocation } from 'vue-router'
 import { marked } from 'marked'
+import { Theme } from '@openlab/deconf-shared/dist/conference'
 
 export default Vue.extend({
   components: { AppLayout, SessionLayout, BackButton, SidebarItem },
@@ -79,6 +88,13 @@ export default Vue.extend({
       if (!this.paper) return null
       return marked(this.paper.content)
     },
+    themes(): Theme[] {
+      if (!this.paper || !this.schedule) return []
+      const themes = new Map(this.schedule.themes.map((t) => [t.id, t]))
+      return this.paper.themes
+        .map((id) => themes.get(id) as Theme)
+        .filter((t) => t)
+    },
   },
   created() {
     guardRoute(this.schedule?.settings.papers, this.user, this.$router)
@@ -103,9 +119,9 @@ export default Vue.extend({
   font-family: $family-title;
   line-height: 1;
 }
-.paperDetailView-authors {
+.paperDetailView-list {
 }
-.paperDetailView-authors li {
+.paperDetailView-list li {
   list-style: disc;
   margin-left: 1em;
   font-size: $size-5;
