@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.3](https://github.com/digitalinteraction/pdc/compare/v1.5.2...v1.5.3) (2022-07-05)
+
+### Bug Fixes
+
+- fix paper filtering not working ([1ddf2db](https://github.com/digitalinteraction/pdc/commit/1ddf2db8429c16140a207697289f47f7a0c07add))
+
 ### [1.5.2](https://github.com/digitalinteraction/pdc/compare/v1.5.1...v1.5.2) (2022-07-01)
 
 ### Bug Fixes
