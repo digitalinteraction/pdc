@@ -97,14 +97,16 @@ export default Vue.extend({
       if (!query && !filter.theme) return () => true
 
       return (p: PaperRecord): boolean => {
-        // Check the title for matches
-        if (isMatch(p.title)) return true
+        if (query) {
+          // Check the title for matches
+          if (isMatch(p.title)) return true
 
-        // Check the keywords for matches
-        if (p.keywords.some((k) => isMatch(k))) return true
+          // Check the keywords for matches
+          if (p.keywords.some((k) => isMatch(k))) return true
 
-        // Check the authors for matches
-        if (p.authors.some((k) => isMatch(k))) return true
+          // Check the authors for matches
+          if (p.authors.some((k) => isMatch(k))) return true
+        }
 
         // Check if the themes match
         if (filter.theme && p.themes.includes(filter.theme)) return true
