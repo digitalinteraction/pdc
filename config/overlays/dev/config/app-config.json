@@ -43,7 +43,7 @@
     "schedule": { "enabled": true, "visible": true },
     "keynotes": { "enabled": true, "visible": true },
     "places": { "enabled": true, "visible": true },
-    "papers": { "enabled": true, "visible": false },
+    "papers": { "enabled": true, "visible": true },
     "newcastle": { "enabled": true, "visible": true },
     "social": { "enabled": true, "visible": true },
     "help": { "enabled": false, "visible": true },
