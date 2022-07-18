@@ -8,6 +8,7 @@ export interface PaperRecord {
   keywords: string[]
   authors: string[]
   themes: string[]
+  files: string[]
   sessionId: string | null
   content: string
 }

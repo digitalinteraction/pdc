@@ -10,6 +10,22 @@
           {{ paper.title }}
         </h1>
         <div v-if="localeContent" class="content" v-html="localeContent"></div>
+        <div class="buttons" v-if="pdfDownload">
+          <a
+            class="button is-primary"
+            :download="pdfDownload.filename"
+            :href="pdfDownload.url"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="icon">
+              <FontAwesomeIcon :icon="['fas', 'arrow-down']" />
+            </span>
+            <span>
+              {{ $t('pdc.papers.downloadPdf') }}
+            </span>
+          </a>
+        </div>
       </div>
 
       <div slot="sidebar">
@@ -64,6 +80,7 @@ import { PaperRecord } from '@/store/papers-module'
 import { RawLocation } from 'vue-router'
 import { marked } from 'marked'
 import { Theme } from '@openlab/deconf-shared/dist/conference'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default Vue.extend({
   components: {
@@ -72,6 +89,7 @@ export default Vue.extend({
     BackButton,
     SidebarItem,
     BidirectionalIcon,
+    FontAwesomeIcon,
   },
   props: {
     paperId: { type: String, required: true },
@@ -102,6 +120,15 @@ export default Vue.extend({
       return this.paper.themes
         .map((id) => themes.get(id) as Theme)
         .filter((t) => t)
+    },
+    pdfDownload(): { filename: string; url: string } | null {
+      const url = this.paper?.files.find((f) => f.endsWith('.pdf'))
+      if (!url) return null
+      const filename =
+        (this.paper?.authors[0]?.replace(/\s+/g, '-').toLowerCase() ??
+          'paper') + `.pdf`
+
+      return { filename, url }
     },
   },
   created() {

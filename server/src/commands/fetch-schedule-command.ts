@@ -278,6 +278,7 @@ async function processPapers(
     authors: fmt.richText(page.props.Authors).split(onCommas()),
     content: notion.getPageMarkdown(page.blocks, ctx),
     sessionId: fmt.relationIds(page.props.Session)[0] ?? null,
+    files: page.props.Files?.files?.map((f: any) => notion.getFileUrl(f, ctx)),
   }))
   papers.sort((a, b) => a._title.localeCompare(b._title))
   for (const p of papers) delete p._title
