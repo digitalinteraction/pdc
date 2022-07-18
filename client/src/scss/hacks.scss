@@ -94,3 +94,8 @@
   color: $pdc-navy;
   text-decoration: underline;
 }
+
+.scheduleView .sessionTile-description,
+.scheduleView .sessionTile-speakers {
+  display: none;
+}
