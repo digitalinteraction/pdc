@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.4](https://github.com/digitalinteraction/pdc/compare/v1.5.3...v1.5.4) (2022-07-18)
+
+### Bug Fixes
+
+- add missing copy ([ac1948e](https://github.com/digitalinteraction/pdc/commit/ac1948e45e589880efe3c3ec395128f2dbcca378))
+- improve notion markdown whitespace rendering ([4a13283](https://github.com/digitalinteraction/pdc/commit/4a13283bfe3941af90ee156b23951c88721ea8ab))
+- improve papers sorting ([423cec7](https://github.com/digitalinteraction/pdc/commit/423cec7c75d73b98f42801ab5aaf6c38e8b9af52))
+- show hover animation on speaker hover ([8c5dedf](https://github.com/digitalinteraction/pdc/commit/8c5dedfffec3639581bbb366856555bb84c04abd))
+- sort schedule sessions chronologically ([97a0642](https://github.com/digitalinteraction/pdc/commit/97a0642887b10b2e6e356ba6868774f605afffc9))
+- update PaperDetailView to use i18n content and rtl icon ([95ef84c](https://github.com/digitalinteraction/pdc/commit/95ef84c0bf618b21305a42e2d72263a57b66c9b1))
+- upgrade deconf-ui ([49b7972](https://github.com/digitalinteraction/pdc/commit/49b7972c188cd05f34e62e36168467530f6a08a2))
+
 ### [1.5.3](https://github.com/digitalinteraction/pdc/compare/v1.5.2...v1.5.3) (2022-07-05)
 
 ### Bug Fixes
