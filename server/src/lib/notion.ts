@@ -69,36 +69,41 @@ export const notionFmt = {
   email(value: any) {
     return value?.email
   },
-  richText(value: any) {
-    const segments = value?.rich_text?.map((rt: any) => {
-      if (rt.type === 'text') {
-        const text = rt.text.content
+  text(value: any, { markdown = false } = {}) {
+    if (value.type === 'text') {
+      const text = value.text.content
 
-        const wraps = []
-        if (rt.annotations?.bold) wraps.push('**')
-        if (rt.annotations?.italic) wraps.push('_')
-        if (rt.annotations?.strikethrough) wraps.push('~~')
-        if (rt.annotations?.code) wraps.push('`')
+      const wraps = []
+      if (markdown && value.annotations?.bold) wraps.push('**')
+      if (markdown && value.annotations?.italic) wraps.push('_')
+      if (markdown && value.annotations?.strikethrough) wraps.push('~~')
+      if (markdown && value.annotations?.code) wraps.push('`')
 
-        const unwraps = Array.from(wraps).reverse()
-        const annotated = [...wraps, text, ...unwraps].join('')
+      const unwraps = Array.from(wraps).reverse()
+      const annotated = [...wraps, text, ...unwraps].join('')
 
-        if (rt.text.link?.url) {
-          return /view paper|open session/i.test(text)
-            ? `<a class="button is-link is-medium" href="${rt.text.link.url}">${text} →</a>`
-            : `[${annotated}](${rt.text.link.url})`
-        }
-
-        return annotated
+      if (value.text.link?.url) {
+        return /view paper|open session/i.test(text)
+          ? `<a class="button is-link is-medium" href="${value.text.link.url}">${text} →</a>`
+          : `[${annotated}](${value.text.link.url})`
       }
-      // if (rt.type === 'mention') {
-      //   const url = rt.href
-      //   return `<a class="button is-link is-medium" href="${url}">Open →</a>`
-      // }
-      console.error('Unknown rich_text type %o', rt.type)
-      return ''
-    })
-    return segments?.join('')
+
+      return annotated
+    }
+
+    // TODO: review this
+    // if (rt.type === 'mention') {
+    //   const url = rt.href
+    //   return `<a class="button is-link is-medium" href="${url}">Open →</a>`
+    // }
+
+    console.error('Unknown rich_text type %o', value.type)
+    return ''
+  },
+  richText(value: any) {
+    return value?.rich_text
+      ?.map((rt: any) => notionFmt.text(rt, { markdown: true }))
+      .join('')
   },
 }
 
@@ -172,11 +177,6 @@ export class NotionService {
       return '<hr>'
     }
     if (block.type === 'callout') {
-      // if (block.callout.icon.emoji === '🏷️') {
-      //   return `<p class="sessionThemes">${notionFmt.richText(
-      //     block.callout
-      //   )}</p>`
-      // }
       const prefix = block.callout.icon.emoji ?? ''
       return `> ${prefix} ${notionFmt.richText(block.callout)}\n`
     }
@@ -222,14 +222,17 @@ export class NotionService {
       ].join('')
     }
     if (block.type === 'pdf') {
+      let title: string
       let url: string
       if (block.pdf.type === 'file') {
         url = this.getFile(block.pdf.file.url, ctx)
+        title = block.pdf.caption.map((c: any) => notionFmt.text(c)).join('')
       } else {
         console.error('Unknown pdf type %o', block.pdf.type)
         return ''
       }
-      return `<a class="button is-primary" download="paper.pdf" href="${url}" target="_blank">Download PDF →</a>`
+      const filename = title?.replace(/[\s]+/g, '-').toLowerCase() || 'paper'
+      return `<a class="button is-primary" download="${filename}.pdf" href="${url}" target="_blank">Download PDF →</a>`
     }
     if (block.type === 'video') {
       let url: URL
