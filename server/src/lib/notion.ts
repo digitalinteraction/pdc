@@ -73,7 +73,6 @@ export const notionFmt = {
     const segments = value?.rich_text?.map((rt: any) => {
       if (rt.type === 'text') {
         const text = rt.text.content
-        if (!text?.trim()) return ''
 
         const wraps = []
         if (rt.annotations?.bold) wraps.push('**')
@@ -82,7 +81,7 @@ export const notionFmt = {
         if (rt.annotations?.code) wraps.push('`')
 
         const unwraps = Array.from(wraps).reverse()
-        const annotated = [...wraps, text.trim(), ...unwraps].join('')
+        const annotated = [...wraps, text, ...unwraps].join('')
 
         if (rt.text.link?.url) {
           return /view paper|open session/i.test(text)
@@ -99,7 +98,7 @@ export const notionFmt = {
       console.error('Unknown rich_text type %o', rt.type)
       return ''
     })
-    return segments?.join(' ')
+    return segments?.join('')
   },
 }
 
@@ -310,7 +309,7 @@ export class NotionService {
 
   /** paginate through `notion.databases.query` and fetch page blocks */
   async queryNotionDatabase(db: string) {
-    debug('retrieveAll db=%o', db)
+    debug('queryNotionDatabase db=%o', db)
 
     let res = await this.client.databases.query({
       database_id: db,
@@ -318,7 +317,7 @@ export class NotionService {
     let all = res.results
 
     while (res.next_cursor !== null) {
-      debug('retrieveAll db=%o next=%o', db, res.next_cursor)
+      debug('queryNotionDatabase db=%o next=%o', db, res.next_cursor)
 
       res = await this.client.databases.query({
         database_id: db,
@@ -344,13 +343,13 @@ export class NotionService {
 
   /** paginate through `notion.blocks.children.list` for a page */
   async queryPageBlocks(page: string) {
-    debug('retrieveAll page=%o', page)
+    debug('queryPageBlocks page=%o', page)
 
     let res = await this.client.blocks.children.list({ block_id: page })
     let all = res.results as GetBlockResponse[]
 
     while (res.next_cursor !== null) {
-      debug('retrieveAll page=%o next=%o', page, res.next_cursor)
+      debug('queryPageBlocks page=%o next=%o', page, res.next_cursor)
 
       res = await this.client.blocks.children.list({
         block_id: page,
