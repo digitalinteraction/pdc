@@ -86,3 +86,11 @@
 .sessionTile-title a {
   color: $pdc-navy;
 }
+
+.speakerGrid-speaker:hover {
+  cursor: pointer;
+}
+.speakerGrid-speaker:hover .speakerGrid-name {
+  color: $pdc-navy;
+  text-decoration: underline;
+}
