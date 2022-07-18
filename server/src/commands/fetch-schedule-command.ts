@@ -272,13 +272,15 @@ async function processPapers(
   const papers = content.papers.map((page) => ({
     id: page.id,
     title: fmt.title(page.props.Name),
+    _title: fmt.title(page.props.Name).replace(/\W/g, ''),
     themes: fmt.relationIds(page.props.Themes),
     keywords: fmt.richText(page.props.Keywords).split(onCommas()),
     authors: fmt.richText(page.props.Authors).split(onCommas()),
     content: notion.getPageMarkdown(page.blocks, ctx),
     sessionId: fmt.relationIds(page.props.Session)[0] ?? null,
   }))
-  papers.sort((a, b) => a.title.localeCompare(b.title))
+  papers.sort((a, b) => a._title.localeCompare(b._title))
+  for (const p of papers) delete p._title
 
   await store.put('schedule.papers', papers)
 }
