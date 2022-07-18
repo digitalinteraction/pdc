@@ -394,6 +394,11 @@ async function processSchedule(
     }
   })
 
+  sessions.sort((a, b) => {
+    if (!a.slot || !b.slot) return 0
+    return a.slot.localeCompare(b.slot)
+  })
+
   await store.put('schedule.themes', themes)
   await store.put('schedule.types', types)
   await store.put('schedule.tracks', tracks)
