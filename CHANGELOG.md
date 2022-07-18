@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/digitalinteraction/pdc/compare/v1.5.4...v1.6.0) (2022-07-18)
+
+### Features
+
+- **papers:** pull papers directly from notion and manually render them ([d986734](https://github.com/digitalinteraction/pdc/commit/d986734601352d0480e79c8b28c0d9b7df221507))
+- set pdf's filename to the slugified caption ([eca837a](https://github.com/digitalinteraction/pdc/commit/eca837ac6468d5d3d2d156572a070e7a277818ac))
+
 ### [1.5.4](https://github.com/digitalinteraction/pdc/compare/v1.5.3...v1.5.4) (2022-07-18)
 
 ### Bug Fixes
