@@ -18,10 +18,11 @@
             class="button is-primary is-fullwidth is-medium"
             :to="sessionRoute"
           >
-            <span>Go to session</span>
-            <span class="icon">
-              <fa-icon :icon="['fas', 'arrow-right']" />
-            </span>
+            <span>{{ $t('pdc.papers.goToSession') }}</span>
+            <BidirectionalIcon
+              :ltr="['fas', 'arrow-right']"
+              :rtl="['fas', 'arrow-left']"
+            />
           </router-link>
         </SidebarItem>
 
@@ -57,6 +58,7 @@ import {
   Routes,
   SessionLayout,
   SidebarItem,
+  BidirectionalIcon,
 } from '@openlab/deconf-ui-toolkit'
 import { PaperRecord } from '@/store/papers-module'
 import { RawLocation } from 'vue-router'
@@ -64,7 +66,13 @@ import { marked } from 'marked'
 import { Theme } from '@openlab/deconf-shared/dist/conference'
 
 export default Vue.extend({
-  components: { AppLayout, SessionLayout, BackButton, SidebarItem },
+  components: {
+    AppLayout,
+    SessionLayout,
+    BackButton,
+    SidebarItem,
+    BidirectionalIcon,
+  },
   props: {
     paperId: { type: String, required: true },
   },
