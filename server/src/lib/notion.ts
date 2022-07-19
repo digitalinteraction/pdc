@@ -138,6 +138,16 @@ function parseEmbedUrl(url: URL): Record<string, string> | null {
     }
   }
 
+  // vimeo.com/123456
+  if (url.host.endsWith('vimeo.com')) {
+    const id = url.pathname.replace(/^\/+/, '').replace(/\/+$/, '')
+    return {
+      title: 'Vimeo video player',
+      allow: 'autoplay',
+      src: `https://player.vimeo.com/video/${id}`,
+    }
+  }
+
   return null
 }
 
