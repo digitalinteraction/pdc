@@ -82,16 +82,18 @@ export const notionFmt = {
 
       const unwraps = Array.from(wraps).reverse()
       const annotated = [...wraps, text.trim(), ...unwraps].join('')
+      const pre = /^\s+/.exec(text)?.[0] ?? ''
+      const post = /\s+$/.exec(text)?.[0] ?? ''
 
       if (value.text.link?.url) {
         // if (/view paper/i.test(text)) {
         //   const url = '/papers' + value.text.link.url
         //   return `<a class="button is-link" href="${url}">${text} →</a>`
         // }
-        return `[${annotated}](${value.text.link.url})`
+        return `${pre}[${annotated}](${value.text.link.url})${post}`
       }
 
-      return ' ' + annotated + ' '
+      return pre + annotated + post
     }
 
     // TODO: review this
