@@ -83,19 +83,21 @@ export const notionFmt = {
       const annotated = [...wraps, text, ...unwraps].join('')
 
       if (value.text.link?.url) {
-        return /view paper|open session/i.test(text)
-          ? `<a class="button is-link is-medium" href="${value.text.link.url}">${text} →</a>`
-          : `[${annotated}](${value.text.link.url})`
+        // if (/view paper/i.test(text)) {
+        //   const url = '/papers' + value.text.link.url
+        //   return `<a class="button is-link" href="${url}">${text} →</a>`
+        // }
+        return `[${annotated}](${value.text.link.url})`
       }
 
       return annotated
     }
 
     // TODO: review this
-    // if (rt.type === 'mention') {
-    //   const url = rt.href
-    //   return `<a class="button is-link is-medium" href="${url}">Open →</a>`
-    // }
+    if (value.type === 'mention' && value.mention.type === 'page') {
+      const url = '/papers/' + value.mention.page.id
+      return `<a class="button is-link" href="${url}">View paper →</a>`
+    }
 
     console.error('Unknown rich_text type %o', value.type)
     return ''
