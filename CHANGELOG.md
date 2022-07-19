@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/digitalinteraction/pdc/compare/v1.6.0...v1.7.0) (2022-07-19)
+
+### Features
+
+- embed vimeo videos inside notion content ([e7c0f03](https://github.com/digitalinteraction/pdc/commit/e7c0f032d7467374408aa631cbecf5454245c73b))
+
+### Bug Fixes
+
+- fix themes overflowing ([185c82c](https://github.com/digitalinteraction/pdc/commit/185c82c4e6b5b94491bb5135e677a3021f413ee6))
+- improve markdown renderer - short-circuit non-markdown and trim/space annotated text ([af9489a](https://github.com/digitalinteraction/pdc/commit/af9489a09192e47e2db2886718fed97e14edc123))
+- preseve markdown whitespace while annotating ([93a3088](https://github.com/digitalinteraction/pdc/commit/93a3088daa85680886d3c9e9ca950d8500fae39d))
+- rework notion paper links ([b3908bd](https://github.com/digitalinteraction/pdc/commit/b3908bdc90639efd9ed7830e2e528f6d11dd0a69))
+- show not-found on PaperDetailView ([cfc0ee4](https://github.com/digitalinteraction/pdc/commit/cfc0ee47cdb4c3ac943956aa0824629ae948d703))
+
 ## [1.6.0](https://github.com/digitalinteraction/pdc/compare/v1.5.4...v1.6.0) (2022-07-18)
 
 ### Features
