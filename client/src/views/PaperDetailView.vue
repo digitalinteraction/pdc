@@ -58,6 +58,7 @@
       </div>
     </SessionLayout>
   </AppLayout>
+  <NotFoundView v-else />
 </template>
 
 <script lang="ts">
@@ -76,6 +77,7 @@ import {
   SidebarItem,
   BidirectionalIcon,
 } from '@openlab/deconf-ui-toolkit'
+import NotFoundView from '@/views/NotFoundView.vue'
 import { PaperRecord } from '@/store/papers-module'
 import { RawLocation } from 'vue-router'
 import { marked } from 'marked'
@@ -90,6 +92,7 @@ export default Vue.extend({
     SidebarItem,
     BidirectionalIcon,
     FontAwesomeIcon,
+    NotFoundView,
   },
   props: {
     paperId: { type: String, required: true },
