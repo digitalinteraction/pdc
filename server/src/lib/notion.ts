@@ -72,15 +72,16 @@ export const notionFmt = {
   text(value: any, { markdown = false } = {}) {
     if (value.type === 'text') {
       const text = value.text.content
+      if (!markdown) return text
 
       const wraps = []
-      if (markdown && value.annotations?.bold) wraps.push('**')
-      if (markdown && value.annotations?.italic) wraps.push('_')
-      if (markdown && value.annotations?.strikethrough) wraps.push('~~')
-      if (markdown && value.annotations?.code) wraps.push('`')
+      if (value.annotations?.bold) wraps.push('**')
+      if (value.annotations?.italic) wraps.push('_')
+      if (value.annotations?.strikethrough) wraps.push('~~')
+      if (value.annotations?.code) wraps.push('`')
 
       const unwraps = Array.from(wraps).reverse()
-      const annotated = [...wraps, text, ...unwraps].join('')
+      const annotated = [...wraps, text.trim(), ...unwraps].join('')
 
       if (value.text.link?.url) {
         // if (/view paper/i.test(text)) {
@@ -90,7 +91,7 @@ export const notionFmt = {
         return `[${annotated}](${value.text.link.url})`
       }
 
-      return annotated
+      return ' ' + annotated + ' '
     }
 
     // TODO: review this
@@ -110,6 +111,8 @@ export const notionFmt = {
 }
 
 function parseEmbedUrl(url: URL): Record<string, string> | null {
+  // youtube.com?v=123456
+  // youtube.com?list=654321
   if (url.host.endsWith('youtube.com')) {
     const video = url.searchParams.get('v')
     const list = url.searchParams.get('list')
