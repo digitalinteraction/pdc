@@ -176,7 +176,7 @@ deconf:
 pdc:
   general:
     appName: PDC 2022
-    backToAtrium: Back to Atrium
+    backToAtrium: Back to home page
     'yes': 'Yes'
     'no': 'No'
     noResults: No results
