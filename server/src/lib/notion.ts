@@ -231,10 +231,11 @@ export class NotionService {
         console.error('Unknown image type %o', block.image.type)
         return '' // unknown image type
       }
+      // The '\n\n' is a hack to get it to render markdown inside the <figcaption>
       return [
         `<figure>`,
         `<img src="${url}">`,
-        alt ? `<figcaption>${alt}</figcaption>` : '',
+        alt ? `<figcaption>\n\n${alt}\n\n</figcaption>` : '',
         `</figure>`,
       ].join('')
     }

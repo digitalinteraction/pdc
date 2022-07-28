@@ -15,4 +15,5 @@ export enum ExtraRoutes {
   Newcastle = 'newcastle',
   Social = 'social',
   About = 'about',
+  CalendarHelp = 'calendarHelp',
 }

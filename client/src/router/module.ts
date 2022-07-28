@@ -220,6 +220,15 @@ const routes: Array<RouteConfig> = [
       pageTitle: 'pdc.pageTitles.about',
     },
   },
+  {
+    path: '/calendar-help',
+    name: ExtraRoutes.CalendarHelp,
+    component: () =>
+      import(/* webpackChunkName: "static" */ '../views/CalendarHelpView.vue'),
+    meta: {
+      pageTitle: 'pdc.pageTitles.calendarHelp',
+    },
+  },
 
   //
   // Errors
