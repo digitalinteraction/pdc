@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/digitalinteraction/pdc/compare/v1.8.0...v1.8.1) (2022-07-28)
+
+### Bug Fixes
+
+- explore visual-schedule on atrium ([d5a0fd7](https://github.com/digitalinteraction/pdc/commit/d5a0fd7f4dea891d32846d11eff17139dd6d8d97))
+
 ## [1.8.0](https://github.com/digitalinteraction/pdc/compare/v1.7.1...v1.8.0) (2022-07-28)
 
 ### Features
