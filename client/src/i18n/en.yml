@@ -138,6 +138,7 @@ deconf:
     userSessions: My Schedule
     hidePast: Hide previous sessions
     showPast: Show previous sessions
+    resultHeading: 'Search results — {0}'
 
   session:
     slot: Schedule
@@ -218,6 +219,7 @@ pdc:
     newcastle: Newcastle
     privacy: Privacy
     terms: Terms
+    calendarHelp: Calendar Help
 
   notFound:
     title: Page Not Found
