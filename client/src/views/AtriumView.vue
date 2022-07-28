@@ -10,7 +10,11 @@
 
       <BoxContent slot="left">
         <div class="atriumView-content">
-          <ApiContent :slug="contentSlug"> </ApiContent>
+          <ApiContent :slug="contentSlug">
+            <div slot="visual_schedule" class="visualSchedule">
+              <img height="420" width="1173" src="/img/schedule.jpg" />
+            </div>
+          </ApiContent>
         </div>
       </BoxContent>
 
@@ -177,5 +181,21 @@ export default Vue.extend({
       background-color: darken($pdc-yellow, 7%);
     }
   }
+}
+
+// Stolen from https://github.com/digitalinteraction/alembic/blob/main/src/layouts/reel/reel.css
+.visualSchedule {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-color: $pdc-navy $pdc-yellow;
+  height: auto;
+}
+.visualSchedule > img {
+  block-size: 100%;
+  flex-basis: auto;
+  inline-size: auto;
+  max-width: unset;
+  height: 420px;
 }
 </style>
