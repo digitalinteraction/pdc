@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/digitalinteraction/pdc/compare/v1.7.1...v1.8.0) (2022-07-28)
+
+### Features
+
+- add CalendarHelp page ([0e05903](https://github.com/digitalinteraction/pdc/commit/0e05903e737d5e070a559ff52413c17a84bd76e8))
+- add new languages ([5fadbba](https://github.com/digitalinteraction/pdc/commit/5fadbba881e4df79f031018111341799ec906eca))
+- support grouped searching ([dc2eff0](https://github.com/digitalinteraction/pdc/commit/dc2eff01645890491c2f46c4c8aedc23b88a0e4d))
+
+### Bug Fixes
+
+- fix slot sorting ([380b61a](https://github.com/digitalinteraction/pdc/commit/380b61a36bccf5e1dde648a9df0b13f4ff73dfcf))
+
 ### [1.7.1](https://github.com/digitalinteraction/pdc/compare/v1.7.0...v1.7.1) (2022-07-25)
 
 ## [1.7.0](https://github.com/digitalinteraction/pdc/compare/v1.6.0...v1.7.0) (2022-07-19)
