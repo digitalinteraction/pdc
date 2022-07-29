@@ -24,8 +24,10 @@ configMapGenerator:
       - config/nginx.conf
 
 patchesStrategicMerge:
-  - redis-pvc-patch.yml
-  - server-deployment-patch.yml
+  - patches/redis-pvc.yml
+  - patches/schedule-cronjob.yml
+  - patches/server-deployment.yml
+  - patches/visitors-cronjob.yml
 
 images:
   - name: redis
@@ -33,8 +35,8 @@ images:
 
   # https://github.com/digitalinteraction/pdc/pkgs/container/pdc-client
   - name: ghcr.io/digitalinteraction/pdc-client
-    newTag: 1.9.0
+    newTag: 1.9.1
 
   # https://github.com/digitalinteraction/pdc/pkgs/container/pdc-server
   - name: ghcr.io/digitalinteraction/pdc-server
-    newTag: 1.9.0
+    newTag: 1.9.1

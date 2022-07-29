@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: fetch-schedule
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: fetch-schedule
+              envFrom:
+                - secretRef: { name: prod-server-env }

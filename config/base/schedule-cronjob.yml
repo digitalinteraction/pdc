@@ -31,8 +31,6 @@ spec:
                 - mountPath: /app/do-ca.crt
                   name: digitalocean
                   subPath: do-ca.crt
-              envFrom:
-                - secretRef: { name: server-env }
               env:
                 - name: DEBUG
                   value: deconf*,pdc*

@@ -17,8 +17,6 @@ spec:
       initContainers:
         - name: migrate
           image: ghcr.io/digitalinteraction/pdc-server
-          envFrom:
-            - secretRef: { name: server-env }
           args:
             - migrate
           volumeMounts:
