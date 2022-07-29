@@ -200,7 +200,7 @@ async function createRenderContext(
 
   // If using S3, list files we don't need to download again
   if (s3) {
-    debug('loading notion filenames')
+    debug('#createRenderContext loading notion filenames')
     const found = await s3.list('notion/')
 
     for (const file of found) {
@@ -213,6 +213,7 @@ async function createRenderContext(
       })
     }
   } else {
+    debug('#createRenderContext loading static filenames')
     // If not using notion, prefil based on the "static" local directory
     for (const filename of await fs.readdir(baseDir)) {
       ctx.files.set(filename, {
