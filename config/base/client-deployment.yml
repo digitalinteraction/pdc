@@ -28,8 +28,6 @@ spec:
             - mountPath: /etc/nginx/conf.d/default.conf
               name: resources
               subPath: nginx.conf
-            - mountPath: /usr/share/nginx/html/static
-              name: static
           readinessProbe:
             tcpSocket: { port: 80 }
             initialDelaySeconds: 1
@@ -41,6 +39,3 @@ spec:
         - name: resources
           configMap:
             name: client-resources
-        - name: static
-          persistentVolumeClaim:
-            claimName: static

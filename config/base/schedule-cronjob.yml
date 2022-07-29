@@ -47,8 +47,7 @@ spec:
               configMap:
                 name: server-resources
             - name: static
-              persistentVolumeClaim:
-                claimName: static
+              emptyDir: {}
             - name: digitalocean
               configMap:
                 name: digitalocean
