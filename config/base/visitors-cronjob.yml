@@ -1,4 +1,4 @@
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: log-visitors
@@ -26,6 +26,9 @@ spec:
                   name: resources
                   subPath: app-config.json
                   readOnly: true
+                - mountPath: /app/do-ca.crt
+                  name: digitalocean
+                  subPath: do-ca.crt
               envFrom:
                 - secretRef: { name: server-env }
               env:
@@ -41,6 +44,9 @@ spec:
             - name: resources
               configMap:
                 name: server-resources
+            - name: digitalocean
+              configMap:
+                name: digitalocean
 
           securityContext:
             runAsUser: 1000

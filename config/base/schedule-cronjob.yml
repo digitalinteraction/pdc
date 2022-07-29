@@ -1,4 +1,4 @@
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: fetch-schedule
@@ -28,6 +28,9 @@ spec:
                   readOnly: true
                 - mountPath: /app/static
                   name: static
+                - mountPath: /app/do-ca.crt
+                  name: digitalocean
+                  subPath: do-ca.crt
               envFrom:
                 - secretRef: { name: server-env }
               env:
@@ -46,6 +49,9 @@ spec:
             - name: static
               persistentVolumeClaim:
                 claimName: static
+            - name: digitalocean
+              configMap:
+                name: digitalocean
 
           securityContext:
             runAsUser: 1000

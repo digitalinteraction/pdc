@@ -21,6 +21,10 @@ spec:
             - secretRef: { name: server-env }
           args:
             - migrate
+          volumeMounts:
+            - mountPath: /app/do-ca.crt
+              name: digitalocean
+              subPath: do-ca.crt
 
       containers:
         - name: server
@@ -51,6 +55,9 @@ spec:
         - name: resources
           configMap:
             name: server-resources
+        - name: digitalocean
+          configMap:
+            name: digitalocean
 
       # Security
       securityContext:

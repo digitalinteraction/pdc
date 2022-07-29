@@ -12,3 +12,8 @@ resources:
   - server-deployment.yml
   - server-service.yml
   - static-pvc.yml
+
+configMapGenerator:
+  - name: digitalocean
+    files:
+      - do-ca.crt
