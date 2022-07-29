@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.3](https://github.com/digitalinteraction/pdc/compare/v1.8.2...v1.8.3) (2022-07-29)
+
+### Bug Fixes
+
+- improve visual schedule ([9fad2f1](https://github.com/digitalinteraction/pdc/commit/9fad2f198700b97973177f1304418e9bd6404789))
+- twitter icon is back on the atrium ([0629df4](https://github.com/digitalinteraction/pdc/commit/0629df498e546c9d31aa667162b4ba378f3c779f))
+
 ### [1.8.2](https://github.com/digitalinteraction/pdc/compare/v1.8.1...v1.8.2) (2022-07-29)
 
 ### Bug Fixes
