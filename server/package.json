@@ -1,7 +1,7 @@
 {
   "name": "@openlab/pdc-server",
   "type": "module",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "scripts": {
     "build": "tsc",
     "dev": "node --loader=ts-node/esm --require dotenv/config src/cli.ts",

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.2](https://github.com/digitalinteraction/pdc/compare/v1.8.1...v1.8.2) (2022-07-29)
+
+### Bug Fixes
+
+- update language mapping ([341b0f7](https://github.com/digitalinteraction/pdc/commit/341b0f74db5cad21f550cc4b525c8a3622170199))
+
 ### [1.8.1](https://github.com/digitalinteraction/pdc/compare/v1.8.0...v1.8.1) (2022-07-28)
 
 ### Bug Fixes
