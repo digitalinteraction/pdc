@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/digitalinteraction/pdc/compare/v1.8.3...v1.9.0) (2022-07-29)
+
+### Features
+
+- cache static files from s3 to avoid re-uploading without a static volume ([4e3386c](https://github.com/digitalinteraction/pdc/commit/4e3386cca6944613c031d5ed565855446cf4f632))
+- optionally upload static assets to S3 ([8952e24](https://github.com/digitalinteraction/pdc/commit/8952e249b245ec868ea58559eef2e099d4872cf7))
+
+### Bug Fixes
+
+- update copy ([828ea68](https://github.com/digitalinteraction/pdc/commit/828ea68cc3717c4c5eab0f3987eb4c6e61f42a8c))
+
 ### [1.8.3](https://github.com/digitalinteraction/pdc/compare/v1.8.2...v1.8.3) (2022-07-29)
 
 ### Bug Fixes
