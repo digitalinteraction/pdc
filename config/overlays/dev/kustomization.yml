@@ -25,6 +25,7 @@ configMapGenerator:
 
 patchesStrategicMerge:
   - redis-pvc-patch.yml
+  - server-deployment-patch.yml
 
 images:
   - name: redis

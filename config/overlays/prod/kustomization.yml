@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: pdc-2022
+namespace: pdc
 namePrefix: prod-
 
 commonLabels:
@@ -10,8 +10,11 @@ commonLabels:
 
 resources:
   - ../../base
-  - client-ingress.yml
-  - server-ingress.yml
+  - server-secret.yml
+  # - client-ingress.yml
+  # - server-ingress.yml
+  # - client-hpa.yml
+  # - server-hpa.yml
 
 configMapGenerator:
   - name: server-resources
@@ -22,15 +25,9 @@ configMapGenerator:
       - config/config.js
       - config/nginx.conf
 
-secretGenerator:
-  - name: server-env
-    env: secrets/server.env
-
 patchesStrategicMerge:
   - redis-pvc-patch.yml
-  - static-pvc-patch.yml
-  - client-patch.yml
-  - server-patch.yml
+  - server-deployment-patch.yml
 
 images:
   - name: redis
@@ -38,8 +35,8 @@ images:
 
   # https://github.com/digitalinteraction/pdc/pkgs/container/pdc-client
   - name: ghcr.io/digitalinteraction/pdc-client
-    newTag: 1.8.0
+    newTag: 1.9.0
 
   # https://github.com/digitalinteraction/pdc/pkgs/container/pdc-server
   - name: ghcr.io/digitalinteraction/pdc-server
-    newTag: 1.8.0
+    newTag: 1.9.0

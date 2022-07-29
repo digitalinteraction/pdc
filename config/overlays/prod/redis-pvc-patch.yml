@@ -3,4 +3,4 @@ kind: PersistentVolumeClaim
 metadata:
   name: redis-data
 spec:
-  storageClassName: isilon
+  storageClassName: do-block-storage
