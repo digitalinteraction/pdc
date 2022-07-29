@@ -49,6 +49,9 @@ spec:
               name: resources
               subPath: app-config.json
               readOnly: true
+            - mountPath: /app/do-ca.crt
+              name: digitalocean
+              subPath: do-ca.crt
 
       # Volumes
       volumes:
