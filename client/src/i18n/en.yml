@@ -80,7 +80,7 @@ deconf:
   sessionState:
     liveNow: Live Now
     sessionOver: Session over
-    interest: 'no activity | added to 1 schedule | added to {n} schedules'
+    interest: 'added to 0 schedules | added to 1 schedule | added to {n} schedules'
 
   sessionEmbed:
     noEmbed: Something went wrong, there is nothing to show here
