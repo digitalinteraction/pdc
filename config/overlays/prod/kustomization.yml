@@ -13,8 +13,8 @@ resources:
   - server-secret.yml
   - client-ingress.yml
   - server-ingress.yml
-  # - client-hpa.yml
-  # - server-hpa.yml
+  - hpa/client.yml
+  - hpa/server.yml
 
 configMapGenerator:
   - name: server-resources
