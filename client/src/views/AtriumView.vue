@@ -11,7 +11,11 @@
       <BoxContent slot="left">
         <div class="atriumView-content">
           <ApiContent :slug="contentSlug">
-            <div slot="visual_schedule" class="visualSchedule">
+            <div
+              slot="visual_schedule"
+              class="visualSchedule"
+              ref="visualSchedule"
+            >
               <img height="420" width="1173" src="/img/schedule.jpg" />
             </div>
           </ApiContent>
@@ -93,6 +97,7 @@ import sponsorData from '@/data/sponsors.json'
 
 interface Data {
   sponsors: SponsorGroup[]
+  reelObserver?: ResizeObserver
 }
 
 export default Vue.extend({
@@ -109,6 +114,7 @@ export default Vue.extend({
   data(): Data {
     return {
       sponsors: deepSeal(sponsorData),
+      reelObserver: undefined,
     }
   },
   computed: {
@@ -159,6 +165,32 @@ export default Vue.extend({
       return widgets
     },
   },
+  updated() {
+    if (
+      !this.reelObserver &&
+      this.$refs.visualSchedule &&
+      'ResizeObserver' in window
+    ) {
+      this.reelObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          entry.target.classList.toggle(
+            'overflowing',
+            entry.target.scrollWidth > entry.target.clientWidth
+          )
+        }
+      })
+      this.reelObserver.observe(this.$refs.visualSchedule as HTMLElement)
+    }
+  },
+  destroyed() {
+    this.reelObserver?.disconnect()
+    this.reelObserver = undefined
+  },
+  methods: {
+    plop(elem: ResizeObserverEntry) {
+      console.log(elem)
+    },
+  },
 })
 </script>
 
@@ -196,6 +228,8 @@ export default Vue.extend({
   flex-basis: auto;
   inline-size: auto;
   max-width: unset;
-  height: 420px;
+  max-height: 360px;
+}
+.visualSchedule.overflowing {
 }
 </style>
