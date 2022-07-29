@@ -144,7 +144,7 @@ export async function fetchScheduleCommand(
   }
 
   // A map of notion image id to local path
-  const ctx = await createRenderContext(options.staticDir, url)
+  const ctx = await createRenderContext(options.staticDir, url, s3)
   const existingFiles = new Set(ctx.files.keys())
 
   if (pull('schedule')) {
@@ -189,18 +189,38 @@ export async function fetchScheduleCommand(
  * Create a context for rendering notion files to markdown,
  * pre-cache existing images so they don't need to be redownloaded
  */
-async function createRenderContext(baseDir: string, url: UrlService) {
+async function createRenderContext(
+  baseDir: string,
+  url: UrlService,
+  s3: S3Client | null
+) {
   const ctx: NotionRenderContext = {
     files: new Map(),
   }
 
-  // Preset existing files
-  for (const filename of await fs.readdir(baseDir)) {
-    ctx.files.set(filename, {
-      originalUrl: '',
-      newUrl: url.getNotionFile(filename).toString(),
-      filename,
-    })
+  // If using S3, list files we don't need to download again
+  if (s3) {
+    debug('loading notion filenames')
+    const found = await s3.list('notion/')
+
+    for (const file of found) {
+      const filename = file.name.replace('notion/', '')
+
+      ctx.files.set(filename, {
+        originalUrl: '',
+        newUrl: url.getNotionFile(filename).toString(),
+        filename,
+      })
+    }
+  } else {
+    // If not using notion, prefil based on the "static" local directory
+    for (const filename of await fs.readdir(baseDir)) {
+      ctx.files.set(filename, {
+        originalUrl: '',
+        newUrl: url.getNotionFile(filename).toString(),
+        filename,
+      })
+    }
   }
 
   return ctx
