@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](https://github.com/digitalinteraction/pdc/compare/v1.9.0...v1.9.1) (2022-07-29)
+
+### Bug Fixes
+
+- improve debug message ([f0d65de](https://github.com/digitalinteraction/pdc/commit/f0d65de2c048502d603ebfad37118ae522a2221c))
+
 ## [1.9.0](https://github.com/digitalinteraction/pdc/compare/v1.8.3...v1.9.0) (2022-07-29)
 
 ### Features
