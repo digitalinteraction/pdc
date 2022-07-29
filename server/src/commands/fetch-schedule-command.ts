@@ -39,6 +39,8 @@ import {
   RegisteredUsers,
   trimEmail,
   sha256UrlHash,
+  getS3ClientFromEnv,
+  S3Client,
 } from '../lib/module.js'
 import got from 'got'
 
@@ -83,6 +85,7 @@ export async function fetchScheduleCommand(
   const store = new RedisService(REDIS_URL)
   const env = { CLIENT_URL, SELF_URL, STATIC_URL }
   const url = new UrlService({ env })
+  const s3 = getS3ClientFromEnv()
   const notion = new NotionService({
     url,
     options: {
@@ -174,7 +177,7 @@ export async function fetchScheduleCommand(
 
   if (ctx.files.size > 0 && options.skipFiles !== true) {
     debug('processing files')
-    downloadFiles(options.staticDir, ctx, existingFiles)
+    downloadFiles(options.staticDir, ctx, existingFiles, s3)
   }
 
   await store.close()
@@ -207,7 +210,8 @@ async function createRenderContext(baseDir: string, url: UrlService) {
 async function downloadFiles(
   baseDir: string,
   ctx: NotionRenderContext,
-  existingFiles: Set<string>
+  existingFiles: Set<string>,
+  s3: S3Client | null
 ) {
   for (const value of ctx.files.values()) {
     if (existingFiles.has(value.filename)) {
@@ -219,6 +223,14 @@ async function downloadFiles(
     try {
       const newPath = path.join(baseDir, value.filename)
       await pipeline(got.stream(value.originalUrl), createWriteStream(newPath))
+
+      if (s3) {
+        const key = path.join('notion', value.filename)
+        debug(' → upload to %o', key)
+        await s3.client.fPutObject(s3.bucketName, key, newPath, {
+          'x-amz-acl': 'public-read',
+        })
+      }
     } catch (error) {
       console.error('Failed to download %o', value.originalUrl)
       throw error
