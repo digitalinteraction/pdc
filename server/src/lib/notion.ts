@@ -204,7 +204,7 @@ export class NotionService {
       return `* ${notionFmt.richText(block.bulleted_list_item)}`
     }
     if (block.type === 'numbered_list_item') {
-      return `0. ${notionFmt.richText(block.numbered_list_item)}`
+      return `1. ${notionFmt.richText(block.numbered_list_item)}`
     }
     if (block.type === 'to_do') {
       const pre = block.to_do.checked ? 'x' : ' '
