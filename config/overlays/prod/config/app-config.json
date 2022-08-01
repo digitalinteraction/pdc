@@ -1,7 +1,7 @@
 {
   "mail": {
     "fromEmail": "noreply@openlab.dev",
-    "replyToEmail": "john.vines@ed.ac.uk"
+    "replyToEmail": "help@pdc2022.org"
   },
   "sendgrid": {
     "loginTemplateId": "d-0618637dac8c4438827d5ffa82a2b324"
@@ -41,10 +41,10 @@
   },
   "settings": {
     "atrium": { "enabled": true, "visible": true },
-    "schedule": { "enabled": false, "visible": true },
-    "keynotes": { "enabled": true, "visible": true, "readonly": true },
-    "places": { "enabled": false, "visible": true },
-    "papers": { "enabled": false, "visible": false },
+    "schedule": { "enabled": true, "visible": true },
+    "keynotes": { "enabled": true, "visible": true },
+    "places": { "enabled": true, "visible": true },
+    "papers": { "enabled": true, "visible": true },
     "newcastle": { "enabled": true, "visible": true },
     "social": { "enabled": true, "visible": true },
     "help": { "enabled": false, "visible": true },
@@ -52,14 +52,14 @@
 
     "navigation": {
       "showProfile": true,
-      "showLogin": false,
+      "showLogin": true,
       "showRegister": true
     },
 
     "widgets": {
       "siteVisitors": true,
-      "twitter": false,
-      "login": false,
+      "twitter": true,
+      "login": true,
       "register": true
     }
   }
