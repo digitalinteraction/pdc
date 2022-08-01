@@ -93,6 +93,8 @@ export async function fetchScheduleCommand(
     },
   })
 
+  if (s3) debug('using S3 bucket=%o', s3.bucketName)
+
   debug('ensuring folder %o', options.staticDir)
   await fs.mkdir(options.staticDir, { recursive: true })
 
