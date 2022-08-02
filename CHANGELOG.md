@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/digitalinteraction/pdc/compare/v1.9.1...v1.10.0) (2022-08-02)
+
+### Features
+
+- add metrics endpoints ([b8e3226](https://github.com/digitalinteraction/pdc/commit/b8e32264c9a1513ada6dfbcd8ad0fc82e25b8e5c))
+- add new atrium widgets ([6d5b0ec](https://github.com/digitalinteraction/pdc/commit/6d5b0eced09bde3c03a95b81d72eedb98c10c12d))
+
+### Bug Fixes
+
+- make mobile menu pdc-navy ([59ca26e](https://github.com/digitalinteraction/pdc/commit/59ca26ecd3905a967173fabd266c59e7f56edb42))
+- show "coming soon" when a place has no events ([f6b03b0](https://github.com/digitalinteraction/pdc/commit/f6b03b07750027e1d137e242c278f1ae66a78535))
+- show speakers again ([ff1b854](https://github.com/digitalinteraction/pdc/commit/ff1b8540609ed20823ff98a993011a468abaaf85))
+- stop ordered lists starting at 0 ([5435087](https://github.com/digitalinteraction/pdc/commit/54350870d40226aadbc0514386b5cb25ef41c41a))
+- update reg url ([481c2d8](https://github.com/digitalinteraction/pdc/commit/481c2d88ecb5858ba9a87ce6a65fa8fc9709bdae))
+
 ### [1.9.1](https://github.com/digitalinteraction/pdc/compare/v1.9.0...v1.9.1) (2022-07-29)
 
 ### Bug Fixes
