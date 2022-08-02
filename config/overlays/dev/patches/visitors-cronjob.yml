@@ -11,3 +11,11 @@ spec:
             - name: log-visitors
               envFrom:
                 - secretRef: { name: dev-server-env }
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: log-visitors
+spec:
+  # Runs every hour (at half past)
+  schedule: '30 * * * *'
