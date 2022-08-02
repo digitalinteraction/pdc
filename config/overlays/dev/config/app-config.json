@@ -47,7 +47,7 @@
     "papers": { "enabled": true, "visible": true },
     "newcastle": { "enabled": true, "visible": true },
     "social": { "enabled": true, "visible": true },
-    "help": { "enabled": false, "visible": true },
+    "help": { "enabled": true, "visible": true },
     "about": { "enabled": true, "visible": true },
 
     "navigation": {
