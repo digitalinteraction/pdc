@@ -28,6 +28,8 @@ import { CalendarRouter } from './deconf/calendar-router.js'
 import { ContentRouter } from './deconf/content-router.js'
 import { RegistrationRouter } from './deconf/registration-router.js'
 import { ConferenceRouter } from './deconf/conference-router.js'
+import { MetricsBroker } from './deconf/metrics-broker.js'
+import { AuthBroker } from './deconf/auth-broker.js'
 
 const STATIC_MAX_AGE = 30 * 60 * 1000
 const debug = createDebug('server')
@@ -123,7 +125,10 @@ export function createServer(context: AppContext) {
     new ContentRouter(context),
     new RegistrationRouter(context),
   ]
-  const appBrokers: AppBroker[] = []
+  const appBrokers: AppBroker[] = [
+    new AuthBroker(context),
+    new MetricsBroker(context),
+  ]
 
   for (const appRouter of appRouters) {
     appRouter.apply(router)
@@ -144,8 +149,8 @@ export function createServer(context: AppContext) {
 
   const io = context.env.DISABLE_SOCKETS ? null : new SocketIoServer(server, {})
 
-  if (!io) {
-    const io = new SocketIoServer(server, {})
+  if (io) {
+    debug('turning on socket.io')
     context.sockets.setIo(io)
 
     if (context.env.REDIS_URL) {
@@ -156,6 +161,7 @@ export function createServer(context: AppContext) {
   }
 
   io?.on('connection', (socket) => {
+    debug('new socket %o', socket.id)
     const m = ioErrorHandler(socket, context.sockets)
     const exitProcess = (error: Error, broker: AppBroker) => {
       console.error('A fatal error occured managing sockets')

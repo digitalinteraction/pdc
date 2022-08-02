@@ -8,7 +8,7 @@ export function createEnv(processEnv = process.env) {
     STATIC_URL = null,
     ADMIN_EMAILS = null,
   } = processEnv
-  const DISABLE_SOCKETS = Boolean(processEnv)
+  const DISABLE_SOCKETS = Boolean(processEnv.DISABLE_SOCKETS)
 
   return Object.assign(createDeconfEnv(processEnv), {
     REDIS_URL,
