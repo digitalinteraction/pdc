@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/digitalinteraction/pdc/compare/v1.10.0...v1.11.0) (2022-08-02)
+
+### Features
+
+- add command to log site visitors as a metric ([53e3233](https://github.com/digitalinteraction/pdc/commit/53e32338c3295f241aef6dc9048d52baf6fbe33e))
+
 ## [1.10.0](https://github.com/digitalinteraction/pdc/compare/v1.9.1...v1.10.0) (2022-08-02)
 
 ### Features
