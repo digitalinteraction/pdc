@@ -27,6 +27,7 @@ patchesStrategicMerge:
   - patches/redis-pvc.yml
   - patches/schedule-cronjob.yml
   - patches/server-deployment.yml
+  - patches/setup-job.yml
   - patches/visitors-cronjob.yml
 
 images:
