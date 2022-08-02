@@ -60,7 +60,10 @@
       "siteVisitors": true,
       "twitter": true,
       "login": true,
-      "register": true
+      "register": true,
+      "situatedActions": true,
+      "a11ySchedule": true,
+      "calendarHelp": true
     }
   }
 }

@@ -194,6 +194,15 @@ pdc:
     twitterSubtitle: Share the sessions you're most excited about attending.
     twitterTitle: 'Tweet #pdc2022'
     twitterUrl: https://twitter.com/hashtag/pdc2022
+    situatedActionsTitle: Situated Actions
+    situatedActionsSubtitle: Register for a Situated Action
+    situatedActionsUrl: https://www.eventbrite.com/cc/pdc-conference-situated-actions-695819
+    calendarHelpTitle: Calendar Sync
+    calendarHelpSubtitle: Sync My Schedule with your online calendar
+    calendarHelpUrl: /calendar-help
+    a11yScheduleTitle: Screen Assisted
+    a11yScheduleSubtitle: A full day-by-day screen assisted version of the programme is available here.
+    a11yScheduleUrl: https://docs.google.com/spreadsheets/d/1MEgC6KRasLOguSh3vHh-b9FQQzXrSQAb/edit
 
   footer:
     appName: PDC 2022

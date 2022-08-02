@@ -6,6 +6,7 @@ import {
   defaulted,
   Infer,
   object,
+  optional,
   string,
 } from 'superstruct'
 
@@ -61,10 +62,13 @@ export const AppConfigStruct = object({
     }),
 
     widgets: object({
-      siteVisitors: boolean(),
-      twitter: boolean(),
-      login: boolean(),
-      register: boolean(),
+      siteVisitors: optional(boolean()),
+      twitter: optional(boolean()),
+      login: optional(boolean()),
+      register: optional(boolean()),
+      situatedActions: optional(boolean()),
+      a11ySchedule: optional(boolean()),
+      calendarHelp: optional(boolean()),
     }),
   }),
 })

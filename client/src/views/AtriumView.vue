@@ -26,7 +26,6 @@
         <ColorWidget
           v-if="!user && widgets.has('register')"
           kind="custom"
-          class="is-register"
           :title="$t('pdc.atrium.registerTitle')"
           :subtitle="$t('pdc.atrium.registerSubtitle')"
           :href="$t('pdc.atrium.registerUrl')"
@@ -35,14 +34,37 @@
         <ColorWidget
           v-if="!user && widgets.has('login')"
           kind="custom"
-          class="is-login"
           :title="$t('pdc.atrium.logIn')"
           subtitle=""
           href="/login"
           :icon="['fas', 'envelope']"
         />
         <ColorWidget
-          v-if="siteVisitorsIsEnabled && widgets.has('siteVisitors')"
+          v-if="widgets.has('situatedActions')"
+          kind="custom"
+          :title="$t('pdc.atrium.situatedActionsTitle')"
+          :subtitle="$t('pdc.atrium.situatedActionsSubtitle')"
+          :href="$t('pdc.atrium.situatedActionsUrl')"
+          :icon="['fas', 'ticket-alt']"
+        />
+        <ColorWidget
+          v-if="widgets.has('a11ySchedule')"
+          kind="custom"
+          :title="$t('pdc.atrium.a11yScheduleTitle')"
+          :subtitle="$t('pdc.atrium.a11yScheduleSubtitle')"
+          :href="$t('pdc.atrium.a11yScheduleUrl')"
+          :icon="['fas', 'clock']"
+        />
+        <ColorWidget
+          v-if="user && widgets.has('calendarHelp')"
+          kind="custom"
+          :title="$t('pdc.atrium.calendarHelpTitle')"
+          :subtitle="$t('pdc.atrium.calendarHelpSubtitle')"
+          :href="$t('pdc.atrium.calendarHelpUrl')"
+          :icon="['fas', 'calendar-plus']"
+        />
+        <ColorWidget
+          v-if="widgets.has('siteVisitors')"
           kind="secondary"
           :title="siteVisitorsTitle"
           :subtitle="$t('pdc.atrium.onlineUsers')"
@@ -123,10 +145,6 @@ export default Vue.extend({
     settings(): PdcConferenceConfig | null {
       return (this.schedule?.settings as any) ?? null
     },
-    siteVisitorsIsEnabled(): boolean {
-      if (!this.settings) return false
-      return !this.settings.widgets.siteVisitors
-    },
     siteVisitorsTitle(): string {
       return this.siteVisitors?.toString() ?? '~'
     },
@@ -154,15 +172,11 @@ export default Vue.extend({
       )
     },
     widgets(): Set<string> {
-      const widgets = new Set<string>()
-      const conf = this.settings?.widgets
-
-      if (conf?.siteVisitors) widgets.add('siteVisitors')
-      if (conf?.twitter) widgets.add('twitter')
-      if (conf?.login) widgets.add('login')
-      if (conf?.register) widgets.add('register')
-
-      return widgets
+      return new Set(
+        Object.entries(this.settings?.widgets ?? {})
+          .filter((entry) => entry[1] === true)
+          .map((entry) => entry[0])
+      )
     },
   },
   updated() {
@@ -205,8 +219,7 @@ export default Vue.extend({
     text-shadow: 2px 3px 3px $black;
   }
 
-  .colorWidget.is-login,
-  .colorWidget.is-register {
+  .colorWidget.is-custom {
     color: $black;
     background-color: $pdc-yellow;
     &[href]:hover {

@@ -23,9 +23,12 @@ export interface PdcConferenceConfig {
   }
 
   widgets: {
-    siteVisitors: boolean
-    twitter: boolean
-    login: boolean
-    register: boolean
+    siteVisitors?: boolean
+    twitter?: boolean
+    login?: boolean
+    register?: boolean
+    situatedActions?: boolean
+    a11ySchedule?: boolean
+    calendarHelp?: boolean
   }
 }
