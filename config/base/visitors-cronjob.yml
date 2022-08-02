@@ -31,7 +31,7 @@ spec:
                   subPath: do-ca.crt
               env:
                 - name: DEBUG
-                  value: deconf*,moz*
+                  value: deconf*,pdc*
               resources:
                 requests: { memory: 64Mi, cpu: 200m }
                 limits: { memory: 128Mi, cpu: 300m }
