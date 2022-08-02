@@ -7,6 +7,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: server
+  minReplicas: 2
   maxReplicas: 10
   metrics:
     - type: Resource
