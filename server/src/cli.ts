@@ -8,6 +8,7 @@ import yargs, { alias } from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { fakeScheduleCommand } from './commands/fake-schedule-command.js'
 import { fetchScheduleCommand } from './commands/fetch-schedule-command.js'
+import { logVisitorsCommand } from './commands/log-visitors-command.js'
 import { migrateCommand } from './commands/migrate-command.js'
 import { optimizeSvgsCommand } from './commands/optimize-sgvs-command.js'
 import { serveCommand } from './commands/serve-command.js'
@@ -77,7 +78,14 @@ cli.command(
       currentColor: { type: 'boolean', default: false },
       vue: { type: 'boolean', default: false },
     }),
-  (args) => optimizeSvgsCommand(args)
+  (args) => optimizeSvgsCommand(args).catch(errorHandler)
+)
+
+cli.command(
+  'log-visitors',
+  'Log the number of visitors as a metric',
+  (yargs) => yargs,
+  (args) => logVisitorsCommand(args).catch(errorHandler)
 )
 
 cli.parse()
