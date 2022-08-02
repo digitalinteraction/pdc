@@ -14,6 +14,7 @@ spec:
           image: ghcr.io/digitalinteraction/pdc-server
           args:
             - migrate
+            - --quiet
           volumeMounts:
             - mountPath: /app/app-config.json
               name: resources
@@ -28,6 +29,7 @@ spec:
           args:
             - fetch-schedule
             - --only=settings
+            - --quiet
           volumeMounts:
             - mountPath: /app/app-config.json
               name: resources
