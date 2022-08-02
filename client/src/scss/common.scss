@@ -21,4 +21,7 @@ $sideTabs-background: $pdc-navy;
 $sideTabs-activeBackground: $pdc-yellow;
 $sideTabs-active: $pdc-navy;
 
+$navigationBar-mobileBackground: $pdc-navy;
+$navigationBar-mobileColor: $white;
+
 @import '@openlab/deconf-ui-toolkit/common.scss';
