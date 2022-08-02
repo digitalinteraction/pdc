@@ -22,7 +22,7 @@
     >
       <span slot="title">{{ place.title }}</span>
       <div slot="info" class="content" v-html="placeContent"></div>
-      <span slot="noResults">{{ $t('pdc.general.noResults') }}</span>
+      <span slot="noResults">{{ $t('pdc.places.noResults') }}</span>
     </WhatsOnView>
   </AppLayout>
 </template>

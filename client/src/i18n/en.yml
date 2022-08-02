@@ -253,6 +253,7 @@ pdc:
 
   places:
     title: Places
+    noResults: Coming soon
 
   papers:
     title: Papers
