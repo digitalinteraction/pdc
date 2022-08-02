@@ -11,7 +11,6 @@ resources:
   - redis-service.yml
   - server-deployment.yml
   - server-service.yml
-  - setup-job.yml
 
 configMapGenerator:
   - name: digitalocean
