@@ -59,8 +59,11 @@
     "widgets": {
       "siteVisitors": true,
       "twitter": true,
-      "login": false,
-      "register": true
+      "login": true,
+      "register": true,
+      "situatedActions": true,
+      "a11ySchedule": true,
+      "calendarHelp": true
     }
   }
 }
