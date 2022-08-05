@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.1](https://github.com/digitalinteraction/pdc/compare/v1.11.0...v1.11.1) (2022-08-05)
+
+### Bug Fixes
+
+- add opengraph image ([7657c1e](https://github.com/digitalinteraction/pdc/commit/7657c1e378178b07593db7901c1215018b79725a))
+- fix programme icon glitch ([954e9ff](https://github.com/digitalinteraction/pdc/commit/954e9ffee5b070b488b012b0277af4495ec8bc3c))
+
 ## [1.11.0](https://github.com/digitalinteraction/pdc/compare/v1.10.0...v1.11.0) (2022-08-02)
 
 ### Features
