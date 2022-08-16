@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.2](https://github.com/digitalinteraction/pdc/compare/v1.11.1...v1.11.2) (2022-08-16)
+
+### Bug Fixes
+
+- fix url queries not working ([5de05a8](https://github.com/digitalinteraction/pdc/commit/5de05a8be9bd8fdf1af24e922caed0ce9a4434a4))
+
 ### [1.11.1](https://github.com/digitalinteraction/pdc/compare/v1.11.0...v1.11.1) (2022-08-05)
 
 ### Bug Fixes
