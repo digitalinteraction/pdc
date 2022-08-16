@@ -26,8 +26,8 @@ import {
 } from '@openlab/deconf-ui-toolkit'
 import { getLanguageOptions, guardRoute, mapApiState } from '@/lib/module'
 
-const trackBlockList = new Set([
-  'fb858d34-9492-4596-b5e9-20b9a6e035f2', // PDC Places
+const trackBlockList = new Set<string>([
+  // 'fb858d34-9492-4596-b5e9-20b9a6e035f2', // PDC Places
 ])
 
 const options: FilteredScheduleOptions = {
