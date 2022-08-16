@@ -6,6 +6,7 @@
       :user-sessions="userSessions"
       :options="options"
       :schedule-date="scheduleDate"
+      :route-query="$route.query"
       @filter="onFilter"
     >
       <span slot="title">{{ $t('pdc.pageTitles.schedule') }}</span>
