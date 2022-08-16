@@ -107,3 +107,9 @@
 .appLayout-header .navbar-end {
   border-top: none;
 }
+
+.scheduleView-toggleHistory {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+}
