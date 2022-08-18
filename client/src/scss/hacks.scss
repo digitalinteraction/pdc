@@ -113,3 +113,7 @@
   bottom: 0;
   z-index: 5;
 }
+
+.iframeEmbed:not(:last-child) {
+  margin-bottom: 1rem;
+}
