@@ -140,6 +140,17 @@ function parseEmbedUrl(url: URL): Record<string, string> | null {
     }
   }
 
+  // https://youtu.be/123456
+  if (url.host.endsWith('youtu.be')) {
+    const [, video] = url.pathname.split('/')
+    return {
+      title: 'YouTube video player',
+      allow: 'clipboard-write; encrypted-media; picture-in-picture',
+      allowfullscreen: '',
+      src: `https://www.youtube-nocookie.com/embed/${video}`,
+    }
+  }
+
   // vimeo.com/123456
   if (url.host.endsWith('vimeo.com')) {
     const id = url.pathname.replace(/^\/+/, '').replace(/\/+$/, '')
