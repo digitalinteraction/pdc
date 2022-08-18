@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.3](https://github.com/digitalinteraction/pdc/compare/v1.11.2...v1.11.3) (2022-08-18)
+
+### Bug Fixes
+
+- add spacing after iframe embeds ([99a4f84](https://github.com/digitalinteraction/pdc/commit/99a4f8450158815deab50c9951ddfc4f4eed03b7))
+- embed youtu.be videos in markdown ([78bc466](https://github.com/digitalinteraction/pdc/commit/78bc466a7787cb5fbec33e724522e2398710640e))
+- stick schedule's "toggle history" to the bottom of the screen ([cbbe266](https://github.com/digitalinteraction/pdc/commit/cbbe26668ecec509531ae3b6e5153210f2727363))
+
 ### [1.11.2](https://github.com/digitalinteraction/pdc/compare/v1.11.1...v1.11.2) (2022-08-16)
 
 ### Bug Fixes
