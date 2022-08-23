@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.4](https://github.com/digitalinteraction/pdc/compare/v1.11.3...v1.11.4) (2022-08-23)
+
+### Bug Fixes
+
+- skip registrations with no email ([dcb9dde](https://github.com/digitalinteraction/pdc/commit/dcb9dde4ef6fe3957d534ee32980ad5a6b468113))
+
 ### [1.11.3](https://github.com/digitalinteraction/pdc/compare/v1.11.2...v1.11.3) (2022-08-18)
 
 ### Bug Fixes
