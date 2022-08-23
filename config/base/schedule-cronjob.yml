@@ -12,12 +12,13 @@ spec:
 
   jobTemplate:
     spec:
+      backoffLimit: 2
       template:
         metadata:
           labels:
             app.kubernetes.io/component: fetch-schedule
         spec:
-          restartPolicy: OnFailure
+          restartPolicy: Never
           containers:
             - name: fetch-schedule
               image: ghcr.io/digitalinteraction/pdc-server
