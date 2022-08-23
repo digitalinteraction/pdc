@@ -63,8 +63,8 @@ export function watchConfig(config: AppConfig, store: KeyValueService) {
   return { config, abort: () => abort.abort() }
 }
 
-export function trimEmail(input: string) {
-  return input.trim().toLowerCase()
+export function trimEmail(input?: string) {
+  return input?.trim().toLowerCase() ?? ''
 }
 
 export function sha256UrlHash(input: string) {

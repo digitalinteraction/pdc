@@ -288,10 +288,13 @@ async function processRegistrations(
   content: Record<string, NotionPage[]>,
   store: RedisService
 ) {
-  const records: RegisteredUsers[] = content.registrations.map((page) => ({
-    name: fmt.title(page.props.Name),
-    email: sha256UrlHash(trimEmail(fmt.email(page.props.Email))),
-  }))
+  const emptyString = sha256UrlHash('')
+  const records: RegisteredUsers[] = content.registrations
+    .map((page) => ({
+      name: fmt.title(page.props.Name),
+      email: sha256UrlHash(trimEmail(fmt.email(page.props.Email))),
+    }))
+    .filter((r) => r.email !== emptyString)
 
   await store.put('registration.users', records)
 }
