@@ -1,0 +1,36 @@
+#
+# https://prometheus.io/docs/alerting/latest/configuration/
+#
+
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: pdc-alerts
+spec:
+  route:
+    groupBy: [job]
+    groupWait: 30s
+    groupInterval: 5m
+    repeatInterval: 12h
+    receiver: pdc-sendgrid-smtp
+    matchers:
+      - name: severity
+        regex: true
+        value: warning|critical
+
+    # A namespace matcher is pre-defined by prom-operator
+    #
+    # matchers:
+    #   - name: namespace
+    #     value: production
+
+  receivers:
+    - name: pdc-sendgrid-smtp
+      emailConfigs:
+        - to: rob.anderson@ncl.ac.uk
+          from: noreply@openlab.dev
+          smarthost: smtp.sendgrid.net:587
+          authUsername: apikey
+          authPassword:
+            name: alerts-sendgrid
+            key: SENDGRID_API_KEY
