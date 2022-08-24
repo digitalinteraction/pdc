@@ -53,14 +53,14 @@
     "navigation": {
       "showProfile": true,
       "showLogin": true,
-      "showRegister": true
+      "showRegister": false
     },
 
     "widgets": {
       "siteVisitors": true,
       "twitter": true,
       "login": true,
-      "register": true,
+      "register": false,
       "situatedActions": true,
       "a11ySchedule": true,
       "calendarHelp": true
