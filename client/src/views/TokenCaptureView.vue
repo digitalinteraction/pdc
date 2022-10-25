@@ -14,7 +14,6 @@ export default Vue.extend({
   data() {
     return { tokenKey: StorageKey.AuthToken }
   },
-
   methods: {
     onSuccess(user: AuthToken) {
       setLocale(user.user_lang)
