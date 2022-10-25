@@ -16,10 +16,10 @@
       <SquareLogo />
     </router-link>
 
-    <div slot="main" class="pdcAppLayout-main">
+    <template slot="main">
       <slot />
       <PageFooter />
-    </div>
+    </template>
   </AppLayout>
 </template>
 
@@ -145,18 +145,3 @@ export default Vue.extend({
   },
 })
 </script>
-
-<style lang="scss">
-// TODO: migrate to deconf somehow
-.pdcAppLayout-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  align-items: stretch;
-
-  > :not(.pageFooter) {
-    flex: 1;
-  }
-}
-</style>

@@ -99,19 +99,8 @@
   display: none;
 }
 
-// TODO: move back to deconf
-.icon-text {
-  display: inline-block;
-}
-
 .appLayout-header .navbar-end {
   border-top: none;
-}
-
-.scheduleView-toggleHistory {
-  position: sticky;
-  bottom: 0;
-  z-index: 5;
 }
 
 .iframeEmbed:not(:last-child) {

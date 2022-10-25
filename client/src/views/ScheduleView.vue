@@ -8,6 +8,7 @@
       :schedule-date="scheduleDate"
       :route-query="$route.query"
       @filter="onFilter"
+      class="appLayout-main"
     >
       <span slot="title">{{ $t('pdc.pageTitles.schedule') }}</span>
       <ApiContent slot="infoText" slug="programme-filters" />

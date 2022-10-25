@@ -6,6 +6,7 @@
       :schedule="schedule"
       :logged-in="Boolean(user)"
       :schedule-date="scheduleDate"
+      class="appLayout-main"
     >
       <BackButton slot="backButton" :to="backRoute">
         {{ $t('deconf.session.pdc.backButton') }}

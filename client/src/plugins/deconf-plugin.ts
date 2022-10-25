@@ -8,8 +8,6 @@ import _Vue, { Component } from 'vue'
 import { env } from './env-plugin'
 import { MetricsPlugin } from './metrics-plugin'
 
-import SpeakerDialog from '../components/SpeakerDialog.vue'
-
 export class PdcDeconfPlugin implements DeconfPlugin {
   static install(Vue: typeof _Vue): void {
     Vue.prototype.$deconf = new PdcDeconfPlugin()
@@ -33,10 +31,6 @@ export class PdcDeconfPlugin implements DeconfPlugin {
     MetricsPlugin.shared?.track(metric)
   }
   showDialog(component: Component, props: Record<string, unknown>): void {
-    if (component.name === 'SpeakerDialog') {
-      component = SpeakerDialog
-    }
-
     DialogPlugin.shared?.show(component, props)
   }
   closeDialog(): void {

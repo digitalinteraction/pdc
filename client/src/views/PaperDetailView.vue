@@ -1,5 +1,5 @@
 <template>
-  <AppLayout v-if="paper" class="paperDetailView">
+  <AppLayout v-if="paper" class="paperDetailView appLayout-main">
     <SessionLayout>
       <BackButton slot="backButton" :to="papersRoute">
         Back to papers

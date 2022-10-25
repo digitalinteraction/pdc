@@ -1,5 +1,5 @@
 <template>
-  <AppLayout v-if="place" class="placeDetailView">
+  <AppLayout v-if="place" class="placeDetailView appLayout-main">
     <div class="placesDetailView-extraTop">
       <router-link class="backLink" :to="placesRoute">
         <span class="icon">

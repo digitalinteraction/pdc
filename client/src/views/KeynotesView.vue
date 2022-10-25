@@ -11,6 +11,7 @@
       :url-filters="urlFilters"
       @filter="onFilter"
       :readonly="readonly"
+      class="appLayout-main"
     >
       <span slot="title">{{ $t('pdc.pageTitles.keynotes') }}</span>
       <ApiContent slot="info" slug="keynotes-filters" />

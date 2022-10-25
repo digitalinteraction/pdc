@@ -1,41 +1,24 @@
 <template>
-  <div class="content">
-    <p>Processing login...</p>
-  </div>
+  <TokenCaptureView :token-key="tokenKey" @success="onSuccess" />
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { createLoginFinishEvent, Routes } from '@openlab/deconf-ui-toolkit'
+import { Routes, TokenCaptureView } from '@openlab/deconf-ui-toolkit'
 import { StorageKey } from '@/lib/module'
 import { AuthToken } from '@openlab/deconf-shared'
 import { setLocale } from '@/i18n/module'
 
-// TODO: move to deconf ?
-
 export default Vue.extend({
-  mounted() {
-    this.processHash(window.location.hash)
+  components: { TokenCaptureView },
+  data() {
+    return { tokenKey: StorageKey.AuthToken }
   },
+
   methods: {
-    async processHash(hash: string) {
-      if (!hash || !hash.startsWith('#')) return
-
-      const params = new URLSearchParams(hash.slice(1))
-      const authToken = params.get('token')
-      if (!authToken) return
-
-      localStorage.setItem(StorageKey.AuthToken, authToken)
-      await this.$store.dispatch('api/authenticate', { token: authToken })
-
-      this.$metrics.track(createLoginFinishEvent())
-
-      const user: AuthToken = this.$store.state.api.user
-      if (user) setLocale(user.user_lang)
-
-      this.$router.replace({
-        name: Routes.Atrium,
-      })
+    onSuccess(user: AuthToken) {
+      setLocale(user.user_lang)
+      this.$router.replace({ name: Routes.Atrium })
     },
   },
 })

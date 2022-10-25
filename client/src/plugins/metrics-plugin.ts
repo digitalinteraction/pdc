@@ -2,9 +2,6 @@ import { MetricsEvent } from '@openlab/deconf-ui-toolkit'
 import _Vue from 'vue'
 import { SocketIoPlugin } from './socketio-plugin'
 
-import { env } from './env-plugin'
-import router from '@/router/module'
-
 export class MetricsPlugin {
   static shared: MetricsPlugin | null = null
 

@@ -1,6 +1,6 @@
 <template>
   <AppLayout>
-    <div class="offWhiteBackground">
+    <div class="offWhiteBackground appLayout-main">
       <header class="filterHeader">
         <h1 class="filterHeader-title">{{ $t('pdc.places.title') }}</h1>
         <div class="filterHeader-info">

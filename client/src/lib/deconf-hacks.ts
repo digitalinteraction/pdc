@@ -1,4 +1,4 @@
-// TODO: migrate these back to @openlab/deconf-ui
+// TODO: migrate these back to @openlab/deconf-ui (requires breaking change)
 
 import { AuthToken, PageFlag, ScheduleRecord } from '@openlab/deconf-shared'
 import {
@@ -23,7 +23,7 @@ export function guardRoute(
   }
 }
 
-// TODO: work out a generic way to migrate this back
+// TODO: work out a generic way to migrate this back (requires breaking change)
 type PdcApiModuleState = Omit<ApiModuleState, 'schedule'> & {
   schedule: Omit<ScheduleRecord, 'settings'> & {
     settings: PdcConferenceConfig

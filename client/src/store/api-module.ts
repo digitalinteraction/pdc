@@ -26,11 +26,6 @@ export function apiModule(): ApiStoreModule {
     actions: {
       ...createApiStoreActions(apiClient),
 
-      // TODO: migrate back to deconf
-      async fetchContent(_, { slug }) {
-        return apiClient.getContent(slug).then((r) => r?.content ?? null)
-      },
-
       async authenticate({ commit, dispatch }, { token }: AuthenticateOptions) {
         const user = decodeJwt(token) as FullAuthToken
 

@@ -1,5 +1,5 @@
 <template>
-  <AppLayout class="atriumView">
+  <AppLayout class="atriumView appLayout-main">
     <AtriumLayout>
       <HeroCard
         slot="top"

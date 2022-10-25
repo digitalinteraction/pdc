@@ -1,6 +1,6 @@
 <template>
   <AppLayout>
-    <div class="contentLayout">
+    <div class="contentLayout appLayout-main">
       <section class="section">
         <div class="container">
           <BoxContent>
