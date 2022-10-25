@@ -26,6 +26,7 @@ import {
   ContentRepository,
   ContentService,
   RedisService,
+  trimEmail,
 } from '@openlab/deconf-api-toolkit'
 
 import {
@@ -37,7 +38,6 @@ import {
   UrlService,
   NotionService,
   RegisteredUsers,
-  trimEmail,
   sha256UrlHash,
   getS3ClientFromEnv,
   S3Client,

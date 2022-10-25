@@ -2,8 +2,10 @@ import KoaRouter from '@koa/router'
 import {
   ApiError,
   EmailLoginTokenStruct,
+  getRedirectErrorCode,
   RegistrationMailer,
   RegistrationRoutes,
+  trimEmail,
   validateStruct,
   VOID_RESPONSE,
 } from '@openlab/deconf-api-toolkit'
@@ -18,11 +20,9 @@ import {
   AppContext,
   AppRouter,
   BlockList,
-  getRedirectErrorCode,
   RegisteredUsers,
   sha256UrlHash,
   TokenStruct,
-  trimEmail,
 } from '../lib/module.js'
 
 const LoginStartBodyStruct = object({

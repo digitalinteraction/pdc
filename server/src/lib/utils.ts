@@ -18,24 +18,12 @@ export function createDebug(namespace: string) {
   return debug(`pdc:${namespace}`)
 }
 
-export function getRedirectErrorCode(error: unknown) {
-  let errorCode: string | undefined = undefined
-
-  if (error instanceof ApiError) {
-    for (const code of error.codes) {
-      if (code === 'general.notFound') return 'not_found'
-      if (code === 'auth.tokenExpired') return 'login_expired'
-    }
-  }
-
-  return errorCode
-}
-
 export async function loadConfig() {
   const rawConfig = JSON.parse(await fs.readFile('app-config.json', 'utf8'))
   return create(rawConfig, AppConfigStruct)
 }
 
+// TODO: move to deconf (requries breaking change, node version 16+)
 export function watchConfig(config: AppConfig, store: KeyValueService) {
   const debug = createDebug('utils:config')
   debug('watching app-config.json')
@@ -61,10 +49,6 @@ export function watchConfig(config: AppConfig, store: KeyValueService) {
   })()
 
   return { config, abort: () => abort.abort() }
-}
-
-export function trimEmail(input?: string) {
-  return input?.trim().toLowerCase() ?? ''
 }
 
 export function sha256UrlHash(input: string) {
