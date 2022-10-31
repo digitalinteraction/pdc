@@ -9,6 +9,7 @@ export interface EnvRecord {
   readonly GA_TOKEN: string | null
   readonly JWT_ISSUER: string | null
   readonly DISABLE_SOCKETS: boolean
+  readonly STATIC_BUILD: boolean
 }
 
 // window.CONFIG is from public/config.js
@@ -24,15 +25,17 @@ const {
   GA_TOKEN = null,
   JWT_ISSUER = 'deconf-app',
   DISABLE_SOCKETS = false,
+  STATIC_BUILD = false,
 } = (window as WindowWithConfig).CONFIG || {}
 
-export const env: EnvRecord = Object.seal({
+export const env = Object.seal<EnvRecord>({
   SELF_URL: new URL(SELF_URL),
   SERVER_URL: new URL(SERVER_URL),
   BUILD_NAME,
   GA_TOKEN,
   JWT_ISSUER,
   DISABLE_SOCKETS: Boolean(DISABLE_SOCKETS),
+  STATIC_BUILD: Boolean(STATIC_BUILD),
 })
 
 //

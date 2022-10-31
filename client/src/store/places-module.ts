@@ -1,6 +1,6 @@
 import { env } from '@/plugins/env-plugin'
-import { DeconfApiClient } from '@openlab/deconf-ui-toolkit'
 import { Module } from 'vuex'
+import { pickApi } from './api-client'
 
 export interface PlaceRecord {
   id: string
@@ -16,7 +16,7 @@ export interface PlacesModuleState {
 export type PlacesStoreModule = Module<PlacesModuleState, unknown>
 
 export function placesModule(): PlacesStoreModule {
-  const api = new DeconfApiClient(env.SERVER_URL.href)
+  const apiClient = pickApi(env)
 
   return {
     namespaced: true,
@@ -30,7 +30,7 @@ export function placesModule(): PlacesStoreModule {
     },
     actions: {
       async fetch(ctx) {
-        const places = await api.fetchJson('places')
+        const places = await apiClient.getPlaces()
         ctx.commit('places', places)
       },
     },

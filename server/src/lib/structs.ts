@@ -83,15 +83,6 @@ export const TokenStruct = object({
   token: string(),
 })
 
-export const ConferenceConfigStruct = assign(
-  DeconfConferenceConfigStruct,
-  object({
-    // extra pages ...
-    // navigation flags ...
-    // atrium widgets ...
-  })
-)
-
 export type BlockList = Infer<typeof BlockedStruct>
 export const BlockedStruct = object({
   emails: array(string()),

@@ -40,7 +40,7 @@ export interface ServeCommandOptions {
   settings: boolean
 }
 
-export async function serveCommand(options: ServeCommandOptions) {
+export async function createServerContext(): Promise<AppContext> {
   const env = createEnv()
   const config = await loadConfig()
 
@@ -66,6 +66,19 @@ export async function serveCommand(options: ServeCommandOptions) {
   const registrationRepo = new RegistrationRepository({ postgres })
   const metricsRepo = new MetricsRepository({ postgres })
 
+  // prettier-ignore
+  return {
+    config, env, pkg, resources, email, i18n, jwt, postgres, semaphore, sockets,
+    store, url, attendanceRepo, conferenceRepo, metricsRepo, registrationRepo
+  }
+}
+
+export async function serveCommand(options: ServeCommandOptions) {
+  debug('start')
+
+  const context = await createServerContext()
+  const { env, store, config, postgres } = context
+
   const configWatcher =
     env.NODE_ENV === 'development' && options.settings
       ? watchConfig(config, store)
@@ -77,12 +90,6 @@ export async function serveCommand(options: ServeCommandOptions) {
 
   if (options.settings) {
     await store.put('schedule.settings', config.settings)
-  }
-
-  // prettier-ignore
-  const context: AppContext = {
-    config, env, pkg, resources, email, i18n, jwt, postgres, semaphore, sockets,
-    store, url, attendanceRepo, conferenceRepo, metricsRepo, registrationRepo
   }
 
   debug('creating server')

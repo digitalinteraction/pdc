@@ -4,8 +4,10 @@
 // The cli entrypoint
 //
 
-import yargs, { alias } from 'yargs'
+import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
+
+import { exportScheduleCommand } from './commands/export-schedule-command.js'
 import { fakeScheduleCommand } from './commands/fake-schedule-command.js'
 import { fetchScheduleCommand } from './commands/fetch-schedule-command.js'
 import { logVisitorsCommand } from './commands/log-visitors-command.js'
@@ -86,6 +88,18 @@ cli.command(
   'Log the number of visitors as a metric',
   (yargs) => yargs,
   (args) => logVisitorsCommand(args).catch(errorHandler)
+)
+
+cli.command(
+  'export-schedule [destination]',
+  'Export a public static version of the schedule',
+  (yargs) =>
+    yargs.positional('destination', {
+      type: 'string',
+      describe: 'Where to put the static files',
+      default: 'static/schedule',
+    }),
+  (args) => exportScheduleCommand(args).catch(errorHandler)
 )
 
 cli.parse()

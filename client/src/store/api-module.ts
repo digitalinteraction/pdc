@@ -4,19 +4,19 @@ import {
   createApiStoreActions,
   createApiStoreModule,
   decodeJwt,
-  DeconfApiClient,
   FullAuthToken,
 } from '@openlab/deconf-ui-toolkit'
 
 import { env } from '@/plugins/env-plugin'
 import { SocketIoPlugin } from '@/plugins/socketio-plugin'
 import { StorageKey } from '@/lib/module'
+import { pickApi } from './api-client'
 
 // TODO: move non-ApiClient auth logic somewhere else
 // or move all api-key related logic here (e.g. setLocale)
 
 export function apiModule(): ApiStoreModule {
-  const apiClient = new DeconfApiClient(env.SERVER_URL.href)
+  const apiClient = pickApi(env)
 
   return {
     ...createApiStoreModule(),

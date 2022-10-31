@@ -16,8 +16,8 @@
     "@koa/cors": "^3.3.0",
     "@koa/router": "^10.1.1",
     "@notionhq/client": "^1.0.4",
-    "@openlab/deconf-api-toolkit": "^4.9.0",
-    "@openlab/deconf-shared": "^3.5.0",
+    "@openlab/deconf-api-toolkit": "^5.1.0",
+    "@openlab/deconf-shared": "^3.6.0",
     "@sendgrid/mail": "^7.6.2",
     "@socket.io/redis-adapter": "^7.1.0",
     "debug": "^4.3.4",
@@ -59,6 +59,7 @@
     "@types/svgo": "^2.6.3",
     "@types/yargs": "^17.0.10",
     "svgo": "^2.8.0",
-    "typescript": "^4.6.4"
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
   }
 }

@@ -11,6 +11,7 @@ dist
 server/notion.json
 server/svgs
 server/static/notion
+server/static/schedule
 
 config/**/secrets/*
 
