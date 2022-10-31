@@ -18,6 +18,7 @@ deconf:
     hideWorkshops: Hide all
 
   general:
+    appName: PDC 2022
     days: days | day | days
     hours: hours | hour | hours
     minutes: minutes | minute | minutes

@@ -7,5 +7,13 @@ window.CONFIG = {
   // GA_TOKEN: 'G-JRVVR708J7', // development/testing token
   GA_TOKEN: '',
   JWT_ISSUER: 'pdc-2022-dev',
-  // DISABLE_SOCKETS: false,
+  DISABLE_SOCKETS: false,
+  STATIC_BUILD: false,
 }
+
+//
+// Static mode
+//
+// window.CONFIG.SERVER_URL = 'http://localhost:3000/static/schedule/'
+// window.CONFIG.STATIC_BUILD = true
+// window.CONFIG.DISABLE_SOCKETS = true
