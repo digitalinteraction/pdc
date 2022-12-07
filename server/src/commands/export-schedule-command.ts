@@ -47,7 +47,6 @@ export async function exportScheduleCommand(
   const attendance = Object.fromEntries(
     await context.attendanceRepo.getSessionAttendance()
   )
-  const carbon = await content.carbon.get
 
   //
   // Modify the settings

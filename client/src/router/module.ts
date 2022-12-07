@@ -15,6 +15,7 @@ import {
 } from '@openlab/deconf-ui-toolkit'
 import { ExtraRoutes, StorageKey } from '@/lib/module'
 import { MetricsPlugin } from '@/plugins/metrics-plugin'
+import { env } from '@/plugins/env-plugin'
 
 Vue.use(VueRouter)
 
@@ -265,7 +266,7 @@ const scrollBehavior = getScrollBehaviour(80)
 const protectedRoutes = new Set<string>([Routes.Profile])
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: env.STATIC_BUILD ? 'hash' : 'history',
   base: process.env.BASE_URL,
   routes,
   scrollBehavior,

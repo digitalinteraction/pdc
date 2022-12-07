@@ -14,6 +14,6 @@ window.CONFIG = {
 //
 // Static mode
 //
-// window.CONFIG.SERVER_URL = 'http://localhost:8080/schedule/'
-// window.CONFIG.STATIC_BUILD = true
-// window.CONFIG.DISABLE_SOCKETS = true
+window.CONFIG.SERVER_URL = 'http://localhost:8080/schedule/'
+window.CONFIG.STATIC_BUILD = true
+window.CONFIG.DISABLE_SOCKETS = true
