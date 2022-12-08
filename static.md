@@ -24,7 +24,6 @@ cp -R dist/* ../static
 
 # todo
 
-- Investigate lack of links
 - Get the live attendance into the export
+  - The UI doesn't show it anyway
 - Can the notion assets be embedded in the static export too?
-- Check the 404 "hack" works
