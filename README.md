@@ -29,7 +29,7 @@ PDC OSS is mono-repo with all code in one place:
 - [./client](./client) - A Vue.js based web app to experience the conference released as a docker container
 - [./config](./config) - Kubernetes manifests that describe entire app deployments
 - [./server](./server) - A Node.js based server that processes the schedule, manages authentication & handles metrics
-- [./static](./static) - The static export of the project, hosted on GitHub pages
+- [./static](./static) - An archive of the project, hosted on GitHub pages
 
 It uses these deconf libraries:
 
