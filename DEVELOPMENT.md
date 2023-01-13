@@ -6,7 +6,7 @@ This document contains information on developing on this repository.
 
 This repo is a mono-repo with all source code in one place:
 
-- [.](/) The root contains common configurations and meta-files
+- [. (root)](/) The root contains common configurations and meta-files
 - [client](./client) — Frontend client
 - [client](./server) — Backend server
 - [config](./config) — Deployment configuration
@@ -94,7 +94,7 @@ and skips lines after a `// prettier-ignore` comment.
 
 ### Commits
 
-Commits to `main` **must** adhere to [https://www.conventionalcommits.org/en/v1.0.0/]
+Commits to `main` **must** adhere to [ConventionalCommits](https://www.conventionalcommits.org/en/v1.0.0/)
 in order to automatically generate useful releases.
 
 ### Releasing
